@@ -1,27 +1,38 @@
+import json
 import os
 
 from instagrapi import Client
 from instagrapi.exceptions import LoginRequired
-from typing import List, Dict, Literal
+from typing import List, Dict, Literal, Any
 
-from src.services import logger
+from backend.src.services import logger
+from backend.src.instagram.utils import (
+    get_all_media_info,
+    normalize_city_name,
+    get_location_pk,
+)
 
 
 class InstagramCrawler:
     def __init__(
         self,
         delay_range: List[int] = [1, 3],
-        session_json_path: str = "configs/session.json",
+        session_json_path: str = "backend/configs/session.json",
+        city_geo_json_path: str = "backend/configs/city_geo.json",
     ):
         # for logging
         self.logger = logger
 
         # for instantiating the client
-        self.USERNAME = os.getenv("ACCOUNT_USERNAME")
-        self.PASSWORD = os.getenv("ACCOUNT_PASSWORD")
+        self.USERNAME = os.getenv("IG_USERNAME")
+        self.PASSWORD = os.getenv("IG_PASSWORD")
         self.delay_range = delay_range
         self.session_json_path = session_json_path
         self.cl = self._login()
+
+        # load geo json
+        with open(city_geo_json_path, "r") as f:
+            self.city_geo = json.load(f)
 
     def _login(self):
         """
@@ -81,29 +92,12 @@ class InstagramCrawler:
         if not login_via_pw and not login_via_session:
             raise Exception("Couldn't login user with either password or session")
 
-    def _get_media_info(self, media):
-        """parses through media object to get relevant info"""
-        return {
-            "date": media.taken_at or "",
-            "location": media.location or "",
-            "caption": media.caption_text or "",
-            "comment_count": media.comment_count or 0,
-            "like_count": media.like_count or 0,
-            "play_count": media.play_count or 0,
-        }
-
-    def _get_all_media_info(
-        self,
-        medias,
-    ):
-        """runs for a list of medias"""
-        return [self._get_media_info(media) for media in medias]
-
     def get_info_by_hashtags(
         self,
         hashtags: List[str],
-        classification: Literal["recent", "top"] = "top",
-        amount: int = 100,
+        hashtags_master_dict: Dict[str, List[Dict[str, Any]]] = {},
+        search_type: Literal["recent", "top"] = "top",
+        amount: int = 10,
     ):
         """
         gets all relevant info for a list of hashtags
@@ -111,22 +105,81 @@ class InstagramCrawler:
         Args:
             hashtags (List[str]): list of hashtags (without #)
                 typically put locations
-            classification (Literal["recent", "top"], optional): method to get the media.
+            hashtags_master_dict (Dict[str, List[Dict[str, Any]]], optional): dictionary of hashtags and their media info.
+                defaults to {}.
+            search_type (Literal["recent", "top"], optional): method to get the media.
                 defaults to "top".
             amount (int, optional): amount of media to get.
                 defaults to 100.
 
         Returns:
             Dict[str, List[Dict[str, Any]]]: dictionary of hashtags and their media info
+
+        Usage (e.g.):
+            hashtags_master_dict = {} (or previously generated/cached)
+            ic = InstagramCrawler()
+            location_hashtags = ["paris", "london", "newyork"]
+            hashtags_master_dict = ic.get_info_by_hashtags(
+                hashtags=location_hashtags,
+                hashtags_master_dict=hashtags_master_dict,
+            )
         """
-        media_dict = dict()
         for hashtag in hashtags:
             # get the top hashtags
-            if classification == "top":
+            if search_type == "top":
                 media = self.cl.hashtag_medias_top(hashtag, amount)
             else:
                 media = self.cl.hashtag_medias_recent(hashtag, amount)
             # get the relevant info from media
-            all_hashtag_info = self._get_all_media_info(media)
-            media_dict[hashtag] = all_hashtag_info
-        return media_dict
+            hashtag_info = get_all_media_info(media)
+            hashtags_master_dict[hashtag] = hashtag_info
+        return hashtags_master_dict
+
+    def get_info_by_location(
+        self,
+        city_name: str,
+        location_master_dict: Dict[str, List[Dict[str, Any]]] = {},
+        search_type: Literal["recent", "top"] = "top",
+        amount: int = 10,
+    ):
+        """
+        gets all relevant info for a location
+
+        Args:
+            city_name (str): name of the city
+            location_master_dict (Dict[str, List[Dict[str, Any]]], optional): dictionary of location and their media info.
+                defaults to {}.
+            search_type (Literal["recent", "top"], optional): method to get the media.
+                defaults to "top".
+            amount (int, optional): amount of media to get.
+                defaults to 10.
+
+        Returns:
+            location_master_dict: dictionary of location and their media info
+
+        Usage (e.g.):
+            location_master_dict = {} (or previously generated/cached)
+            ic = InstagramCrawler()
+            city_name = "paris"
+            location_master_dict = ic.get_info_by_location(
+                city_name=city_name,
+                location_master_dict=location_master_dict,
+            )
+        """
+        city_name = normalize_city_name(city_name=city_name)
+        if city_name not in self.geo_json:
+            self.logger.warning(f"city: {city_name} not found in geo json")
+            return location_master_dict
+
+        # get the location pk and location name
+        city_dict = self.geo_json[city_name]
+        lat, lng = city_dict["lat"], city_dict["lng"]
+        loc_pk = get_location_pk(cl=self.cl, lat=lat, lng=lng)
+        # get the medias for the location
+        if search_type == "top":
+            medias = self.cl.location_medias_top(loc_pk, amount)
+        else:
+            medias = self.cl.location_medias_recent(loc_pk, amount)
+        # get the relevant info from media
+        location_master_dict[city_name] = get_all_media_info(medias)
+        return location_master_dict
