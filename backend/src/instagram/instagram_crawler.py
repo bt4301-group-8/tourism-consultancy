@@ -31,7 +31,8 @@ class InstagramCrawler:
         self.cl = self._login()
 
         # load geo json
-        with open(city_geo_json_path, "r") as f:
+        self.city_geo_json_path = city_geo_json_path
+        with open(self.city_geo_json_path, "r") as f:
             self.city_geo = json.load(f)
 
     def _login(self):
@@ -55,6 +56,7 @@ class InstagramCrawler:
                 try:
                     cl.get_timeline_feed()
                     cl.delay_range = self.delay_range
+                    self.logger.info("successfully logged in via session")
                     return cl
                 except LoginRequired:
                     self.logger.info(
@@ -167,14 +169,31 @@ class InstagramCrawler:
             )
         """
         city_name = normalize_city_name(city_name=city_name)
-        if city_name not in self.geo_json:
+        if city_name not in self.city_geo:
             self.logger.warning(f"city: {city_name} not found in geo json")
             return location_master_dict
 
-        # get the location pk and location name
-        city_dict = self.geo_json[city_name]
-        lat, lng = city_dict["lat"], city_dict["lng"]
-        loc_pk = get_location_pk(cl=self.cl, lat=lat, lng=lng)
+        # get the location pk (if exists)
+        city_dict = self.city_geo[city_name]
+        loc_pk = city_dict.get("location_pk", "")
+
+        # if not, call api and cache
+        if not loc_pk:
+            # get the location pk from the lat and lng
+            lat, lng = city_dict["lat"], city_dict["lng"]
+            loc_pk = get_location_pk(cl=self.cl, lat=lat, lng=lng)
+
+            # cache the location pk atomically
+            if loc_pk:
+                self.city_geo[city_name]["location_pk"] = loc_pk
+                temp_file = f"{self.city_geo_json_path}.tmp"
+                with open(temp_file, "w") as f:
+                    json.dump(self.city_geo, f)
+                os.replace(temp_file, self.city_geo_json_path)
+            else:
+                self.logger.warning(f"Could not get location_pk for {city_name}")
+                return location_master_dict
+
         # get the medias for the location
         if search_type == "top":
             medias = self.cl.location_medias_top(loc_pk, amount)
