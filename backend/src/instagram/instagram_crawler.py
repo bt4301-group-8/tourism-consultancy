@@ -6,6 +6,7 @@ from instagrapi.exceptions import LoginRequired
 from typing import List, Dict, Literal, Any
 
 from backend.src.services import logger
+from backend.src.instagram.challenge import ChallengeResolver
 from backend.src.instagram.utils import (
     get_all_media_info,
     normalize_city_name,
@@ -29,6 +30,8 @@ class InstagramCrawler:
         self.delay_range = delay_range
         self.session_json_path = session_json_path
         self.cl = self._login()
+        self.cl.delay_range = self.delay_range
+        self.cl.challenge_code_handler = ChallengeResolver()
 
         # load geo json
         self.city_geo_json_path = city_geo_json_path
@@ -55,7 +58,6 @@ class InstagramCrawler:
                 # check if session is valid
                 try:
                     cl.get_timeline_feed()
-                    cl.delay_range = self.delay_range
                     self.logger.info("successfully logged in via session")
                     return cl
                 except LoginRequired:
@@ -70,6 +72,7 @@ class InstagramCrawler:
                     cl.set_uuids(old_session["uuids"])
 
                     cl.login(self.USERNAME, self.PASSWORD)
+                    cl.dump_settings(self.session_json_path)
                 login_via_session = True
                 cl.delay_range = self.delay_range
                 return cl
