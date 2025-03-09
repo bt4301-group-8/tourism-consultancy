@@ -1,3 +1,6 @@
+import json
+
+
 def get_media_info(media):
     """parses through media object to get relevant info"""
     return {
@@ -29,5 +32,5 @@ def get_location_pk(
     if loc.pk:
         return loc.pk
     # if pk not found yet
-    loc = cl.location_complete(loc)
-    return loc.pk
+    loc = json.loads(cl.location_build(loc))
+    return loc["facebook_places_id"]

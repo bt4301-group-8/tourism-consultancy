@@ -79,6 +79,7 @@ class InstagramCrawler:
 
                     cl.login(self.USERNAME, self.PASSWORD)
                     cl.dump_settings(self.session_json_path)
+                    self.logger.info("successfully logged in via cl.login")
                 login_via_session = True
                 cl.delay_range = self.delay_range
                 return cl
@@ -197,7 +198,7 @@ class InstagramCrawler:
                 self.city_geo[city_name]["location_pk"] = loc_pk
                 temp_file = f"{self.city_geo_json_path}.tmp"
                 with open(temp_file, "w") as f:
-                    json.dump(self.city_geo, f)
+                    json.dump(self.city_geo, f, indent=4, sort_keys=True, default=str)
                 os.replace(temp_file, self.city_geo_json_path)
             else:
                 self.logger.warning(f"Could not get location_pk for {city_name}")
@@ -295,12 +296,67 @@ class InstagramCrawler:
                 self.existing_city_posts[city] = posts
                 new_posts_added += len(posts)
 
-        self.logger.info(f"added {new_posts_added} new posts to city posts")
-
         # write the updated data back to file
-        with open(self.exisiting_city_posts_path, "w") as f:
+        temp_file = f"{self.exisiting_city_posts_path}.tmp"
+        with open(temp_file, "w") as f:
             json.dump(
                 self.existing_city_posts, f, indent=4, sort_keys=True, default=str
             )
+        os.replace(temp_file, self.exisiting_city_posts_path)
+
+        self.logger.info(f"added {new_posts_added} new posts to city posts")
+
+        return True
+
+    def get_and_write_to_city_posts_location(
+        self,
+        city_name: str,
+        location_master_dict: Dict[str, List[Dict[str, Any]]] = {},
+        search_type: Literal["recent", "top"] = "top",
+        amount: int = 10,
+    ):
+        """
+        1. gets city posts by calling `get_info_by_location()`
+        2. filters the media that has a location by calling `_filter_hashtag_has_location()`
+        3. updates the city posts json file
+
+        Args:
+            updated_city_posts (Dict[str, List[Dict[str, Any]]]): _description_
+        """
+        # get the info for the location
+        location_master_dict = self.get_info_by_location(
+            city_name=city_name,
+            location_master_dict=location_master_dict,
+            search_type=search_type,
+            amount=amount,
+        )
+
+        # update the city posts json file
+        # merge new posts with existing data
+        new_posts_added = 0
+        for city, posts in location_master_dict.items():
+            if city in self.existing_city_posts:
+                # city already exists, so check for duplicates before appending (using caption as unique identifier)
+                existing_posts = {d["caption"] for d in self.existing_city_posts[city]}
+                for post in posts:
+                    caption = post["caption"]
+                    if caption not in existing_posts:
+                        self.existing_city_posts[city].append(post)
+                        new_posts_added += 1
+            else:
+                # new city, add it with all its posts
+                self.logger.info(f"new city found: {city}")
+                self.existing_city_posts[city] = posts
+                new_posts_added += len(posts)
+
+        # write the updated data back to file
+        temp_file = f"{self.exisiting_city_posts_path}.tmp"
+        with open(temp_file, "w") as f:
+            json.dump(
+                self.existing_city_posts, f, indent=4, sort_keys=True, default=str
+            )
+        os.replace(temp_file, self.exisiting_city_posts_path)
+
+        self.logger.info(f"added {new_posts_added} new posts to city posts")
 
         return True

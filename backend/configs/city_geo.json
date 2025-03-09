@@ -1,143 +1,44 @@
 {
-    "abu_dhabi": {
-        "country": "united arab emirates",
-        "lat": 24.47,
-        "lng": 54.37
-    },
-    "accra": {
-        "country": "ghana",
-        "lat": 5.56,
-        "lng": -0.2
-    },
-    "algiers": {
-        "country": "algeria",
-        "lat": 36.75,
-        "lng": 3.06
-    },
-    "amsterdam": {
-        "country": "netherlands",
-        "lat": 52.37,
-        "lng": 4.89
-    },
-    "asuncion": {
-        "country": "paraguay",
-        "lat": -25.29,
-        "lng": -57.65
-    },
-    "athens": {
-        "country": "greece",
-        "lat": 37.98,
-        "lng": 23.73
-    },
     "bali": {
         "country": "indonesia",
-        "lat": -8.65,
-        "lng": 115.22
+        "lat": -8.4095,
+        "lng": 115.1889
+    },
+    "bandar_seri_begawan": {
+        "country": "brunei",
+        "lat": 4.9031,
+        "lng": 114.9398
     },
     "bangkok": {
         "country": "thailand",
-        "lat": 13.75,
-        "lng": 100.5
-    },
-    "barcelona": {
-        "country": "spain",
-        "lat": 41.38,
-        "lng": 2.17
+        "lat": 13.7563,
+        "lng": 100.5018
     },
     "beijing": {
         "country": "china",
-        "lat": 39.9,
-        "lng": 116.4
+        "lat": 39.9042,
+        "lng": 116.4074,
+        "location_pk": 107733802589658
     },
-    "berlin": {
-        "country": "germany",
-        "lat": 52.52,
-        "lng": 13.41
-    },
-    "bogota": {
-        "country": "colombia",
-        "lat": 4.61,
-        "lng": -74.08
-    },
-    "boston": {
-        "country": "united states",
-        "lat": 42.36,
-        "lng": -71.06
-    },
-    "brussels": {
-        "country": "belgium",
-        "lat": 50.85,
-        "lng": 4.35
-    },
-    "buenos_aires": {
-        "country": "argentina",
-        "lat": -34.61,
-        "lng": -58.38
-    },
-    "cairo": {
-        "country": "egypt",
-        "lat": 30.06,
-        "lng": 31.25
-    },
-    "cape_town": {
-        "country": "south africa",
-        "lat": -33.92,
-        "lng": 18.42
-    },
-    "caracas": {
-        "country": "venezuela",
-        "lat": 10.49,
-        "lng": -66.88
-    },
-    "casablanca": {
-        "country": "morocco",
-        "lat": 33.57,
-        "lng": -7.59
+    "busan": {
+        "country": "south_korea",
+        "lat": 35.1796,
+        "lng": 129.0756
     },
     "chennai": {
         "country": "india",
         "lat": 13.08,
         "lng": 80.28
     },
-    "chicago": {
-        "country": "united states",
-        "lat": 41.83,
-        "lng": -87.68
-    },
     "chong_qing": {
         "country": "china",
         "lat": 29.56,
         "lng": 106.57
     },
-    "copenhagen": {
-        "country": "denmark",
-        "lat": 55.68,
-        "lng": 12.57
-    },
-    "dakar": {
-        "country": "senegal",
-        "lat": 14.69,
-        "lng": -17.44
-    },
-    "dubai": {
-        "country": "united arab emirates",
-        "lat": 25.2,
-        "lng": 55.27
-    },
-    "dublin": {
-        "country": "ireland",
-        "lat": 53.35,
-        "lng": -6.26
-    },
-    "florence": {
-        "country": "italy",
-        "lat": 43.77,
-        "lng": 11.25
-    },
-    "frankfurt": {
-        "country": "germany",
-        "lat": 50.11,
-        "lng": 8.68
+    "dili": {
+        "country": "east_timor",
+        "lat": -8.5569,
+        "lng": 125.5603
     },
     "guangzhou": {
         "country": "china",
@@ -151,8 +52,8 @@
     },
     "hanoi": {
         "country": "vietnam",
-        "lat": 21.03,
-        "lng": 105.85
+        "lat": 21.0285,
+        "lng": 105.8542
     },
     "ho_chi_minh_city": {
         "country": "vietnam",
@@ -161,13 +62,19 @@
     },
     "hong_kong": {
         "country": "china",
-        "lat": 22.32,
-        "lng": 114.17
+        "lat": 22.267,
+        "lng": 114.188
     },
     "istanbul": {
         "country": "turkey",
         "lat": 41.01,
         "lng": 28.98
+    },
+    "jakarta": {
+        "country": "indonesia",
+        "lat": -6.2088,
+        "lng": 106.8456,
+        "location_pk": 1145542375512342
     },
     "kathmandu": {
         "country": "nepal",
@@ -176,183 +83,56 @@
     },
     "kuala_lumpur": {
         "country": "malaysia",
-        "lat": 3.14,
-        "lng": 101.69
+        "lat": 3.1319,
+        "lng": 101.6841,
+        "location_pk": 321174074605116
     },
     "kyoto": {
         "country": "japan",
-        "lat": 35.01,
-        "lng": 135.77
-    },
-    "la_paz": {
-        "country": "bolivia",
-        "lat": -16.5,
-        "lng": -68.12
-    },
-    "lagos": {
-        "country": "nigeria",
-        "lat": 6.45,
-        "lng": 3.39
-    },
-    "las_vegas": {
-        "country": "united states",
-        "lat": 36.17,
-        "lng": -115.14
-    },
-    "lima": {
-        "country": "peru",
-        "lat": -12.04,
-        "lng": -77.03
-    },
-    "lisbon": {
-        "country": "portugal",
-        "lat": 38.72,
-        "lng": -9.14
-    },
-    "london": {
-        "country": "united kingdom",
-        "lat": 51.51,
-        "lng": -0.13
-    },
-    "los_angeles": {
-        "country": "united states",
-        "lat": 34.05,
-        "lng": -118.24
-    },
-    "madrid": {
-        "country": "spain",
-        "lat": 40.42,
-        "lng": -3.7
+        "lat": 35.0116,
+        "lng": 135.7681,
+        "location_pk": 412814319080595
     },
     "manila": {
         "country": "philippines",
-        "lat": 14.6,
-        "lng": 120.98
-    },
-    "melbourne": {
-        "country": "australia",
-        "lat": -37.81,
-        "lng": 144.96
-    },
-    "miami": {
-        "country": "united states",
-        "lat": 25.76,
-        "lng": -80.19
-    },
-    "milan": {
-        "country": "italy",
-        "lat": 45.46,
-        "lng": 9.19
-    },
-    "montevideo": {
-        "country": "uruguay",
-        "lat": -34.9,
-        "lng": -56.19
-    },
-    "montreal": {
-        "country": "canada",
-        "lat": 45.5,
-        "lng": -73.57
+        "lat": 14.5995,
+        "lng": 120.9842,
+        "location_pk": 105691611486845
     },
     "mumbai": {
         "country": "india",
-        "lat": 19.08,
-        "lng": 72.88
-    },
-    "munich": {
-        "country": "germany",
-        "lat": 48.14,
-        "lng": 11.58
-    },
-    "nairobi": {
-        "country": "kenya",
-        "lat": -1.29,
-        "lng": 36.82
+        "lat": 19.076,
+        "lng": 72.8777
     },
     "nanjing": {
         "country": "china",
         "lat": 32.05,
         "lng": 118.78
     },
-    "new york city": {
-        "country": "united states",
-        "lat": 40.71,
-        "lng": -74.01
-    },
     "new_delhi": {
         "country": "india",
         "lat": 28.61,
         "lng": 77.23
     },
-    "orlando": {
-        "country": "united states",
-        "lat": 28.54,
-        "lng": -81.38
-    },
     "osaka": {
         "country": "japan",
-        "lat": 34.69,
-        "lng": 135.5
+        "lat": 34.6937,
+        "lng": 135.5023
     },
-    "paris": {
-        "country": "france",
-        "lat": 48.86,
-        "lng": 2.35
-    },
-    "prague": {
-        "country": "czech republic",
-        "lat": 50.08,
-        "lng": 14.42
-    },
-    "quito": {
-        "country": "ecuador",
-        "lat": -0.23,
-        "lng": -78.52
-    },
-    "rio_de_janeiro": {
-        "country": "brazil",
-        "lat": -22.91,
-        "lng": -43.21
-    },
-    "rome": {
-        "country": "italy",
-        "lat": 41.9,
-        "lng": 12.5
-    },
-    "san_francisco": {
-        "country": "united states",
-        "lat": 37.77,
-        "lng": -122.42
-    },
-    "santiago": {
-        "country": "chile",
-        "lat": -33.46,
-        "lng": -70.65
-    },
-    "santiago_de_chile": {
-        "country": "chile",
-        "lat": -33.46,
-        "lng": -70.65
-    },
-    "sao_paulo": {
-        "country": "brazil",
-        "lat": -23.55,
-        "lng": -46.63
-    },
-    "seattle": {
-        "country": "united states",
-        "lat": 47.61,
-        "lng": -122.33
+    "phnom_penh": {
+        "country": "cambodia",
+        "lat": 11.5564,
+        "lng": 104.9282
     },
     "seoul": {
-        "country": "south korea",
-        "lat": 37.57,
-        "lng": 126.98
+        "country": "south_korea",
+        "lat": 37.5665,
+        "lng": 126.978
     },
     "shanghai": {
         "country": "china",
-        "lat": 31.23,
-        "lng": 121.47
+        "lat": 31.2304,
+        "lng": 121.4737
     },
     "shenzhen": {
         "country": "china",
@@ -361,67 +141,34 @@
     },
     "singapore": {
         "country": "singapore",
-        "lat": 1.35,
-        "lng": 103.82
-    },
-    "stockholm": {
-        "country": "sweden",
-        "lat": 59.33,
-        "lng": 18.07
-    },
-    "sucre": {
-        "country": "bolivia",
-        "lat": -19.03,
-        "lng": -65.26
-    },
-    "sydney": {
-        "country": "australia",
-        "lat": -33.87,
-        "lng": 151.21
+        "lat": 1.3521,
+        "lng": 103.8198,
+        "location_pk": 58112788361
     },
     "taipei": {
         "country": "taiwan",
-        "lat": 25.04,
-        "lng": 121.56
-    },
-    "tel_aviv": {
-        "country": "israel",
-        "lat": 32.08,
-        "lng": 34.78
+        "lat": 25.033,
+        "lng": 121.5654
     },
     "tokyo": {
         "country": "japan",
-        "lat": 35.69,
-        "lng": 139.69
+        "lat": 35.6895,
+        "lng": 139.6917,
+        "location_pk": 105982439433941
     },
-    "toronto": {
-        "country": "canada",
-        "lat": 43.65,
-        "lng": -79.38
-    },
-    "tunis": {
-        "country": "tunisia",
-        "lat": 36.81,
-        "lng": 10.17
-    },
-    "venice": {
-        "country": "italy",
-        "lat": 45.44,
-        "lng": 12.33
-    },
-    "vienna": {
-        "country": "austria",
-        "lat": 48.21,
-        "lng": 16.37
+    "vientiane": {
+        "country": "laos",
+        "lat": 17.9757,
+        "lng": 102.6331
     },
     "wuhan": {
         "country": "china",
         "lat": 30.58,
         "lng": 114.27
     },
-    "zurich": {
-        "country": "switzerland",
-        "lat": 47.38,
-        "lng": 8.54
+    "yangon": {
+        "country": "myanmar",
+        "lat": 16.8409,
+        "lng": 96.1735
     }
 }
