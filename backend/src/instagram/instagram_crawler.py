@@ -20,6 +20,7 @@ class InstagramCrawler:
         delay_range: List[int] = [1, 3],
         session_json_path: str = "backend/configs/session.json",
         city_geo_json_path: str = "backend/configs/city_geo.json",
+        exisiting_city_posts_path: str = "backend/data/city_posts.json",
     ):
         # for logging
         self.logger = logger
@@ -37,6 +38,11 @@ class InstagramCrawler:
         self.city_geo_json_path = city_geo_json_path
         with open(self.city_geo_json_path, "r") as f:
             self.city_geo = json.load(f)
+
+        # load existing city posts
+        self.exisiting_city_posts_path = exisiting_city_posts_path
+        with open(self.exisiting_city_posts_path, "r") as f:
+            self.existing_city_posts = json.load(f)
 
     def _login(self):
         """
@@ -205,3 +211,96 @@ class InstagramCrawler:
         # get the relevant info from media
         location_master_dict[city_name] = get_all_media_info(medias)
         return location_master_dict
+
+    def _filter_hashtag_has_location(
+        self,
+        hashtags_master_dict: Dict[str, List[Dict[str, Any]]],
+    ):
+        """
+        filters the media that has a location from the hashtags master dict (safer from hashtag i guess)
+
+        Args:
+            hashtags_master_dict (Dict[str, List[Dict[str, Any]]]): information after calling `get_info_by_hashtags()`
+
+        Returns:
+            Dict[str, List[Dict[str, Any]]]: dictionary with keys as city names, and values of the post informations
+        """
+        d = {}
+        for city, info in hashtags_master_dict.items():
+            d[city] = []
+            # skip if empty
+            if not info:
+                self.logger.warning(f"no media found for {city}")
+                continue
+
+            # filter media for having location
+            has_location_info = []
+            for media in info:
+                location = media.get("location", "")
+                if location:
+                    media.pop("location", None)
+                    has_location_info.append(media)
+            # if end up being empty, continue
+            if not has_location_info:
+                self.logger.warning(f"no media found for {city}")
+                continue
+
+            # add to d
+            d[city] = has_location_info
+        return d
+
+    def get_and_write_to_city_posts_hashtag(
+        self,
+        hashtags: List[str],
+        hashtags_master_dict: Dict[str, List[Dict[str, Any]]] = {},
+        search_type: Literal["recent", "top"] = "top",
+        amount: int = 10,
+    ):
+        """
+        1. gets city posts by calling `get_info_by_hashtags()`
+        2. filters the media that has a location by calling `_filter_hashtag_has_location()`
+        3. updates the city posts json file
+
+        Args:
+            updated_city_posts (Dict[str, List[Dict[str, Any]]]): _description_
+        """
+        # get the info for the hashtags
+        hashtags_master_dict = self.get_info_by_hashtags(
+            hashtags=hashtags,
+            hashtags_master_dict=hashtags_master_dict,
+            search_type=search_type,
+            amount=amount,
+        )
+
+        # filter the hashtags that has a location
+        filtered_city_posts = self._filter_hashtag_has_location(
+            hashtags_master_dict=hashtags_master_dict
+        )
+
+        # update the city posts json file
+        # merge new posts with existing data
+        new_posts_added = 0
+        for city, posts in filtered_city_posts.items():
+            if city in self.existing_city_posts:
+                # city already exists, so check for duplicates before appending (using caption as unique identifier)
+                existing_posts = {d["caption"] for d in self.existing_city_posts[city]}
+                for post in posts:
+                    caption = post["caption"]
+                    if caption not in existing_posts:
+                        self.existing_city_posts[city].append(post)
+                        new_posts_added += 1
+            else:
+                # new city, add it with all its posts
+                self.logger.info(f"new city found: {city}")
+                self.existing_city_posts[city] = posts
+                new_posts_added += len(posts)
+
+        self.logger.info(f"added {new_posts_added} new posts to city posts")
+
+        # write the updated data back to file
+        with open(self.exisiting_city_posts_path, "w") as f:
+            json.dump(
+                self.existing_city_posts, f, indent=4, sort_keys=True, default=str
+            )
+
+        return True
