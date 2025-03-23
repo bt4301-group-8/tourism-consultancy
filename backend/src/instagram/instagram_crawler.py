@@ -231,7 +231,7 @@ class InstagramCrawler:
             d[city] = []
             # skip if empty
             if not info:
-                self.logger.warning(f"no media found for {city}")
+                self.logger.info(f"no info found for {city}")
                 continue
 
             # filter media for having location
@@ -243,7 +243,6 @@ class InstagramCrawler:
                     has_location_info.append(media)
             # if end up being empty, continue
             if not has_location_info:
-                self.logger.warning(f"no media found for {city}")
                 continue
 
             # add to d
