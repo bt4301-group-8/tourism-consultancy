@@ -1,5 +1,5 @@
 .env
-backend/data/city_posts.json
+backend/data/
 
 __pycache__/
 .DS_Store
