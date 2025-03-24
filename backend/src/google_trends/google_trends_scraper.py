@@ -1,4 +1,4 @@
-from backend.client.client import RestClient
+from backend.src.google_trends.client.client import RestClient
 import pandas as pd
 import time
 from datetime import datetime
