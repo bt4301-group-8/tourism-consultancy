@@ -5,14 +5,14 @@ from dotenv import load_dotenv
 import os
 from pathlib import Path
 import logging
-from collections import defaultdict
 import re
 from datetime import datetime
+from backend.src.reddit.utils import convert_unix_time
 
 # Logging configs
 handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
-for logger_name in ("praw", "prawcore"):
+for logger_name in ("asyncpraw", "prawcore"):
     logger = logging.getLogger(logger_name)
     logger.setLevel(logging.DEBUG)
     logger.addHandler(handler)
@@ -114,18 +114,19 @@ async def scrape_subreddits():
                     # Remove duplicate matching countries
                     matching_countries = list(dict.fromkeys(matching_countries))
 
-                    # Process if country is mentioned in submission text
+                    # Process submission if country is mentioned in submission text
                     for country in matching_countries:
                         if country_submission_counts[country] < 100:
                             submission_info = {
-                                "id": submission.id,
+                                "submission_id": submission.id,
                                 "author": submission.author.name if submission.author else None,
                                 "created_utc": submission.created_utc,
+                                "month_year": convert_unix_time(submission.created_utc),
                                 "name": submission.name,
                                 "num_comments": submission.num_comments,
                                 "score": submission.score,
                                 "selftext": submission.selftext,
-                                "subreddit": subreddit_name,
+                                "subreddit_name": subreddit_name,
                                 "title": submission.title,
                                 "upvote_ratio": submission.upvote_ratio,
                                 "mentioned_countries": matching_countries,
@@ -148,14 +149,14 @@ async def scrape_subreddits():
                                     # Remove automoderator comments
                                     if comment.author and comment.author.name != "AutoModerator":
                                         comment_info = {
-                                            "id": comment.id,
-                                            "link_id": submission.id,
+                                            "comment_id": comment.id,
+                                            "submission_id": submission.id,
                                             "author": comment.author.name if comment.author else None,
                                             "body": comment.body,
                                             "created_utc": comment.created_utc,
+                                            "month_year": convert_unix_time(comment.created_utc),
                                             "score": comment.score,
-                                            "subreddit": subreddit_name,
-                                            "subreddit_ID": subreddit.display_name,
+                                            "subreddit_name": subreddit_name,
                                             "mentioned_countries": matching_countries,
                                             "mentioned_cities": matching_cities
                                         }
