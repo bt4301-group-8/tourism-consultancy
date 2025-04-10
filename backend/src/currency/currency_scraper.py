@@ -62,6 +62,15 @@ class CurrencyScraper:
         path = os.path.join(root_path, 'extracted_data', filepath)
         df.to_csv(path, index=False)
         print(f"Monthly averages saved to {path}")
+    
+    def save_to_json(self, df, filepath):
+        root_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        path = os.path.join(root_path, 'extracted_data', filepath)
+        
+        df['YearMonth'] = df['YearMonth'].astype(str)
+        
+        df.to_json(path, orient='records', indent=4)
+        print(f"Monthly averages saved to {path}")
 
 if __name__ == "__main__":
     scraper = CurrencyScraper(
@@ -71,4 +80,4 @@ if __name__ == "__main__":
 
     monthly_avg_df = scraper.scrape()
     if monthly_avg_df is not None:
-        scraper.save_to_csv(monthly_avg_df, 'southeast_asia_currency_monthly_avg.csv')
+        scraper.save_to_json(monthly_avg_df, 'southeast_asia_currency_monthly_avg.json')

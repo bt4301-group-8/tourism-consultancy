@@ -3,10 +3,14 @@ import pandas as pd
 import time
 from datetime import datetime
 import os
+from dotenv import load_dotenv
 
 class GoogleTrendsScraper:
     def __init__(self):
-        self.client = RestClient(os.getenv('SEO_LOGIN'), os.getenv('SEO_PASSWORD'))
+        load_dotenv()
+        self.login = os.getenv('SEO_LOGIN')
+        self.password = os.getenv('SEO_PASSWORD')
+        self.client = RestClient(self.login, self.password)
         self.tasks = []
         self.results = []
 
@@ -64,6 +68,7 @@ class GoogleTrendsScraper:
 
     def fetch_results(self):
         response = self.client.get("/v3/keywords_data/google_trends/explore/tasks_ready")
+        print(len(response['tasks']))
         if response['status_code'] == 20000:
             for task in response['tasks']:
                 if task['result']:
@@ -72,6 +77,7 @@ class GoogleTrendsScraper:
                         if endpoint:
                             result = self.client.get(endpoint)
                             self.results.append(result)
+            print(self.results)
             print("Results fetched successfully.")
         else:
             print(f"Error fetching results: {response['status_message']}")
@@ -114,7 +120,11 @@ class GoogleTrendsScraper:
                                     'value': (country_value / singapore_avg_value) * singapore_avg_value
                                 })
 
-        df = pd.DataFrame(rows).drop_duplicates(subset=['month_year', 'country'], keep='first')
+        df = pd.DataFrame(rows)
+        if df.empty:
+            print("No data was retrieved. Please check if the tasks returned any results.")
+            return pd.DataFrame()
+        df = df.drop_duplicates(subset=['month_year', 'country'], keep='first')
         df['month_year'] = pd.to_datetime(df['month_year'])
         df.sort_values(by=['month_year', 'country'], inplace=True)
         df.reset_index(drop=True, inplace=True)
@@ -122,10 +132,11 @@ class GoogleTrendsScraper:
         
         os.makedirs('extracted_data', exist_ok=True)
         df.to_csv('extracted_data/google_trends_data.csv', index=False)
+        df.to_json('extracted_data/google_trends_data.json', orient='records', indent=4)
         return df
     
     def get_data(self):
-        self.create_tasks("2022-01-01", "2025-03-23")
+        self.create_tasks("2022-01-01", "2025-04-08")
         self.wait_for_tasks()
         self.fetch_results()
         df = self.convert_to_csv()
