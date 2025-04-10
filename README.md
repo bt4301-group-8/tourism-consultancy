@@ -31,43 +31,44 @@ By integrating these diverse features, the model aims to capture the complex int
 
 ```mermaid
 graph LR
+
+    %% Define Core Stack Nodes (arranged conceptually vertical)
+    P[Python]
+    MDB(MongoDB)
+    SB[Supabase]
+    XG(XGBoost)
+
+    %% Define Scraping Tools Nodes (arranged conceptually vertical)
+    S1[Instagrapi]
+    S2[RedditAPI/PRAW]
+    S3[Custom Scrapers]
+
+    %% Define Main Pipeline Nodes
     A[Data Sources <br/> Instagram, Reddit, <br/> TripAdvisor, Google, Econ APIs] --> B(Raw Data Storage <br/> MongoDB);
     B --> C{Data Processing <br/> Feature Engineering <br/> Python, Pandas, Vader};
     C --> D[Structured Features <br/> Supabase / PostgreSQL];
     D --> E[Model Training <br/> Prediction <br/> XGBoost];
 
-    subgraph Scraping Tools
-        direction LR
-        S1[Instagrapi]
-        S2[RedditAPI/PRAW]
-        S3[Custom Scrapers]
-    end
 
-    subgraph Core Stack
-        direction LR
-        P[Python]
-        MDB[MongoDB]
-        SB[Supabase]
-        XG[XGBoost]
-    end
+    %% --- STYLING ---
 
-    %% Define styles for dark theme with COLORFUL accents (borders)
-    %% Base dark fill, white text for all
-    %% Main pipeline nodes: Different colored borders
+    %% Main pipeline nodes: Dark fill, white text, distinct colored borders
     style A fill:#2D2D2D,stroke:#5599FF,stroke-width:2px,color:#FFF %% Blue border
     style B fill:#2D2D2D,stroke:#4CAF50,stroke-width:2px,color:#FFF %% Green border
     style C fill:#222,stroke:#FF9800,stroke-width:2px,color:#FFF  
     style D fill:#2D2D2D,stroke:#00BCD4,stroke-width:2px,color:#FFF %% Cyan border
     style E fill:#2D2D2D,stroke:#9C27B0,stroke-width:2px,color:#FFF %% Purple border
 
-    %% Nodes within subgraphs: Neutral dark grey, subtle border
-    style S1 fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
-    style S2 fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
-    style S3 fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
-    style P fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
-    style MDB fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
-    style SB fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
-    style XG fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    %% Core Stack Nodes: Dark fill, white text, consistent colored border (e.g., Teal)
+    style P fill:#3C3C3C,stroke:#26A69A,stroke-width:2px,color:#FFF %% Teal border
+    style MDB fill:#3C3C3C,stroke:#26A69A,stroke-width:2px,color:#FFF %% Teal border
+    style SB fill:#3C3C3C,stroke:#26A69A,stroke-width:2px,color:#FFF %% Teal border
+    style XG fill:#3C3C3C,stroke:#26A69A,stroke-width:2px,color:#FFF %% Teal border
+
+    %% Scraping Tools Nodes: Dark fill, white text, consistent colored border (e.g., Pink)
+    style S1 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
+    style S2 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
+    style S3 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
 ```
 
 **Core Technologies Summary:**
