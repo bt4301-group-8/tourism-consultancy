@@ -94,11 +94,6 @@ graph LR
     style S1 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
     style S2 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
     style S3 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
-
-    %% Optional: Style the subgraphs themselves (adjust colors as needed)
-    style `Core Stack` fill:#1f1f1f,stroke:#777,stroke-width:1px,color:#CCC
-    style `Scraping Tools` fill:#1f1f1f,stroke:#777,stroke-width:1px,color:#CCC
-    style `Technology Stacks` fill:#111,stroke:#999,stroke-width:2px,color:#FFF,stroke-dasharray: 5 5 %% Dashed border for parent
 ```
 
 **Core Technologies Summary:**
