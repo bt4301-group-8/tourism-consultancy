@@ -51,26 +51,23 @@ graph LR
         XG[XGBoost]
     end
 
-    %% Define styles for dark theme - matching the image aesthetic
-    %% Main pipeline nodes: Dark grey background, light text
-    style A fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
-    style B fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
-    style C fill:#222,stroke:#555,stroke-width:1px,color:#FFF %% Diamond shape - slightly different shade
-    style D fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
-    style E fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
+    %% Define styles for dark theme with COLORFUL accents (borders)
+    %% Base dark fill, white text for all
+    %% Main pipeline nodes: Different colored borders
+    style A fill:#2D2D2D,stroke:#5599FF,stroke-width:2px,color:#FFF %% Blue border
+    style B fill:#2D2D2D,stroke:#4CAF50,stroke-width:2px,color:#FFF %% Green border
+    style C fill:#222,stroke:#FF9800,stroke-width:2px,color:#FFF  
+    style D fill:#2D2D2D,stroke:#00BCD4,stroke-width:2px,color:#FFF %% Cyan border
+    style E fill:#2D2D2D,stroke:#9C27B0,stroke-width:2px,color:#FFF %% Purple border
 
-    %% Nodes within subgraphs: Similar dark grey, light text
-    style S1 fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-    style S2 fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-    style S3 fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-    style P fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-    style MDB fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-    style SB fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-    style XG fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
-
-    %% Style the subgraph boxes themselves (optional, styling applies to the container)
-    %% Mermaid doesn't directly style the subgraph background easily across all renderers
-    %% but we can style the nodes within as intended.
+    %% Nodes within subgraphs: Neutral dark grey, subtle border
+    style S1 fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    style S2 fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    style S3 fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    style P fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    style MDB fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    style SB fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
+    style XG fill:#3C3C3C,stroke:#777,stroke-width:1px,color:#FFF
 ```
 
 **Core Technologies Summary:**
