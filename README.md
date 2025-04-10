@@ -47,13 +47,16 @@ graph LR
         SB[Supabase]
         XG[XGBoost]
     end
+    
+    style A fill:#lightblue,stroke:#333,stroke-width:2px,color:#000
+    style B fill:#lightgreen,stroke:#333,stroke-width:2px,color:#000
+    style C fill:#lightyellow,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#lightcyan,stroke:#333,stroke-width:2px,color:#000
+    style E fill:#lavender,stroke:#333,stroke-width:2px,color:#000
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#ccf,stroke:#333,stroke-width:2px
-    style C fill:#ff9,stroke:#333,stroke-width:2px
-    style D fill:#cdf,stroke:#333,stroke-width:2px
-    style E fill:#cfc,stroke:#333,stroke-width:2px
-
+    %% Optional: Style subgraph borders if needed
+    style Scraping_Tools fill:none,stroke:#aaa,stroke-dasharray: 5 5
+    style Core_Stack fill:none,stroke:#aaa,stroke-dasharray: 5 5
 ```
 
 **Core Technologies Summary:**
@@ -108,10 +111,6 @@ Features are aggregated monthly per country:
     *   `gdp_growth_rate`: Quarterly or Annual GDP growth (potentially interpolated to monthly).
     *   `inflation_rate`: Monthly or Annual inflation rate.
 *   **Social Media & Web Data (Instagram):**
-    *   `instagram_mentions_count`: Monthly count of relevant posts/hashtags.
-    *   `instagram_total_likes`: Monthly sum of likes on relevant posts.
-    *   `instagram_total_comments`: Monthly sum of comments on relevant posts.
-    *   `instagram_avg_caption_sentiment`: Monthly average Vader sentiment score of post captions.
     *   `instagram_weighted_sentiment`: Monthly average sentiment score weighted by engagement (likes/comments).
 *   **Social Media & Web Data (Reddit):**
     *   `reddit_mentions_count`: Monthly count of relevant posts/comments.
