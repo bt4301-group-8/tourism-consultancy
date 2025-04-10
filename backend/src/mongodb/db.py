@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import json
 import urllib.parse
+import pandas as pd
 
 class MongoDB:
     def __init__(self):
@@ -27,14 +28,7 @@ class MongoDB:
         db = self.client[db_name]
         collection = db[collection_name]
         documents = collection.find()
-        return list(documents)
+        df = pd.DataFrame(documents, index=None)
+        return df
     
-if __name__ == "__main__":
-    mongo = MongoDB()
-    # Example usage
-    # mongo.insert_json_into_db('path/to/your/file.json', 'your_db_name', 'your_collection_name')
-    # documents = mongo.find_all('your_db_name', 'your_collection_name')
-    # print(documents)
-    # docs = mongo.find_all('labels', 'visitor_count')
-    # for doc in docs:
-    #     print(doc)
+mongodb = MongoDB()
