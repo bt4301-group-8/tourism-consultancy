@@ -34,6 +34,8 @@ class CountryModelTrainer:
             "month_year",
             "country",
             "num_visitors",  # identifiers and original target
+            "reddit_sentiment",
+            "ig_sentiment",  # dropping non-scaled sentiment columns
             "reddit_sentiment_label",
             "ig_sentiment_label",  # labels (if using encoded versions)
             "reddit_under-performing",
