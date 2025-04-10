@@ -28,6 +28,7 @@ By integrating these diverse features, the model aims to capture the complex int
 ---
 
 ## Technical Architecture & Stack
+
 ```mermaid
 graph LR
     A[Data Sources <br/> Instagram, Reddit, <br/> TripAdvisor, Google, Econ APIs] --> B(Raw Data Storage <br/> MongoDB);
@@ -36,27 +37,40 @@ graph LR
     D --> E[Model Training <br/> Prediction <br/> XGBoost];
 
     subgraph Scraping Tools
+        direction LR
         S1[Instagrapi]
         S2[RedditAPI/PRAW]
         S3[Custom Scrapers]
     end
 
     subgraph Core Stack
+        direction LR
         P[Python]
         MDB[MongoDB]
         SB[Supabase]
         XG[XGBoost]
     end
-    
-    style A fill:#lightblue,stroke:#333,stroke-width:2px,color:#000
-    style B fill:#lightgreen,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#lightyellow,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#lightcyan,stroke:#333,stroke-width:2px,color:#000
-    style E fill:#lavender,stroke:#333,stroke-width:2px,color:#000
 
-    %% Optional: Style subgraph borders if needed
-    style Scraping_Tools fill:none,stroke:#aaa,stroke-dasharray: 5 5
-    style Core_Stack fill:none,stroke:#aaa,stroke-dasharray: 5 5
+    %% Define styles for dark theme - matching the image aesthetic
+    %% Main pipeline nodes: Dark grey background, light text
+    style A fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
+    style B fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
+    style C fill:#222,stroke:#555,stroke-width:1px,color:#FFF %% Diamond shape - slightly different shade
+    style D fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
+    style E fill:#2D2D2D,stroke:#555,stroke-width:1px,color:#FFF
+
+    %% Nodes within subgraphs: Similar dark grey, light text
+    style S1 fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+    style S2 fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+    style S3 fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+    style P fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+    style MDB fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+    style SB fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+    style XG fill:#3C3C3C,stroke:#666,stroke-width:1px,color:#FFF
+
+    %% Style the subgraph boxes themselves (optional, styling applies to the container)
+    %% Mermaid doesn't directly style the subgraph background easily across all renderers
+    %% but we can style the nodes within as intended.
 ```
 
 **Core Technologies Summary:**
