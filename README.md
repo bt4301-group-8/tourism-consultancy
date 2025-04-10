@@ -32,22 +32,47 @@ By integrating these diverse features, the model aims to capture the complex int
 ```mermaid
 graph LR
 
-    %% Define Core Stack Nodes (arranged conceptually vertical)
-    P[Python]
-    MDB(MongoDB)
-    SB[Supabase]
-    XG(XGBoost)
+    %% Define Parent Subgraph for Stacks
+    subgraph Technology Stacks
+        direction LR %% Optional: suggest layout direction within this group
 
-    %% Define Scraping Tools Nodes (arranged conceptually vertical)
-    S1[Instagrapi]
-    S2[RedditAPI/PRAW]
-    S3[Custom Scrapers]
+        subgraph Core Stack
+            P[Python]
+            MDB(MongoDB)
+            SB[Supabase]
+            XG(XGBoost)
+        end
 
-    %% Define Main Pipeline Nodes
-    A[Data Sources <br/> Instagram, Reddit, <br/> TripAdvisor, Google, Econ APIs] --> B(Raw Data Storage <br/> MongoDB);
-    B --> C{Data Processing <br/> Feature Engineering <br/> Python, Pandas, Vader};
-    C --> D[Structured Features <br/> Supabase / PostgreSQL];
-    D --> E[Model Training <br/> Prediction <br/> XGBoost];
+        subgraph Scraping Tools
+            S1[Instagrapi]
+            S2[RedditAPI/PRAW]
+            S3[Custom Scrapers]
+        end
+    end
+
+    %% Define Main Pipeline Nodes (Can be defined before or after subgraphs)
+    A[Data Sources <br/> Instagram, Reddit, <br/> TripAdvisor, Google, Econ APIs]
+    B(Raw Data Storage <br/> MongoDB)
+    C{Data Processing <br/> Feature Engineering <br/> Python, Pandas, Vader}
+    D[Structured Features <br/> Supabase / PostgreSQL]
+    E[Model Training <br/> Prediction <br/> XGBoost]
+
+    %% --- CONNECTIONS ---
+
+    %% Main Pipeline Flow
+    A --> B --> C --> D --> E;
+
+    %% Connect Main Pipeline stages to the specific tools/tech used
+    %% Scraping Tools Connections (Related to Data Sources/Ingestion)
+    A --> S1
+    A --> S2
+    A --> S3
+
+    %% Core Stack Connections (Related to specific stages)
+    B --> MDB
+    C --> P 
+    D --> SB   
+    E --> XG 
 
 
     %% --- STYLING ---
@@ -55,7 +80,7 @@ graph LR
     %% Main pipeline nodes: Dark fill, white text, distinct colored borders
     style A fill:#2D2D2D,stroke:#5599FF,stroke-width:2px,color:#FFF %% Blue border
     style B fill:#2D2D2D,stroke:#4CAF50,stroke-width:2px,color:#FFF %% Green border
-    style C fill:#222,stroke:#FF9800,stroke-width:2px,color:#FFF  
+    style C fill:#222,stroke:#FF9800,stroke-width:2px,color:#FFF %% Orange border
     style D fill:#2D2D2D,stroke:#00BCD4,stroke-width:2px,color:#FFF %% Cyan border
     style E fill:#2D2D2D,stroke:#9C27B0,stroke-width:2px,color:#FFF %% Purple border
 
@@ -69,6 +94,11 @@ graph LR
     style S1 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
     style S2 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
     style S3 fill:#3C3C3C,stroke:#EC407A,stroke-width:2px,color:#FFF %% Pink border
+
+    %% Optional: Style the subgraphs themselves (adjust colors as needed)
+    style `Core Stack` fill:#1f1f1f,stroke:#777,stroke-width:1px,color:#CCC
+    style `Scraping Tools` fill:#1f1f1f,stroke:#777,stroke-width:1px,color:#CCC
+    style `Technology Stacks` fill:#111,stroke:#999,stroke-width:2px,color:#FFF,stroke-dasharray: 5 5 %% Dashed border for parent
 ```
 
 **Core Technologies Summary:**
