@@ -26,7 +26,7 @@ class CountryModelTrainer:
     def __init__(
         self,
         data_path: str = "backend/data/processed/countries/",  # temp, before migrating to DB
-        output_dir: str = "trained_models/",
+        output_dir: str = "backend/trained_models/",
         file_pattern: str = "*_final_df.csv",
         target_variable: str = "log_visitors",
         original_target: Optional[str] = "num_visitors",
@@ -123,7 +123,6 @@ class CountryModelTrainer:
             country_name = os.path.basename(csv_path).replace(
                 self.file_pattern.replace("*", ""), ""
             )
-            self.logger.info(f"loading data for {country_name} from {csv_path}")
 
             # basic date handling - adjust format if needed
             if "month_year" not in df.columns:
@@ -198,7 +197,7 @@ class CountryModelTrainer:
         """
         if len(x) < self.n_cv_splits * 2:
             self.logger.warning(
-                f"not enough data points ({len(x)}) for {self.n_cv_splits}-fold cv for {country_name}. skipping hyperopt."
+                f"not enough data points ({len(x)}) for {self.n_cv_splits}-fold cv for {country_name}. skipping hp tuning."
             )
             return None
 
@@ -225,13 +224,13 @@ class CountryModelTrainer:
                         num_boost_round=1000,  # high number, early stopping regulates
                         evals=watchlist,
                         early_stopping_rounds=self.early_stopping_rounds_cv,
-                        verbose_eval=False,  # suppress output during hyperopt
+                        verbose_eval=False,
                     )
                     preds = model.predict(dval)
                     rmse = np.sqrt(mean_squared_error(y_val, preds))
                     cv_rmses.append(rmse)
                 except Exception as e:
-                    # log occasional warnings, but don't stop hyperopt unless it's severe
+                    # log occasional warnings, but don't stop unless it's severe
                     self.logger.debug(
                         f"warning during xgb.train in hyperopt cv for {country_name} fold {fold+1}: {e}"
                     )
@@ -248,7 +247,7 @@ class CountryModelTrainer:
             return {"loss": avg_rmse, "status": STATUS_OK}
 
         # --- run optimization ---
-        self.logger.info(f"starting hyperparameter optimization for {country_name}...")
+        self.logger.info(f"[HP Tuning] starting hp optimization for {country_name}...")
         trials = Trials()
         try:
             best_result = fmin(
@@ -257,10 +256,7 @@ class CountryModelTrainer:
                 algo=tpe.suggest,
                 max_evals=self.max_hyperopt_evals,
                 trials=trials,
-                rstate=self.rng,  # use the class's random number generator
-            )
-            self.logger.info(
-                f"hyperparameter optimization finished for {country_name}."
+                rstate=self.rng,
             )
 
             # construct the final parameter set
@@ -283,10 +279,7 @@ class CountryModelTrainer:
 
             best_loss = min(trials.losses()) if trials.losses() else float("inf")
             self.logger.info(
-                f"best hyperparameters found for {country_name}: {final_params}"
-            )
-            self.logger.info(
-                f"best cross-validation rmse ({self.target_variable} scale): {best_loss:.4f}"
+                f"[HP Results] best cross-validation rmse ({self.target_variable} scale): {best_loss:.4f}"
             )
 
             return final_params, trials
@@ -319,10 +312,10 @@ class CountryModelTrainer:
             the trained xgboost booster object, or none if training fails.
         """
         self.logger.info(
-            f"training final model for {country_name} using best parameters..."
+            f"[Training] training final model for {country_name.upper()} using best parameters..."
         )
 
-        # create a final train/validation split from the *entire* country data for early stopping
+        # create a final train/val split from the entire country data for early stopping
         n_validation_points = max(1, int(len(x) * 0.15))  # use last 15% for validation
         x_train_final, x_val_final = (
             x.iloc[:-n_validation_points],
@@ -333,66 +326,31 @@ class CountryModelTrainer:
             y.iloc[-n_validation_points:],
         )
 
-        if len(x_train_final) == 0 or len(x_val_final) == 0:
-            self.logger.warning(
-                f"not enough data for final train/validation split for {country_name}. training on all data without early stopping."
-            )
-            # train on all data if split is not possible
-            dtrain_full = xgb.DMatrix(x, label=y, feature_names=features)
-            try:
-                # train without early stopping - num_boost_round comes from params or default
-                num_rounds = final_params.get(
-                    "num_boost_round", 100
-                )  # use 100 if not set elsewhere
-                final_model = xgb.train(
-                    final_params,
-                    dtrain_full,
-                    num_boost_round=num_rounds,
-                    verbose_eval=False,
-                )
-                self.logger.info(
-                    f"final model trained on all data for {num_rounds} rounds for {country_name}."
-                )
-                return final_model
-            except Exception as e:
-                self.logger.error(
-                    f"final model training failed for {country_name}: {e}"
-                )
-                return None
-        else:
-            # train with early stopping using the train/validation split
-            self.logger.info(
-                f"using final train/validation split: train={len(x_train_final)}, val={len(x_val_final)}"
-            )
-            dtrain_final_split = xgb.DMatrix(
-                x_train_final, label=y_train_final, feature_names=features
-            )
-            dval_final_split = xgb.DMatrix(
-                x_val_final, label=y_val_final, feature_names=features
-            )
-            watchlist_final = [
-                (dtrain_final_split, "train"),
-                (dval_final_split, "eval"),
-            ]
+        # train with early stopping using the train/validation split
+        dtrain_final_split = xgb.DMatrix(
+            x_train_final, label=y_train_final, feature_names=features
+        )
+        dval_final_split = xgb.DMatrix(
+            x_val_final, label=y_val_final, feature_names=features
+        )
+        watchlist_final = [
+            (dtrain_final_split, "train"),
+            (dval_final_split, "eval"),
+        ]
 
-            try:
-                final_model = xgb.train(
-                    final_params,
-                    dtrain_final_split,
-                    num_boost_round=self.final_model_boost_rounds,
-                    evals=watchlist_final,
-                    early_stopping_rounds=self.early_stopping_rounds_final,
-                    verbose_eval=100,  # print eval metrics periodically
-                )
-                self.logger.info(
-                    f"final model training complete for {country_name}. best iteration: {final_model.best_iteration}"
-                )
-                return final_model
-            except Exception as e:
-                self.logger.error(
-                    f"final model training failed for {country_name}: {e}"
-                )
-                return None
+        try:
+            final_model = xgb.train(
+                final_params,
+                dtrain_final_split,
+                num_boost_round=self.final_model_boost_rounds,
+                evals=watchlist_final,
+                early_stopping_rounds=self.early_stopping_rounds_final,
+                verbose_eval=100,
+            )
+            return final_model
+        except Exception as e:
+            self.logger.error(f"final model training failed for {country_name}: {e}")
+            return None
 
     def _save_artifacts(
         self,
@@ -410,28 +368,20 @@ class CountryModelTrainer:
             trials: the hyperopt trials object.
             params: the dictionary of best hyperparameters used.
         """
-        model_filename = os.path.join(self.output_dir, f"{country_name}_xgb_model.json")
+        model_filename = os.path.join(self.output_dir, f"{country_name}/xgb_model.json")
         trials_filename = os.path.join(
-            self.output_dir, f"{country_name}_hyperopt_trials.pkl"
+            self.output_dir, f"{country_name}/hyperopt_trials.pkl"
         )
         params_filename = os.path.join(
-            self.output_dir, f"{country_name}_best_params.json"
+            self.output_dir, f"{country_name}/best_params.json"
         )
 
         try:
             # save model
             model.save_model(model_filename)
-            self.logger.info(
-                f"saved final model for {country_name} to {model_filename}"
-            )
-
             # save trials
             with open(trials_filename, "wb") as f:
                 joblib.dump(trials, f)
-            self.logger.info(
-                f"saved hyperopt trials for {country_name} to {trials_filename}"
-            )
-
             # save parameters (ensure json serializable)
             serializable_params = {
                 k: (
@@ -443,10 +393,6 @@ class CountryModelTrainer:
             }
             with open(params_filename, "w") as f:
                 json.dump(serializable_params, f, indent=4)
-            self.logger.info(
-                f"saved best parameters for {country_name} to {params_filename}"
-            )
-
         except Exception as e:
             self.logger.error(f"failed to save artifacts for {country_name}: {e}")
 
@@ -461,19 +407,20 @@ class CountryModelTrainer:
             os.path.basename(csv_path)
             .replace(self.file_pattern.replace("*", ""), "")
             .split("_")[0]
-        )  # improved extraction
-        self.logger.info(f"--- processing country: {country_name} ---")
+        )
+
+        # make directory for country in output dir
+        os.makedirs(os.path.join(self.output_dir, country_name), exist_ok=True)
 
         # 1. load data
         prep_result = self._load_and_prepare_data(csv_path)
         if prep_result is None:
-            return  # error logged in helper method
+            return
         x, y, features = prep_result
 
-        # 2. run hyperparameter optimization
+        # 2. run hp optimization
         hyperopt_result = self._run_hyperopt(x, y, features, country_name)
         if hyperopt_result is None:
-            # attempt to train with default parameters if hyperopt failed or was skipped?
             # for now, we skip if hyperopt fails/is skipped.
             self.logger.warning(
                 f"skipping final model training for {country_name} due to hyperopt issues."
@@ -488,8 +435,6 @@ class CountryModelTrainer:
 
         # 4. save artifacts
         self._save_artifacts(country_name, final_model, trials, best_params)
-
-        self.logger.info(f"--- finished processing country: {country_name} ---")
 
     def run_training(self):
         """
@@ -511,20 +456,8 @@ class CountryModelTrainer:
         self.logger.info("--- script finished ---")
 
 
-# --- script execution ---
 if __name__ == "__main__":
-    # configure trainer instance
-    trainer = CountryModelTrainer(
-        data_path="backend/data/processed/countries/",
-        output_dir="trained_models_class/",  # use a different dir for clarity
-        file_pattern="*_final_df.csv",
-        target_variable="log_visitors",
-        # adjust other parameters like max_hyperopt_evals if needed
-        max_hyperopt_evals=50,  # example: keep it at 50 for now
-        n_cv_splits=5,
-    )
-
-    # run the training process for all countries
+    trainer = CountryModelTrainer()
     trainer.run_training()
 
     # you can now load models like this:
