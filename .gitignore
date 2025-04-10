@@ -1,5 +1,6 @@
 .env
 backend/data/
+backend/trained_models/
 __pycache__/
 .DS_Store
 .vscode
