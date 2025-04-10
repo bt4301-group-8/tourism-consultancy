@@ -131,48 +131,6 @@ graph LR
     *   Model evaluation uses appropriate metrics for forecasting (e.g., RMSE, MAE, MAPE).
 7.  **Prediction:** The trained XGBoost model is saved. It can then be loaded to predict future monthly visitor numbers based on the latest available feature data ingested through the pipeline.
 
----
-
-## Target Output (Y-Pred)
-
-*   **`visitors_per_month`**: The predicted number of tourist arrivals for a specific SEA country in a given month.
-
----
-
-## Key Features (X-Variables)
-
-Features are aggregated monthly per country:
-
-*   **Economic Factors:**
-    *   `exchange_rate_usd`: Local currency units per USD.
-    *   `gdp_growth_rate`: Quarterly or Annual GDP growth (potentially interpolated to monthly).
-    *   `inflation_rate`: Monthly or Annual inflation rate.
-*   **Social Media & Web Data (Instagram):**
-    *   `instagram_weighted_sentiment`: Monthly average sentiment score weighted by engagement (likes/comments).
-*   **Social Media & Web Data (Reddit):**
-    *   `reddit_mentions_count`: Monthly count of relevant posts/comments.
-    *   `reddit_avg_sentiment`: Monthly average Vader sentiment score of posts/comments.
-    *   *(Potentially)* `reddit_score_weighted_sentiment`: Sentiment weighted by post/comment scores.
-*   **TripAdvisor & Review Sentiments:**
-    *   `tripadvisor_mentions_count`: Monthly count of new reviews for relevant destinations/attractions.
-    *   `tripadvisor_avg_rating`: Monthly average star rating.
-    *   `tripadvisor_avg_sentiment`: Monthly average Vader sentiment score of review text.
-*   **Demand Indicators:**
-    *   `google_search_volume`: Monthly index/volume for relevant tourism keywords (e.g., "flights to [Country]", "[Country] vacation").
-    *   `tourism_website_traffic`: Monthly traffic data for national tourism board websites (if available).
-
----
-
-## Modeling Approach
-
-Using XGBoost for time-series forecasting with the following process:
-
-Feature selection
-Hyperparameter tuning
-Cross-validation
-Model training by country
-Model artifacts stored in trained_models/ directory by country.
-
 ## Repository Structure
 ```bash
 ├── backend/                  # Core prediction engine
