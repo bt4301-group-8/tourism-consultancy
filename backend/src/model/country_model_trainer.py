@@ -67,7 +67,6 @@ class CountryModelTrainer:
             cols_to_drop: a list of column names to exclude from features.
             train_ratio: proportion of data for the training set.
             val_ratio: proportion of data for the validation set.
-            min_samples_required: minimum total data points required for a country.
             n_cv_splits: number of folds for time series cross-validation during hyperopt (on train set).
             max_hyperopt_evals: maximum number of hyperparameter evaluations.
             early_stopping_rounds_cv: early stopping rounds for xgb during hyperopt cv folds.
@@ -156,12 +155,6 @@ class CountryModelTrainer:
                 )
                 return None
 
-            if len(df) < self.min_samples_required:
-                self.logger.warning(
-                    f"insufficient data ({len(df)} < {self.min_samples_required}) for {country_name}. skipping."
-                )
-                return None
-
             potential_features = [
                 col for col in df.columns if col not in self.cols_to_drop
             ]
@@ -175,7 +168,6 @@ class CountryModelTrainer:
 
             x = df[features]
             y = df[self.target_variable]
-            self.logger.info(f"features selected for {country_name}: {features}")
 
             # split data chronologically
             n = len(df)
@@ -200,11 +192,6 @@ class CountryModelTrainer:
 
             # keep original test data (including original target) for evaluation
             df_test_original = df.iloc[val_end_idx:].copy()
-
-            self.logger.info(
-                f"data split for {country_name}: "
-                f"train={len(x_train)}, val={len(x_val)}, test={len(x_test)}"
-            )
 
             return (
                 x_train,
@@ -332,7 +319,6 @@ class CountryModelTrainer:
             self.logger.info(
                 f"[HP Results] best cross-validation rmse ({self.target_variable} scale) on train data: {best_loss:.4f}"
             )
-            self.logger.info(f"best hyperparameters found: {final_params}")
 
             return final_params, trials
 
@@ -371,10 +357,6 @@ class CountryModelTrainer:
         self.logger.info(
             f"[Training] training final model for {country_name.upper()} using best parameters..."
         )
-        self.logger.info(
-            f"training on {len(x_train)} samples, validating on {len(x_val)} samples."
-        )
-
         # create dmatrices for train and validation
         dtrain = xgb.DMatrix(x_train, label=y_train, feature_names=features)
         dval = xgb.DMatrix(x_val, label=y_val, feature_names=features)
@@ -392,7 +374,7 @@ class CountryModelTrainer:
                 verbose_eval=100,  # log progress periodically
             )
             self.logger.info(
-                f"[Training] final model training completed. best iteration: {final_model.best_iteration}, "
+                f"[Training] final model training completed. best iteration: {final_model.best_iteration}\n"
                 f"[Training] best val rmse: {final_model.best_score:.4f}"
             )
             return final_model
@@ -502,13 +484,11 @@ class CountryModelTrainer:
 
         try:
             model.save_model(model_filename)
-            self.logger.info(f"saved model to {model_filename}")
 
             # save trials if they exist
             if trials:
                 with open(trials_filename, "wb") as f:
                     joblib.dump(trials, f)
-                self.logger.info(f"saved hyperopt trials to {trials_filename}")
             else:
                 self.logger.info(
                     "no hyperopt trials to save (tuning might have been skipped)."
@@ -525,13 +505,11 @@ class CountryModelTrainer:
             }
             with open(params_filename, "w") as f:
                 json.dump(serializable_params, f, indent=4)
-            self.logger.info(f"saved best parameters to {params_filename}")
 
             # save evaluation metrics if they exist
             if eval_metrics:
                 with open(metrics_filename, "w") as f:
                     json.dump(eval_metrics, f, indent=4)
-                self.logger.info(f"saved evaluation metrics to {metrics_filename}")
             else:
                 self.logger.info("no evaluation metrics to save.")
 
