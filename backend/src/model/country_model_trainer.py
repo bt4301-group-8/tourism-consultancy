@@ -440,20 +440,15 @@ class CountryModelTrainer:
         """
         finds all country data files and runs the training pipeline for each.
         """
-        self.logger.info("starting model training script.")
         all_files = glob.glob(os.path.join(self.data_path, self.file_pattern))
         self.logger.info(
-            f"found {len(all_files)} potential country files in {self.data_path} matching '{self.file_pattern}'"
+            f"found {len(all_files)} country csvs in {self.data_path} matching '{self.file_pattern}'"
         )
-
         if not all_files:
             self.logger.warning("no files found. exiting.")
             return
-
         for f in all_files:
             self.train_for_country(f)
-
-        self.logger.info("--- script finished ---")
 
 
 if __name__ == "__main__":
@@ -462,7 +457,7 @@ if __name__ == "__main__":
 
     # you can now load models like this:
     # country = 'brunei' # example
-    # model_path = os.path.join(trainer.output_dir, f"{country}_xgb_model.json")
+    # model_path = os.path.join(trainer.output_dir, f"{country}/xgb_model.json")
     # if os.path.exists(model_path):
     #     loaded_model = xgb.Booster()
     #     loaded_model.load_model(model_path)
