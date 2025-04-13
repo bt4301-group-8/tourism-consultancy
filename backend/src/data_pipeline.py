@@ -12,12 +12,13 @@ class DataProcessor:
         self.supabase = supabase
         self.processor_instagram = InstagramProcessor(self.mongodb)
         self.processor_reddit = RedditDataProcessor(self.mongodb)
-        self.instagram_df = self.mongodb.find_all("posts", "instagram")
-        self.reddit_df = self.mongodb.find_all("posts", "reddit_submissions")
-        self.tripadvisor_df = self.mongodb.find_all("posts", "tripadvisor")
-        self.labels_df = self.mongodb.find_all("labels", "visitor_count")
-        self.currency_df = self.mongodb.find_all("factors", "currency")
-        self.trends_df = self.mongodb.find_all("factors", "google_trends")
+        #convert to dataframe
+        self.instagram_df = pd.DataFrame(self.mongodb.find_all("posts", "instagram"))
+        self.reddit_df = pd.DataFrame(self.mongodb.find_all("posts", "reddit_submissions"))
+        self.tripadvisor_df = pd.DataFrame(self.mongodb.find_all("posts", "tripadvisor"))
+        self.labels_df = pd.DataFrame(self.mongodb.find_all("labels", "visitor_count"))
+        self.currency_df = pd.DataFrame(self.mongodb.find_all("factors", "currency"))
+        self.trends_df = pd.DataFrame(self.mongodb.find_all("factors", "google_trends"))
         
     def read_from_mongodb(self, db_name, collection_name):
         data = self.mongodb.find_all(db_name, collection_name)
@@ -49,176 +50,251 @@ class DataProcessor:
     def _get_sentiment_reddit(self):
         self.reddit_df = self.processor_reddit.run_analysis()
 
+    # #helper function for data cleaning
+    # def fill_country_month_grid(df):
+    #     """
+    #     Create country, month_year combinations based on the global month range.
+    #     df : Must contain 'country' and 'month_year' columns (datetime or string)
+    #     """
+    #     df = df.copy()
+    #     # Ensure proper datetime format
+    #     df["month_year"] = pd.to_datetime(df["month_year"]).dt.to_period("M").dt.to_timestamp()
+    #     # Generate full month range and unique countries
+    #     month_range = pd.date_range(
+    #         start=df["month_year"].min(),
+    #         end=df["month_year"].max(),
+    #         freq="MS"
+    #     )
+    #     countries = df["country"].unique()
+    #     # Create full country-month index
+    #     expanded_rows = [
+    #         {"country": country, "month_year": month}
+    #         for country in countries
+    #         for month in month_range
+    #     ]
+    #     expected_df = pd.DataFrame(expanded_rows)
+    #     # Merge with original data
+    #     merged_df = expected_df.merge(
+    #         df,
+    #         on=["country", "month_year"],
+    #         how="left"
+    #     )
+    #     return merged_df
+
+
     def engineer_google_trends(self):
         """engineer on self.trends_df"""
-        self.trends_df["month_year"] = pd.to_datetime(self.trends_df["month_year"]).dt.strftime('%Y-%m')
-        self.trends_df = self.trends_df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
-        
+        df = self.trends_df.copy()
+        # Rename and format date
+        df = df.rename(columns={"value": "google_trend_score"})
+        df["month_year"] = pd.to_datetime(df["month_year"]).dt.strftime('%Y-%m')
+        # # cleaning
+        # df = fill_country_month_grid(df)
+        # df["google_trend_score"] = (
+        #     df
+        #     .groupby("country")["google_trend_score"]
+        #     .apply(lambda group: (
+        #         group.interpolate(method='linear', limit_direction='both')  # interpolate
+        #             .fillna(method='ffill')                                # fill leading NaNs
+        #             .fillna(method='bfill')                                # fill trailing NaNs
+        #     ))
+        #     .reset_index(level=0, drop=True)
+        # )
         # Lag value by 1 month
-        self.trends_df["google_trends_lag1"] = (
-            self.trends_df.groupby("country")["value"].shift(1)
+        df = df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
+        df["google_trend_score_lag1"] = (
+            df.groupby("country")["google_trend_score"].shift(1)
         )
-        
-        # Rename value to a more informative column name
-        self.trends_df = self.trends_df.rename(columns={"value": "google_trends"})
+        self.trends_df = df
     
 
     def engineer_currency(self):
-        """engineer on self.currency_df"""
+        """Engineer features on self.currency_df: rename, map, transform, and lag."""
+
+        # Rename columns to standardized names
+        self.currency_df = self.currency_df.rename(columns={
+            "Currency": "country",
+            "YearMonth": "month_year",
+            "AverageRate": "avg_currency_rate"
+        })
+
+        # Map currency codes to country names
+        currency_to_country = {
+            "BND": "Brunei",
+            "IDR": "Indonesia",
+            "KHR": "Cambodia",
+            "LAK": "Laos",
+            "MMK": "Myanmar",
+            "MYR": "Malaysia",
+            "PHP": "Philippines",
+            "SGD": "Singapore",
+            "THB": "Thailand",
+            "VND": "Vietnam"
+        }
+        self.currency_df["country"] = self.currency_df["country"].map(currency_to_country)
+
+        # Convert month-year to proper format
         self.currency_df["month_year"] = pd.to_datetime(self.currency_df["month_year"]).dt.strftime('%Y-%m')
-        self.currency_df = self.currency_df.rename(columns={"value": "exchange_rate"})
+
+        # Log-transform exchange rates
+        self.currency_df["avg_currency_rate"] = np.log1p(self.currency_df["avg_currency_rate"])
+
+        # Sort before lag
         self.currency_df = self.currency_df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
-        
+
         # Add 1-month lag
-        self.currency_df["exchange_rate_lag1"] = (
-            self.currency_df.groupby("country")["exchange_rate"].shift(1)
+        self.currency_df["avg_currency_rate_lag1"] = (
+            self.currency_df.groupby("country")["avg_currency_rate"].shift(1)
         )
 
     def engineer_instagram(self):
         df = self.instagram_df.copy()
-
-        # Keep relevant columns and rename
-        df = df.rename(columns={
-            "created_at": "month_year",
-            "vader_compound": "instagram_sentiment",
-            "like_count": "likes"
-        })
-        df["month_year"] = pd.to_datetime(df["month_year"], format="%Y-%m-%d").dt.strftime("%Y-%m")
-
+        # capitalise the first letter of countries
+        df["country"] = df["country"].str.title()
+        #change month_year format to align with other datasets
+        df['date'] = pd.to_datetime(df['date'], errors='coerce')
+        df['month_year'] = df['date'].dt.strftime('%Y-%m')
+        
         # Weight the raw sentiment using like count
-        total_likes_per_group = df.groupby(["country", "month_year"])["likes"].transform("sum")
-        df["like_percentage"] = df["likes"] / total_likes_per_group
-        df["instagram_sentiment"] = df["instagram_sentiment"] * df["like_percentage"]
-
-        df = df.drop(columns=["likes", "like_percentage"])
-        df = df.groupby(["country", "month_year"]).agg({
-            "instagram_sentiment": "sum"
-        }).reset_index()
-
-        # Interpolate and fill missing
-        df = df.sort_values(["country", "month_year"])
-        df["instagram_sentiment"] = (
-            df.groupby("country")["instagram_sentiment"]
-            .apply(lambda group: (
-                group.interpolate(method='linear', limit_direction='both')
-                    .fillna(method='ffill')
-                    .fillna(method='bfill')
-            ))
-            .reset_index(level=0, drop=True)
-        )
-
-        df["instagram_sentiment_lag1"] = (
-            df.groupby("country")["instagram_sentiment"]
-            .shift(1)
-        )
-
-        self.instagram_df = df
-
-
-    def engineer_reddit(self):
-        df = self.reddit_df.copy()
-
-        # Keep only relevant columns
-        columns_to_keep = ["created_at", "score", "vader_compound", "country"]
+        total_likes_per_group = df.groupby(["country", "month_year"])["like_count"].transform("sum")
+        df["like_percentage"] = df["like_count"] / total_likes_per_group
+        df["weighted_sentiment_score"] = df["sentiment_score"] * df["like_percentage"]
+        #only keeping the sentiment score
+        columns_to_keep = [
+            "month_year",
+            "country",
+            "sentiment_score",
+            "weighted_sentiment_score"
+        ]
         df = df[columns_to_keep]
-
-        # Rename and convert time
-        df = df.rename(columns={
-            "created_at": "month_year",
-            "vader_compound": "reddit_sentiment",
-            "score": "popularity"
-        })
-        df["month_year"] = pd.to_datetime(df["month_year"], format="%m/%d/%y").dt.strftime("%Y-%m")
-
-        # Weight the raw sentiment using popularity
-        total_popularity_per_group = df.groupby(["country", "month_year"])["popularity"].transform("sum")
-        df["popularity_percentage"] = df["popularity"] / total_popularity_per_group
-        df["reddit_sentiment"] = df["reddit_sentiment"] * df["popularity_percentage"]
-
-        # Drop unused columns and aggregate
-        df = df.drop(columns=["popularity", "popularity_percentage"])
-        df = df.groupby(["country", "month_year"]).agg({
-            "reddit_sentiment": "sum"
-        }).reset_index()
-
-        # Interpolate and fill missing values
-        df = df.sort_values(["country", "month_year"])
-        df["reddit_sentiment"] = (
-            df.groupby("country")["reddit_sentiment"]
+        #agggregate sentiment score
+        ig_sentiment = df.groupby(
+            ["country", "month_year"]
+        )["weighted_sentiment_score"].sum().reset_index()
+        ig_sentiment.columns = ["country", "month_year", "ig_sentiment"]
+        ig_sentiment['month_year'] = pd.to_datetime(ig_sentiment['month_year'])
+        # Interpolate and fill missing
+        ig_sentiment = ig_sentiment.sort_values(['country', 'month_year'])
+        ig_sentiment["ig_sentiment"] = (
+            ig_sentiment
+            .groupby("country")["ig_sentiment"]
             .apply(lambda group: (
-                group.interpolate(method='linear', limit_direction='both')
-                    .fillna(method='ffill')
-                    .fillna(method='bfill')
+                group.interpolate(method='linear', limit_direction='both')  # interpolate
+                    .fillna(method='ffill')                                # fill leading NaNs
+                    .fillna(method='bfill')                                # fill trailing NaNs
             ))
             .reset_index(level=0, drop=True)
         )
 
-        # Lag by 1 month
-        df["reddit_sentiment_lag1"] = (
-            df.groupby("country")["reddit_sentiment"]
-            .shift(1)
+        #standardise across each country for entire dataset
+        ig_sentiment["ig_sentiment_z"] = (
+            ig_sentiment.groupby("country")["ig_sentiment"]
+            .transform(lambda x: (x - x.mean()) / x.std())
         )
 
-        self.reddit_df = df
+        #lag by 1 moth
+        ig_sentiment['ig_sentiment_lag1'] = (
+            ig_sentiment.groupby('country')['ig_sentiment']
+            .shift(periods=1)  # Shift down by 1 row
+        )
+        self.instagram_df = ig_sentiment
+
+    # def engineer_reddit(self):
+    #     df = self.reddit_df.copy()
+
+    #     # Keep only relevant columns
+    #     columns_to_keep = ["created_at", "score", "vader_compound", "country"]
+    #     df = df[columns_to_keep]
+
+    #     # Rename and convert time
+    #     df = df.rename(columns={
+    #         "created_at": "month_year",
+    #         "vader_compound": "reddit_sentiment",
+    #         "score": "popularity"
+    #     })
+    #     df["month_year"] = pd.to_datetime(df["month_year"], format="%m/%d/%y").dt.strftime("%Y-%m")
+
+    #     # Weight the raw sentiment using popularity
+    #     total_popularity_per_group = df.groupby(["country", "month_year"])["popularity"].transform("sum")
+    #     df["popularity_percentage"] = df["popularity"] / total_popularity_per_group
+    #     df["reddit_sentiment"] = df["reddit_sentiment"] * df["popularity_percentage"]
+
+    #     # Drop unused columns and aggregate
+    #     df = df.drop(columns=["popularity", "popularity_percentage"])
+    #     df = df.groupby(["country", "month_year"]).agg({
+    #         "reddit_sentiment": "sum"
+    #     }).reset_index()
+
+    #     # Interpolate and fill missing values
+    #     df = df.sort_values(["country", "month_year"])
+    #     df["reddit_sentiment"] = (
+    #         df.groupby("country")["reddit_sentiment"]
+    #         .apply(lambda group: (
+    #             group.interpolate(method='linear', limit_direction='both')
+    #                 .fillna(method='ffill')
+    #                 .fillna(method='bfill')
+    #         ))
+    #         .reset_index(level=0, drop=True)
+    #     )
+
+    #     # Lag by 1 month
+    #     df["reddit_sentiment_lag1"] = (
+    #         df.groupby("country")["reddit_sentiment"]
+    #         .shift(1)
+    #     )
+
+    #     self.reddit_df = df
 
 
     def engineer_tripadvisor(self):
-        df = self.tripadvisor_df.copy()  # Work on a copy to preserve the original
+        df = self.tripadvisor_df.copy()
+        # Convert trip_date to datetime and extract month-year
+        df["trip_date"] = pd.to_datetime(df["trip_date"], errors="coerce")
+        df["month_year"] = df["trip_date"].dt.strftime("%Y-%m")
+        columns_to_keep = [
+            "month_year",
+            "country",
+            "rating"
+        ]
+        df = df[columns_to_keep]
 
-        # Rename columns for consistency
-        df = df.rename(columns={
-            "created_at": "month_year",
-            "vader_compound": "tripadvisor_sentiment"
-        })
+        # aggregate to find average monthly rating
+        review_agg = df.groupby(["country", "month_year"])["rating"].mean().reset_index()
+        review_agg = review_agg.rename(columns={"rating": "trip_advisor_rating"})
+        review_agg['month_year'] = pd.to_datetime(review_agg['month_year'])
 
-        # Convert to "YYYY-MM" format for monthly granularity
-        df["month_year"] = pd.to_datetime(df["month_year"]).dt.strftime("%Y-%m")
-
-        # Group by country and month, take average sentiment per month
-        df = df.groupby(["country", "month_year"]).agg({
-            "tripadvisor_sentiment": "mean"
-        }).reset_index()
-
-        # Handle missing values
-        df = df.sort_values(["country", "month_year"])
-        df["tripadvisor_sentiment"] = (
-            df.groupby("country")["tripadvisor_sentiment"]
+        # interpolate, forward fill, then backward fill within each country group
+        review_agg["trip_advisor_rating"] = (
+            review_agg
+            .groupby("country")["trip_advisor_rating"]
             .apply(lambda group: (
-                group.interpolate(method='linear', limit_direction='both')
-                    .fillna(method='ffill')
-                    .fillna(method='bfill')
+                group.interpolate(method='linear', limit_direction='both')  # interpolate
+                    .fillna(method='ffill')                                # fill leading NaNs
+                    .fillna(method='bfill')                                # fill trailing NaNs
             ))
             .reset_index(level=0, drop=True)
         )
-
-        # Add a 1-month lag feature for sentiment
-        df["tripadvisor_sentiment_lag1"] = (
-            df.groupby("country")["tripadvisor_sentiment"]
-            .shift(1)
-        )
-
-        self.tripadvisor_df = df  # Store back the engineered DataFrame
-
-
+        self.tripadvisor_df = review_agg
 
 
     def engineer_labels(self):
         df = self.labels_df.copy()
-
-        # Ensure proper time format
+        #Rename and format date
+        df = df.rename(columns={"value": "num_visitors"})
         df["month_year"] = pd.to_datetime(df["month_year"]).dt.strftime("%Y-%m")
-
-        # Rename value column
-        df = df.rename(columns={"value": "visitor_count"})
-
-        # Sort for lagging
-        df = df.sort_values(["country", "month_year"])
-
-        # Add 1-month lag
-        df["visitor_count_lag1"] = (
-            df.groupby("country")["visitor_count"].shift(1)
+        # log transform
+        df["log_visitors"] = np.log1p(df['num_visitors'])
+        # interpolate, forward fill, then backward fill within each country group
+        df["log_visitors"] = (
+            df
+            .groupby("country")["log_visitors"]
+            .apply(lambda group: (
+                group.interpolate(method='linear', limit_direction='both')  # interpolate
+                    .fillna(method='ffill')                                # fill leading NaNs
+                    .fillna(method='bfill')                                # fill trailing NaNs
+            ))
+            .reset_index(level=0, drop=True)
         )
-
         self.labels_df = df
 
 
