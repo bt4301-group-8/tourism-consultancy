@@ -30,7 +30,7 @@ class DataProcessor:
     def insert_calendar_data(self, date_from: str, date_to: str):
         self.supabase.insert_calendar_data(date_from, date_to)
 
-    def get_as_dict(df):
+    def get_as_dict(self, df):
         if df is None:
             return {}
         return df.to_dict(orient="records")
@@ -248,8 +248,9 @@ class DataProcessor:
 
     def engineer_tripadvisor(self):
         df = self.tripadvisor_df.copy()
+        print(df.shape)
         # Convert trip_date to datetime and extract month-year
-        df["trip_date"] = pd.to_datetime(df["trip_date"], errors="coerce")
+        df["trip_date"] = pd.to_datetime(df["trip_date"], format="%b-%y", errors="coerce")
         df["month_year"] = df["trip_date"].dt.strftime("%Y-%m")
         columns_to_keep = [
             "month_year",
@@ -257,24 +258,27 @@ class DataProcessor:
             "rating"
         ]
         df = df[columns_to_keep]
-
+        print(df.shape)
+        self.tripadvisor_df = df
         # aggregate to find average monthly rating
-        review_agg = df.groupby(["country", "month_year"])["rating"].mean().reset_index()
-        review_agg = review_agg.rename(columns={"rating": "trip_advisor_rating"})
-        review_agg['month_year'] = pd.to_datetime(review_agg['month_year'])
+        # review_agg = df.groupby(["country", "month_year"])["rating"].mean().reset_index()
+        # print(review_agg.shape)
+        # review_agg = review_agg.rename(columns={"rating": "trip_advisor_rating"})
+        # review_agg['month_year'] = pd.to_datetime(review_agg['month_year'])
 
-        # interpolate, forward fill, then backward fill within each country group
-        review_agg["trip_advisor_rating"] = (
-            review_agg
-            .groupby("country")["trip_advisor_rating"]
-            .apply(lambda group: (
-                group.interpolate(method='linear', limit_direction='both')  # interpolate
-                    .fillna(method='ffill')                                # fill leading NaNs
-                    .fillna(method='bfill')                                # fill trailing NaNs
-            ))
-            .reset_index(level=0, drop=True)
-        )
-        self.tripadvisor_df = review_agg
+        # # interpolate, forward fill, then backward fill within each country group
+        # review_agg["trip_advisor_rating"] = (
+        #     review_agg
+        #     .groupby("country")["trip_advisor_rating"]
+        #     .apply(lambda group: (
+        #         group.interpolate(method='linear', limit_direction='both')  # interpolate
+        #             .fillna(method='ffill')                                # fill leading NaNs
+        #             .fillna(method='bfill')                                # fill trailing NaNs
+        #     ))
+        #     .reset_index(level=0, drop=True)
+        # )
+        # print(review_agg.shape)
+        # self.tripadvisor_df = review_agg
 
 
     def engineer_labels(self):
@@ -295,6 +299,7 @@ class DataProcessor:
             ))
             .reset_index(level=0, drop=True)
         )
+        df.drop(columns=["num_visitors"], inplace=True)
         self.labels_df = df
 
 
@@ -305,7 +310,7 @@ class DataProcessor:
         self.engineer_google_trends()
         self.engineer_currency()
         self.engineer_instagram()
-        self.engineer_reddit()
+        # self.engineer_reddit()
         self.engineer_tripadvisor()
         self.engineer_labels()
         #TODO: drop irrelvant columns and rename before ingesting data to supabase, refer to schema for more details
