@@ -13,7 +13,6 @@ load_dotenv()
 
 class RedditScraper:
     def __init__(self):
-        # Initialize Reddit API client
         self.reddit = praw.Reddit(
             client_id=os.getenv('REDDIT_CLIENT_ID'),
             client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
@@ -21,16 +20,11 @@ class RedditScraper:
         )
         
         self.vader = SentimentIntensityAnalyzer()
-        
-        # General tourism subreddits
+
         self.general_subreddits = [
             'travel', 'solotravel', 'backpacking', 'TravelHacks', 'wanderlust', 'asean'
         ]
-        
-        self.date_start = int(datetime.strptime('2022-01-01', '%Y-%m-%d').timestamp())
-        self.date_end = int(datetime.strptime('2025-01-01', '%Y-%m-%d').timestamp())
 
-        # ASEAN countries with keywords and specific subreddits
         self.countries = {
             'Brunei': {'keywords': ['brunei', 'bn'], 'subreddits': ['Brunei']},
             'Indonesia': {'keywords': ['indonesia', 'id'], 'subreddits': ['indonesia', 'Bali', 'jakarta']},
@@ -43,7 +37,6 @@ class RedditScraper:
             'Thailand': {'keywords': ['thailand', 'th'], 'subreddits': ['Thailand', 'Bangkok', 'ChiangMai']},
             'Vietnam': {'keywords': ['vietnam', 'vn'], 'subreddits': ['vietnam', 'Hanoi', 'saigon']}
         }
-
 
     def get_sentiment_scores(self, text: str) -> Dict:
         if text is None:
@@ -59,9 +52,10 @@ class RedditScraper:
             'textblob_polarity': textblob_polarity
         }
 
-    def scrape_reddit(self, search_keywords: List[str], subreddits: List[str], countries_name: str):
+    def scrape_reddit(self, search_keywords: List[str], subreddits: List[str], countries_name: str,
+                      date_start: int, date_end: int) -> List[Dict]:
         all_posts = []
-        unique_subreddits = list(set(subreddits))  # Remove duplicates
+        unique_subreddits = list(set(subreddits))
 
         for keyword in search_keywords:
             for subreddit in unique_subreddits:
@@ -76,7 +70,7 @@ class RedditScraper:
 
                     for post in search_results:
                         created_time = post.created_utc
-                        if self.date_start <= created_time <= self.date_end:
+                        if date_start <= created_time <= date_end:
                             full_text = f"{post.title} {post.selftext}"
                             sentiment_scores = self.get_sentiment_scores(full_text)
                             post_data = {
@@ -100,28 +94,26 @@ class RedditScraper:
 
                             post.comments.replace_more(limit=0)
                             for comment in post.comments.list():
-                                if comment.body:
-                                    comment_time = comment.created_utc
-                                    if self.date_start <= comment_time <= self.date_end:
-                                        comment_scores = self.get_sentiment_scores(comment.body)
-                                        comment_data = {
-                                            'post_id': comment.id,
-                                            'created_at': datetime.fromtimestamp(comment_time).strftime('%m/%d/%y'),
-                                            'title': '',
-                                            'text': comment.body,
-                                            'author': str(comment.author),
-                                            'score': comment.score,
-                                            'upvote_ratio': comment.upvote_ratio,
-                                            'num_comments': '',
-                                            'subreddit': str(post.subreddit),
-                                            'source': 'Reddit',
-                                            'content_type': 'comment',
-                                            'keyword': keyword,
-                                            **comment_scores,
-                                            'parent_id': post.id,
-                                            'country': countries_name
-                                        }
-                                        all_posts.append(comment_data)
+                                comment_time = comment.created_utc
+                                if date_start <= comment_time <= date_end:
+                                    comment_scores = self.get_sentiment_scores(comment.body)
+                                    comment_data = {
+                                        'post_id': comment.id,
+                                        'created_at': datetime.fromtimestamp(comment_time).strftime('%m/%d/%y'),
+                                        'title': '',
+                                        'text': comment.body,
+                                        'author': str(comment.author),
+                                        'score': comment.score,
+                                        'num_comments': '',
+                                        'subreddit': str(post.subreddit),
+                                        'source': 'Reddit',
+                                        'content_type': 'comment',
+                                        'keyword': keyword,
+                                        **comment_scores,
+                                        'parent_id': post.id,
+                                        'country': countries_name
+                                    }
+                                    all_posts.append(comment_data)
 
                     time.sleep(2)
 
@@ -129,34 +121,30 @@ class RedditScraper:
                     print(f"⚠️ Error scraping r/{subreddit} for '{keyword}': {e}")
                     continue
 
-        df = pd.DataFrame(all_posts)
-        output_file = f'reddit_{countries_name}_2022_2025.csv'
-        df.to_csv(output_file, index=False)
-        print(f"\n✅ Data saved to {output_file}")
-        print(f"📊 Total entries for {countries_name}: {len(df)}")
+        return all_posts
 
-        if len(df) > 0:
-            print("\n📈 Average Sentiment Scores:")
-            print(f"VADER Compound: {df['vader_compound'].mean():.3f}")
-            print(f"TextBlob Polarity: {df['textblob_polarity'].mean():.3f}")
-        else:
-            print(f"❌ No posts found for {countries_name} within the specified date range.")
-
-    def run_all(self):
-        for countries_name, countries_info in self.countries.items():
+    def scrape_all_countries_for_period(self, start_date: str, end_date: str) -> pd.DataFrame:
+        """Scrape all countries for the given date period and return one DataFrame"""
+        date_start = int(datetime.strptime(start_date, '%Y-%m-%d').timestamp())
+        date_end = int(datetime.strptime(end_date, '%Y-%m-%d').timestamp())
+        
+        all_data = []
+        for country, info in self.countries.items():
             print(f"\n======================")
-            print(f"🔍 Starting scrape for: {countries_name.upper()}")
+            print(f"🔍 Starting scrape for: {country.upper()}")
             print(f"======================")
-            full_subreddits = self.general_subreddits + countries_info['subreddits']
-            self.scrape_reddit(
-                search_keywords=countries_info['keywords'],
-                subreddits=full_subreddits,
-                countries_name=countries_name
-            )
-
-def main():
-    scraper = RedditScraper()
-    scraper.run_all()
+            full_subreddits = self.general_subreddits + info['subreddits']
+            posts = self.scrape_reddit(info['keywords'], full_subreddits, country, date_start, date_end)
+            all_data.extend(posts)
+        
+        df = pd.DataFrame(all_data)
+        # save data into dsv, commment out for helper function
+        output_file = f'reddit_ASEAN_{start_date}_to_{end_date}.csv'
+        df.to_csv(output_file, index=False)
+        print(f"\n✅ All data saved to {output_file}")
+        print(f"📊 Total entries: {len(df)}")
+        return df
 
 if __name__ == "__main__":
-    main()
+    scraper = RedditScraper()
+    df_combined = scraper.scrape_all_countries_for_period("2022-01-01", "2025-01-31")
