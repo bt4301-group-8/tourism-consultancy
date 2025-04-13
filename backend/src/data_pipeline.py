@@ -214,20 +214,37 @@ class DataProcessor:
         df["country"] = df["country"].str.title()
         #weight sentiment_score using upvote_ratio
         df["reddit_sentiment"] = df["upvote_ratio"] * df["sentiment_score"]
+        ## aggregate individual country's average sentiment score
+        avg_sentiment = df.groupby(
+            ["country", "month_year"]
+        )["reddit_sentiment"].mean().reset_index()
+        avg_sentiment.columns = ["country", "month_year", "reddit_sentiment"]
+        avg_sentiment['month_year'] = pd.to_datetime(avg_sentiment['month_year'])
+        # Interpolate and fill missing
+        avg_sentiment = avg_sentiment.sort_values(['country', 'month_year'])
+        avg_sentiment["reddit_sentiment"] = (
+            avg_sentiment
+            .groupby("country")["reddit_sentiment"]
+            .apply(lambda group: (
+                group.interpolate(method='linear', limit_direction='both')  # interpolate
+                    .fillna(method='ffill')                                # fill leading NaNs
+                    .fillna(method='bfill')                                # fill trailing NaNs
+            ))
+            .reset_index(level=0, drop=True)
+        )
         #standardise
-        df["reddit_sentiment_z"] = (
-            df.groupby("country")["reddit_sentiment"]
+        avg_sentiment["reddit_sentiment_z"] = (
+            avg_sentiment.groupby("country")["reddit_sentiment"]
             .transform(lambda x: (x - x.mean()) / x.std())
         )
         # lag 1 month
-        df = df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
-        df["reddit_sentiment_lag1"] = df.groupby("country")["reddit_sentiment_z"].shift(1)
+        avg_sentiment["reddit_sentiment_lag1"] = avg_sentiment.groupby("country")["reddit_sentiment_z"].shift(1)
         #keep only relevant columns
-        df = df[["month_year",
-                 "country", 
-                 "reddit_sentiment_z",
-                 "reddit_sentiment_lag1"]]
-        self.reddit_df = df
+        avg_sentiment = avg_sentiment[["month_year",
+                            "country", 
+                            "reddit_sentiment_z",
+                            "reddit_sentiment_lag1"]]
+        self.reddit_df = avg_sentiment
 
     # def engineer_reddit(self):
     #     df = self.reddit_df.copy()
