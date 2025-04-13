@@ -6,7 +6,7 @@ class SupabaseRetriever:
     def __init__(self):
         self.supabase = supabase
 
-    def combine_on_month_year_and_country(self):
+    def get_processed_data(self):
         calendar = pd.DataFrame(self.supabase.get_data("calendar"))
         instagram = pd.DataFrame(self.supabase.get_data("instagram_post"))
         reddit = pd.DataFrame(self.supabase.get_data("reddit_post"))
@@ -57,4 +57,4 @@ class SupabaseRetriever:
     
 if __name__ == "__main__":
     retriever = SupabaseRetriever()
-    retriever.combine_on_month_year_and_country()
+    retriever.get_processed_data()
