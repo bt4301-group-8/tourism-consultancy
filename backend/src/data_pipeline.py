@@ -33,7 +33,6 @@ class DataProcessor:
             print(f"[ERROR] Failed to fetch existing keys from '{table_name}': {e}")
             existing_keys = set()
 
-        # Step 3: Fetch valid month_year values from the calendar table
         try:
             calendar = self.supabase.get_data("calendar")
             valid_months = {row["month_year"] for row in calendar}
@@ -41,7 +40,6 @@ class DataProcessor:
             print(f"[ERROR] Failed to fetch calendar month_years: {e}")
             valid_months = set()
 
-        # Step 4: If table is empty, insert all records with valid month_year
         if not existing_keys:
             filtered_data = [record for record in serialized_data if record['month_year'] in valid_months]
         else:
@@ -118,7 +116,6 @@ class DataProcessor:
     def engineer_google_trends(self):
         """engineer on self.trends_df"""
         df = self.trends_df.copy()
-        # Rename and format date
         df = df.rename(columns={"value": "google_trend_score"})
         df["month_year"] = pd.to_datetime(df["month_year"]).dt.strftime('%Y-%m')
         # # cleaning
@@ -133,7 +130,6 @@ class DataProcessor:
         #     ))
         #     .reset_index(level=0, drop=True)
         # )
-        # Lag value by 1 month
         df = df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
         df["google_trend_score_lag1"] = (
             df.groupby("country")["google_trend_score"].shift(1)
@@ -144,14 +140,12 @@ class DataProcessor:
     def engineer_currency(self):
         """Engineer features on self.currency_df: rename, map, transform, and lag."""
 
-        # Rename columns to standardized names
         self.currency_df = self.currency_df.rename(columns={
             "Currency": "country",
             "YearMonth": "month_year",
             "AverageRate": "avg_currency_rate"
         })
 
-        # Map currency codes to country names
         currency_to_country = {
             "BND": "Brunei",
             "IDR": "Indonesia",
@@ -165,17 +159,9 @@ class DataProcessor:
             "VND": "Vietnam"
         }
         self.currency_df["country"] = self.currency_df["country"].map(currency_to_country)
-
-        # Convert month-year to proper format
         self.currency_df["month_year"] = pd.to_datetime(self.currency_df["month_year"]).dt.strftime('%Y-%m')
-
-        # Log-transform exchange rates
         self.currency_df["log_avg_currency_rate"] = np.log1p(self.currency_df["avg_currency_rate"])
-
-        # Sort before lag
         self.currency_df = self.currency_df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
-
-        # Add 1-month lag
         self.currency_df["log_avg_currency_rate_lag1"] = (
             self.currency_df.groupby("country")["log_avg_currency_rate"].shift(1)
         )
@@ -183,17 +169,12 @@ class DataProcessor:
 
     def engineer_instagram(self):
         df = self.instagram_df.copy()
-        # capitalise the first letter of countries
         df["country"] = df["country"].str.title()
-        #change month_year format to align with other datasets
         df['date'] = pd.to_datetime(df['date'], errors='coerce')
         df['month_year'] = df['date'].dt.strftime('%Y-%m')
-        
-        # Weight the raw sentiment using like count
         total_likes_per_group = df.groupby(["country", "month_year"])["like_count"].transform("sum")
         df["like_percentage"] = df["like_count"] / total_likes_per_group
         df["weighted_sentiment_score"] = df["sentiment_score"] * df["like_percentage"]
-        #only keeping the sentiment score
         columns_to_keep = [
             "month_year",
             "country",
@@ -201,13 +182,11 @@ class DataProcessor:
             "weighted_sentiment_score"
         ]
         df = df[columns_to_keep]
-        #agggregate sentiment score
         ig_sentiment = df.groupby(
             ["country", "month_year"]
         )["weighted_sentiment_score"].sum().reset_index()
         ig_sentiment.columns = ["country", "month_year", "ig_sentiment"]
         ig_sentiment['month_year'] = pd.to_datetime(ig_sentiment['month_year'])
-        # Interpolate and fill missing
         ig_sentiment = ig_sentiment.sort_values(['country', 'month_year'])
         ig_sentiment["ig_sentiment"] = (
             ig_sentiment
@@ -355,7 +334,7 @@ class DataProcessor:
             .reset_index(level=0, drop=True)
         )
         self.labels_df = df
-        self.labels_df = self.labels_df[["country", "month_year", "log_visitors", "num_visitors"]]
+        self.labels_df = self.lab3els_df[["country", "month_year", "log_visitors", "num_visitors"]]
 
     def serialize_dates(self, data):
         """Convert any pandas.Timestamp in a list of dicts to string."""
