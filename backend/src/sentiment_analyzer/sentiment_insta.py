@@ -103,7 +103,7 @@ class InstagramProcessor:
             processed_count += 1
             if processed_count % 10 == 0 and processed_count > 0:
                 time_taken = time.time() - start_time
-                print(f"Time taken to process {processed_count} non-English rows for translation: {time_taken:.4f} seconds")
+                # print(f"Time taken to process {processed_count} non-English rows for translation: {time_taken:.4f} seconds")
                 start_time = time.time()
         print(f"dropping {len(to_drop)} rows")
         non_english_df.drop(to_drop, inplace=True)
