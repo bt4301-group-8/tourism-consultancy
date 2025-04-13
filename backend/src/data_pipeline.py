@@ -4,7 +4,7 @@ from backend.src.sentiment_analyzer.sentiment_insta import InstagramProcessor
 from backend.src.sentiment_analyzer.sentiment_reddit import RedditDataProcessor
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+import math
 
 class DataProcessor:
     def __init__(self):
@@ -12,7 +12,6 @@ class DataProcessor:
         self.supabase = supabase
         self.processor_instagram = InstagramProcessor(self.mongodb)
         self.processor_reddit = RedditDataProcessor(self.mongodb)
-        #convert to dataframe
         self.instagram_df = pd.DataFrame(self.mongodb.find_all("posts", "instagram"))
         self.reddit_df = pd.DataFrame(self.mongodb.find_all("posts", "reddit_submissions"))
         self.tripadvisor_df = pd.DataFrame(self.mongodb.find_all("posts", "tripadvisor"))
@@ -24,8 +23,42 @@ class DataProcessor:
         data = self.mongodb.find_all(db_name, collection_name)
         return data
     
-    def insert_to_supabase(self, table_name, data: dict):
-        self.supabase.insert_data(table_name, data)
+    def insert_to_supabase(self, table_name, data):
+        serialized_data = self.serialize_dates(data)
+
+        try:
+            existing = self.supabase.get_data(table_name)
+            existing_keys = {(row["country"], row["month_year"]) for row in existing}
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch existing keys from '{table_name}': {e}")
+            existing_keys = set()
+
+        # Step 3: Fetch valid month_year values from the calendar table
+        try:
+            calendar = self.supabase.get_data("calendar")
+            valid_months = {row["month_year"] for row in calendar}
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch calendar month_years: {e}")
+            valid_months = set()
+
+        # Step 4: If table is empty, insert all records with valid month_year
+        if not existing_keys:
+            filtered_data = [record for record in serialized_data if record['month_year'] in valid_months]
+        else:
+            new_keys = {(record['country'], record['month_year']) for record in serialized_data if 'country' in record}
+            filtered_data = [
+                record for record in serialized_data
+                if (record.get('country'), record['month_year']) not in existing_keys
+                and record['month_year'] in valid_months
+            ]
+
+        if not filtered_data:
+            print(f"[SKIPPED] No valid new records to insert into '{table_name}'.")
+            return
+
+        cleaned_data = self.sanitize_json_records(filtered_data)
+        self.supabase.insert_data(table_name, cleaned_data)
+        print(f"[INSERTED] {len(cleaned_data)} records into '{table_name}'.")
 
     def insert_calendar_data(self, date_from: str, date_to: str):
         self.supabase.insert_calendar_data(date_from, date_to)
@@ -105,7 +138,7 @@ class DataProcessor:
         df["google_trend_score_lag1"] = (
             df.groupby("country")["google_trend_score"].shift(1)
         )
-        self.trends_df = df
+        self.trends_df = df[["country", "month_year", "google_trend_score", "google_trend_score_lag1"]]
     
 
     def engineer_currency(self):
@@ -137,15 +170,16 @@ class DataProcessor:
         self.currency_df["month_year"] = pd.to_datetime(self.currency_df["month_year"]).dt.strftime('%Y-%m')
 
         # Log-transform exchange rates
-        self.currency_df["avg_currency_rate"] = np.log1p(self.currency_df["avg_currency_rate"])
+        self.currency_df["log_avg_currency_rate"] = np.log1p(self.currency_df["avg_currency_rate"])
 
         # Sort before lag
         self.currency_df = self.currency_df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
 
         # Add 1-month lag
-        self.currency_df["avg_currency_rate_lag1"] = (
-            self.currency_df.groupby("country")["avg_currency_rate"].shift(1)
+        self.currency_df["log_avg_currency_rate_lag1"] = (
+            self.currency_df.groupby("country")["log_avg_currency_rate"].shift(1)
         )
+        self.currency_df = self.currency_df[["country", "month_year", "log_avg_currency_rate", "log_avg_currency_rate_lag1"]]
 
     def engineer_instagram(self):
         df = self.instagram_df.copy()
@@ -197,58 +231,74 @@ class DataProcessor:
             ig_sentiment.groupby('country')['ig_sentiment']
             .shift(periods=1)  # Shift down by 1 row
         )
-        self.instagram_df = ig_sentiment
+        self.instagram_df = ig_sentiment[["country", "month_year", "ig_sentiment", "ig_sentiment_lag1", "ig_sentiment_z"]]
 
-    # def engineer_reddit(self):
-    #     df = self.reddit_df.copy()
+    def engineer_reddit(self):
+        df = self.reddit_df.copy()
 
-    #     # Keep only relevant columns
-    #     columns_to_keep = ["created_at", "score", "vader_compound", "country"]
-    #     df = df[columns_to_keep]
+        # Step 1: Format date
+        df["month_year"] = pd.to_datetime(df["month_year"], format="%m-%Y", errors="coerce").dt.strftime("%Y-%m")
 
-    #     # Rename and convert time
-    #     df = df.rename(columns={
-    #         "created_at": "month_year",
-    #         "vader_compound": "reddit_sentiment",
-    #         "score": "popularity"
-    #     })
-    #     df["month_year"] = pd.to_datetime(df["month_year"], format="%m/%d/%y").dt.strftime("%Y-%m")
+        # Step 2: Ensure 'mentioned_countries' is list-like
+        df["mentioned_countries"] = df["mentioned_countries"].apply(
+            lambda x: [i.strip().title() for i in x.split(",")] if isinstance(x, str) else []
+        )
 
-    #     # Weight the raw sentiment using popularity
-    #     total_popularity_per_group = df.groupby(["country", "month_year"])["popularity"].transform("sum")
-    #     df["popularity_percentage"] = df["popularity"] / total_popularity_per_group
-    #     df["reddit_sentiment"] = df["reddit_sentiment"] * df["popularity_percentage"]
+        # Step 3: Explode countries
+        df = df.explode("mentioned_countries").rename(columns={"mentioned_countries": "country"})
+        df = df[df["country"].notna() & (df["country"] != "")]
 
-    #     # Drop unused columns and aggregate
-    #     df = df.drop(columns=["popularity", "popularity_percentage"])
-    #     df = df.groupby(["country", "month_year"]).agg({
-    #         "reddit_sentiment": "sum"
-    #     }).reset_index()
+        # Step 4: Compute weighted sentiment
+        df["reddit_sentiment"] = df["upvote_ratio"] * df["sentiment_score"]
 
-    #     # Interpolate and fill missing values
-    #     df = df.sort_values(["country", "month_year"])
-    #     df["reddit_sentiment"] = (
-    #         df.groupby("country")["reddit_sentiment"]
-    #         .apply(lambda group: (
-    #             group.interpolate(method='linear', limit_direction='both')
-    #                 .fillna(method='ffill')
-    #                 .fillna(method='bfill')
-    #         ))
-    #         .reset_index(level=0, drop=True)
-    #     )
+        # Step 5: Aggregate by country and month
+        avg_sentiment = (
+            df.groupby(["country", "month_year"])["reddit_sentiment"]
+            .mean()
+            .reset_index()
+        )
 
-    #     # Lag by 1 month
-    #     df["reddit_sentiment_lag1"] = (
-    #         df.groupby("country")["reddit_sentiment"]
-    #         .shift(1)
-    #     )
+        # Step 6: Filter SEA countries only
+        sea_countries = {
+            "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam",
+            "Philippines", "Myanmar", "Cambodia", "Laos", "Brunei"
+        }
+        avg_sentiment = avg_sentiment[avg_sentiment["country"].isin(sea_countries)]
 
-    #     self.reddit_df = df
+        # Step 7: Interpolation
+        avg_sentiment["month_year"] = pd.to_datetime(avg_sentiment["month_year"])
+        avg_sentiment = avg_sentiment.sort_values(["country", "month_year"])
+        avg_sentiment["reddit_sentiment"] = (
+            avg_sentiment
+            .groupby("country")["reddit_sentiment"]
+            .apply(lambda group: (
+                group.interpolate(method="linear", limit_direction="both")
+                    .fillna(method="ffill")
+                    .fillna(method="bfill")
+            ))
+            .reset_index(level=0, drop=True)
+        )
+
+        # Step 8: Z-score
+        avg_sentiment["reddit_sentiment_z"] = (
+            avg_sentiment.groupby("country")["reddit_sentiment"]
+            .transform(lambda x: (x - x.mean()) / x.std())
+        )
+
+        # Step 9: Lag
+        avg_sentiment["reddit_sentiment_lag1"] = (
+            avg_sentiment.groupby("country")["reddit_sentiment_z"]
+            .shift(1)
+        )
+
+        # Step 10: Final selection
+        self.reddit_df = avg_sentiment[[
+            "month_year", "country", "reddit_sentiment_z", "reddit_sentiment_lag1"
+        ]]
 
 
     def engineer_tripadvisor(self):
         df = self.tripadvisor_df.copy()
-        print(df.shape)
         # Convert trip_date to datetime and extract month-year
         df["trip_date"] = pd.to_datetime(df["trip_date"], format="%b-%y", errors="coerce")
         df["month_year"] = df["trip_date"].dt.strftime("%Y-%m")
@@ -258,33 +308,38 @@ class DataProcessor:
             "rating"
         ]
         df = df[columns_to_keep]
-        print(df.shape)
-        self.tripadvisor_df = df
-        # aggregate to find average monthly rating
-        # review_agg = df.groupby(["country", "month_year"])["rating"].mean().reset_index()
-        # print(review_agg.shape)
-        # review_agg = review_agg.rename(columns={"rating": "trip_advisor_rating"})
-        # review_agg['month_year'] = pd.to_datetime(review_agg['month_year'])
+        df["rating"] = pd.to_numeric(df["rating"], errors="coerce")
+        review_agg = df.groupby(["country", "month_year"])["rating"].mean().reset_index()
+        review_agg = review_agg.rename(columns={"rating": "trip_advisor_rating"})
+        review_agg['month_year'] = pd.to_datetime(review_agg['month_year'])
 
-        # # interpolate, forward fill, then backward fill within each country group
-        # review_agg["trip_advisor_rating"] = (
-        #     review_agg
-        #     .groupby("country")["trip_advisor_rating"]
-        #     .apply(lambda group: (
-        #         group.interpolate(method='linear', limit_direction='both')  # interpolate
-        #             .fillna(method='ffill')                                # fill leading NaNs
-        #             .fillna(method='bfill')                                # fill trailing NaNs
-        #     ))
-        #     .reset_index(level=0, drop=True)
-        # )
-        # print(review_agg.shape)
-        # self.tripadvisor_df = review_agg
+        # interpolate, forward fill, then backward fill within each country group
+        review_agg["trip_advisor_rating"] = (
+            review_agg
+            .groupby("country")["trip_advisor_rating"]
+            .apply(lambda group: (
+                group.interpolate(method='linear', limit_direction='both')  # interpolate
+                    .fillna(method='ffill')                                # fill leading NaNs
+                    .fillna(method='bfill')                                # fill trailing NaNs
+            ))
+            .reset_index(level=0, drop=True)
+        )
+        review_agg["trip_advisor_rating_lag1"] = (
+            review_agg.groupby("country")["trip_advisor_rating"].shift(1)
+        )
 
+        self.tripadvisor_df = review_agg[[
+            "trip_advisor_rating", 
+            "trip_advisor_rating_lag1", 
+            "country", 
+            "month_year"
+        ]]
 
     def engineer_labels(self):
         df = self.labels_df.copy()
         #Rename and format date
         df = df.rename(columns={"value": "num_visitors"})
+        df["num_visitors"] = df["num_visitors"].round().astype(int)
         df["month_year"] = pd.to_datetime(df["month_year"]).dt.strftime("%Y-%m")
         # log transform
         df["log_visitors"] = np.log1p(df['num_visitors'])
@@ -299,8 +354,29 @@ class DataProcessor:
             ))
             .reset_index(level=0, drop=True)
         )
-        df.drop(columns=["num_visitors"], inplace=True)
         self.labels_df = df
+        self.labels_df = self.labels_df[["country", "month_year", "log_visitors", "num_visitors"]]
+
+    def serialize_dates(self, data):
+        """Convert any pandas.Timestamp in a list of dicts to string."""
+        for record in data:
+            for key, value in record.items():
+                if isinstance(value, pd.Timestamp):
+                    record[key] = value.strftime('%Y-%m')
+        return data
+
+    def sanitize_json_records(self, data):
+        """Convert non-serializable float values to None (e.g., NaN, inf)."""
+        sanitized = []
+        for record in data:
+            clean_record = {}
+            for key, value in record.items():
+                if isinstance(value, float) and (math.isnan(value) or math.isinf(value)):
+                    clean_record[key] = None
+                else:
+                    clean_record[key] = value
+            sanitized.append(clean_record)
+        return sanitized
 
 
     def process(self):
@@ -310,19 +386,18 @@ class DataProcessor:
         self.engineer_google_trends()
         self.engineer_currency()
         self.engineer_instagram()
-        # self.engineer_reddit()
+        self.engineer_reddit()
         self.engineer_tripadvisor()
         self.engineer_labels()
-        #TODO: drop irrelvant columns and rename before ingesting data to supabase, refer to schema for more details
 
         """code for ingesting data to supabase"""
         instagram_dict, reddit_dict, tripadvisor_dict, labels_dict, currency_dict, trends_df = self.get_all_dicts()
-        # self.insert_to_supabase("instagram", instagram_dict)
-        # self.insert_to_supabase("reddit", reddit_dict)
-        # self.insert_to_supabase("tripadvisor", tripadvisor_dict)
-        # self.insert_to_supabase("labels", labels_dict)
-        # self.insert_to_supabase("currency", currency_dict)
-        # self.insert_to_supabase("google_trends", trends_df)
+        self.insert_to_supabase("instagram_post", instagram_dict)
+        self.insert_to_supabase("reddit_post", reddit_dict)
+        self.insert_to_supabase("tripadvisor_post", tripadvisor_dict)
+        self.insert_to_supabase("visitor_count", labels_dict)
+        self.insert_to_supabase("currency", currency_dict)
+        self.insert_to_supabase("google_trends", trends_df)
 
 # if __name__ == "__main__":
 #     data_processor = DataProcessor()

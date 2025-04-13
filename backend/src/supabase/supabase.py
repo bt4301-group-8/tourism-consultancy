@@ -10,9 +10,9 @@ class SupabaseClient:
         self.key = os.getenv("SUPABASE_KEY")
         self.supabase: Client = create_client(self.url, self.key)
 
-    def get_data(self, table_name: str) -> pd.DataFrame:
+    def get_data(self, table_name: str) -> dict:
         data = self.supabase.table(table_name).select("*").execute()
-        return pd.DataFrame(data.data)
+        return data.data
     
     def insert_calendar_data(self, date_from: str, date_to: str):
         date_range = pd.date_range(start=date_from, end=date_to, freq='MS')
