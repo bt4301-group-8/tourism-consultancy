@@ -199,6 +199,36 @@ class DataProcessor:
         )
         self.instagram_df = ig_sentiment
 
+    def engineer_reddit(self):
+        df = self.reddit_df.copy()
+        #formate date
+        df["month_year"] = pd.to_datetime(df["month_year"], format="%m-%Y").dt.strftime("%Y-%m")
+        #parse and explode the mention_countries
+        # Remove extra spaces after commas
+        df["mentioned_countries"] = df["mentioned_countries"].str.split(r",\s*")
+        # Step 2: Explode the list into individual rows
+        df = df.explode("mentioned_countries")
+        # Step 3: Rename column for clarity (optional)
+        df = df.rename(columns={"mentioned_countries": "country"})
+        # capitalise the first letter of countries
+        df["country"] = df["country"].str.title()
+        #weight sentiment_score using upvote_ratio
+        df["reddit_sentiment"] = df["upvote_ratio"] * df["sentiment_score"]
+        #standardise
+        df["reddit_sentiment_z"] = (
+            df.groupby("country")["reddit_sentiment"]
+            .transform(lambda x: (x - x.mean()) / x.std())
+        )
+        # lag 1 month
+        df = df.sort_values(by=["country", "month_year"]).reset_index(drop=True)
+        df["reddit_sentiment_lag1"] = df.groupby("country")["reddit_sentiment_z"].shift(1)
+        #keep only relevant columns
+        df = df[["month_year",
+                 "country", 
+                 "reddit_sentiment_z",
+                 "reddit_sentiment_lag1"]]
+        self.reddit_df = df
+
     # def engineer_reddit(self):
     #     df = self.reddit_df.copy()
 
