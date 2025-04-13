@@ -1,0 +1,771 @@
+[2025-04-13T23:18:50.557+0800] {processor.py:186} INFO - Started process (PID=84046) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:18:50.558+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:18:50.560+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:18:50.560+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:18:50.625+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:18:50.619+0800] {dagbag.py:387} ERROR - Failed to import: /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+Traceback (most recent call last):
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py", line 20, in <module>
+    from backend.src.visitor_scraper.visitor_scraper import VisitorScraper
+ModuleNotFoundError: No module named 'backend'
+[2025-04-13T23:18:50.626+0800] {processor.py:927} WARNING - No viable dags retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:18:50.652+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-13T23:19:23.835+0800] {processor.py:186} INFO - Started process (PID=84378) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:19:23.837+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:19:23.838+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:23.838+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:19:23.902+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:19:23.977+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:23.975+0800] {override.py:1930} INFO - Created Permission View: can read on DAG:visitor_labels_etl_pipeline
+[2025-04-13T23:19:23.989+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:23.988+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG:visitor_labels_etl_pipeline
+[2025-04-13T23:19:23.999+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:23.998+0800] {override.py:1930} INFO - Created Permission View: can edit on DAG:visitor_labels_etl_pipeline
+[2025-04-13T23:19:24.015+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.014+0800] {override.py:1930} INFO - Created Permission View: can create on DAG Run:visitor_labels_etl_pipeline
+[2025-04-13T23:19:24.026+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.025+0800] {override.py:1930} INFO - Created Permission View: can read on DAG Run:visitor_labels_etl_pipeline
+[2025-04-13T23:19:24.037+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.036+0800] {override.py:1930} INFO - Created Permission View: menu access on DAG Run:visitor_labels_etl_pipeline
+[2025-04-13T23:19:24.047+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.047+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG Run:visitor_labels_etl_pipeline
+[2025-04-13T23:19:24.048+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.047+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:19:24.055+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.055+0800] {dag.py:3262} INFO - Creating ORM DAG for visitor_labels_etl_pipeline
+[2025-04-13T23:19:24.061+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:19:24.061+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:19:24.088+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.257 seconds
+[2025-04-13T23:20:29.192+0800] {processor.py:186} INFO - Started process (PID=84898) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:20:29.195+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:20:29.197+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:20:29.196+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:20:29.248+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:20:29.257+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:20:29.257+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:20:29.269+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:20:29.269+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:20:29.290+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-13T23:21:02.610+0800] {processor.py:186} INFO - Started process (PID=85088) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:21:02.613+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:21:02.615+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:21:02.614+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:21:02.665+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:21:02.676+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:21:02.675+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:21:02.688+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:21:02.688+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:21:02.708+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-13T23:21:34.912+0800] {processor.py:186} INFO - Started process (PID=85243) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:21:34.914+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:21:34.915+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:21:34.915+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:21:34.973+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:21:34.984+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:21:34.984+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:21:35.003+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:21:35.002+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:21:35.025+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.118 seconds
+[2025-04-13T23:22:08.456+0800] {processor.py:186} INFO - Started process (PID=85462) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:22:08.459+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:22:08.462+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:22:08.461+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:22:08.534+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:22:08.544+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:22:08.544+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:22:08.557+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:22:08.557+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:22:08.579+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.127 seconds
+[2025-04-13T23:22:44.814+0800] {processor.py:186} INFO - Started process (PID=85617) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:22:44.818+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:22:44.820+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:22:44.820+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:22:44.911+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:22:44.926+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:22:44.926+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:22:44.946+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:22:44.946+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:22:44.971+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.165 seconds
+[2025-04-13T23:23:12.160+0800] {processor.py:186} INFO - Started process (PID=85790) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:23:12.163+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:23:12.166+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:23:12.166+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:23:12.263+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:23:12.282+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:23:12.282+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:23:12.334+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:23:12.333+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:23:12.368+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.212 seconds
+[2025-04-13T23:24:23.370+0800] {processor.py:186} INFO - Started process (PID=86417) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:24:23.373+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:24:23.375+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:24:23.374+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:24:23.424+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:24:23.434+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:24:23.433+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:24:23.448+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:24:23.447+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:24:23.469+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.103 seconds
+[2025-04-13T23:25:03.451+0800] {processor.py:186} INFO - Started process (PID=86711) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:25:03.452+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:25:03.453+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:25:03.453+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:25:03.532+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:25:03.551+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:25:03.550+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:25:03.568+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:25:03.567+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:25:03.588+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.143 seconds
+[2025-04-13T23:26:37.520+0800] {processor.py:186} INFO - Started process (PID=87547) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:26:37.521+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:26:37.522+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:26:37.522+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:26:37.574+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:26:37.589+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:26:37.589+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:26:37.600+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:26:37.600+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:26:37.617+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-13T23:27:42.234+0800] {processor.py:186} INFO - Started process (PID=87989) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:27:42.238+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:27:42.239+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:27:42.238+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:27:42.285+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:27:42.296+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:27:42.296+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:27:42.310+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:27:42.310+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:27:42.331+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.100 seconds
+[2025-04-13T23:28:18.287+0800] {processor.py:186} INFO - Started process (PID=88148) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:28:18.290+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:28:18.291+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:28:18.291+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:28:18.338+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:28:18.349+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:28:18.349+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:28:18.363+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:28:18.363+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:28:18.380+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.097 seconds
+[2025-04-13T23:29:48.292+0800] {processor.py:186} INFO - Started process (PID=88673) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:29:48.296+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:29:48.297+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:29:48.296+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:29:48.349+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:29:48.364+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:29:48.363+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:29:48.379+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:29:48.379+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:29:48.397+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.108 seconds
+[2025-04-13T23:31:17.007+0800] {processor.py:186} INFO - Started process (PID=89161) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:31:17.014+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:31:17.015+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:31:17.015+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:31:17.080+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:31:17.079+0800] {dagbag.py:387} ERROR - Failed to import: /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+Traceback (most recent call last):
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py", line 21, in <module>
+    from backend.src.visitor_scraper.visitor_scraper import VisitorScraper
+ModuleNotFoundError: No module named 'backend'
+[2025-04-13T23:31:17.080+0800] {processor.py:927} WARNING - No viable dags retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:31:17.102+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.100 seconds
+[2025-04-13T23:31:35.333+0800] {processor.py:186} INFO - Started process (PID=89385) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:31:35.353+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:31:35.355+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:31:35.355+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:31:35.410+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:31:35.424+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:31:35.423+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:31:35.436+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:31:35.436+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:31:35.479+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.150 seconds
+[2025-04-13T23:32:51.553+0800] {processor.py:186} INFO - Started process (PID=90028) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:32:51.556+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:32:51.557+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:32:51.557+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:32:51.611+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:32:51.625+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:32:51.624+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:32:51.639+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:32:51.639+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:32:51.657+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.108 seconds
+[2025-04-13T23:33:27.211+0800] {processor.py:186} INFO - Started process (PID=90196) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:33:27.214+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:33:27.216+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:33:27.216+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:33:27.272+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:33:27.281+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:33:27.281+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:33:27.294+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:33:27.293+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:33:27.314+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.108 seconds
+[2025-04-13T23:34:01.102+0800] {processor.py:186} INFO - Started process (PID=90354) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:34:01.105+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:34:01.107+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:34:01.107+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:34:01.174+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:34:01.185+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:34:01.185+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:34:01.198+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:34:01.198+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:34:01.223+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.125 seconds
+[2025-04-13T23:34:38.776+0800] {processor.py:186} INFO - Started process (PID=90560) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:34:38.777+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:34:38.779+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:34:38.778+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:34:38.843+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:34:38.858+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:34:38.858+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:34:38.871+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:34:38.871+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:34:38.892+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.120 seconds
+[2025-04-13T23:35:44.139+0800] {processor.py:186} INFO - Started process (PID=91191) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:35:44.140+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:35:44.142+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:35:44.142+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:35:44.206+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:35:44.222+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:35:44.221+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:35:44.238+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:35:44.237+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:35:44.262+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.127 seconds
+[2025-04-13T23:37:30.281+0800] {processor.py:186} INFO - Started process (PID=92080) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:37:30.282+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:37:30.283+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:37:30.283+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:37:30.335+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:37:30.348+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:37:30.348+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:37:30.360+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:37:30.360+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:37:30.378+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-13T23:38:33.883+0800] {processor.py:186} INFO - Started process (PID=92436) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:38:33.886+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:38:33.887+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:38:33.887+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:38:33.937+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:38:33.947+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:38:33.947+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:38:33.957+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:38:33.957+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:38:33.980+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-13T23:39:09.894+0800] {processor.py:186} INFO - Started process (PID=92577) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:39:09.897+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:39:09.898+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:39:09.898+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:39:09.956+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:39:09.968+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:39:09.968+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:39:09.980+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:39:09.980+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:39:10.000+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.110 seconds
+[2025-04-13T23:39:45.254+0800] {processor.py:186} INFO - Started process (PID=92780) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:39:45.257+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:39:45.258+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:39:45.258+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:39:45.316+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:39:45.330+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:39:45.330+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:39:45.494+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:39:45.493+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:39:45.517+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.267 seconds
+[2025-04-13T23:40:23.418+0800] {processor.py:186} INFO - Started process (PID=93055) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:40:23.421+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:40:23.422+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:40:23.422+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:40:23.480+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:40:23.491+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:40:23.490+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:40:23.502+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:40:23.502+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:40:23.524+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.111 seconds
+[2025-04-13T23:41:02.338+0800] {processor.py:186} INFO - Started process (PID=93273) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:41:02.341+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:41:02.342+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:41:02.342+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:41:02.405+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:41:02.418+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:41:02.418+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:41:02.432+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:41:02.432+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:41:02.454+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.122 seconds
+[2025-04-13T23:41:36.256+0800] {processor.py:186} INFO - Started process (PID=93396) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:41:36.259+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:41:36.260+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:41:36.260+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:41:36.307+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:41:36.317+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:41:36.317+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:41:36.417+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:41:36.416+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:41:36.437+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.185 seconds
+[2025-04-13T23:42:09.777+0800] {processor.py:186} INFO - Started process (PID=93542) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:42:09.780+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:42:09.781+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:42:09.781+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:42:09.832+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:42:09.843+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:42:09.843+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:42:09.942+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:42:09.941+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:42:09.959+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.187 seconds
+[2025-04-13T23:42:44.421+0800] {processor.py:186} INFO - Started process (PID=93698) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:42:44.424+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:42:44.425+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:42:44.425+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:42:44.575+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:42:44.582+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:42:44.582+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:42:44.592+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:42:44.592+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:42:44.612+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.195 seconds
+[2025-04-13T23:43:18.796+0800] {processor.py:186} INFO - Started process (PID=93983) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:43:18.800+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:43:18.801+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:43:18.801+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:43:18.941+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:43:18.948+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:43:18.948+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:43:18.957+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:43:18.957+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:43:18.973+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.181 seconds
+[2025-04-13T23:43:52.563+0800] {processor.py:186} INFO - Started process (PID=94136) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:43:52.566+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:43:52.567+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:43:52.567+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:43:52.742+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:43:52.749+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:43:52.749+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:43:52.758+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:43:52.758+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:43:52.777+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.220 seconds
+[2025-04-13T23:44:28.375+0800] {processor.py:186} INFO - Started process (PID=94315) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:44:28.379+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:44:28.381+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:44:28.380+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:44:28.571+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:44:28.581+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:44:28.581+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:44:28.597+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:44:28.596+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:44:28.615+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.246 seconds
+[2025-04-13T23:45:03.018+0800] {processor.py:186} INFO - Started process (PID=94473) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:45:03.021+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:45:03.022+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:45:03.022+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:45:03.220+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:45:03.229+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:45:03.229+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:45:03.240+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:45:03.240+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:45:03.259+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.245 seconds
+[2025-04-13T23:45:38.028+0800] {processor.py:186} INFO - Started process (PID=94695) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:45:38.030+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:45:38.031+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:45:38.030+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:45:38.253+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:45:38.266+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:45:38.265+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:45:38.278+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:45:38.278+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:45:38.297+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.275 seconds
+[2025-04-13T23:46:16.835+0800] {processor.py:186} INFO - Started process (PID=94898) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:46:16.837+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:46:16.838+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:46:16.838+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:46:16.980+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:46:16.987+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:46:16.987+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:46:16.996+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:46:16.996+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:46:17.016+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.186 seconds
+[2025-04-13T23:46:53.446+0800] {processor.py:186} INFO - Started process (PID=95122) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:46:53.449+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:46:53.450+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:46:53.450+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:46:53.505+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:46:53.515+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:46:53.515+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:46:53.528+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:46:53.528+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:46:53.548+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.106 seconds
+[2025-04-13T23:47:26.612+0800] {processor.py:186} INFO - Started process (PID=95287) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:47:26.614+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:47:26.616+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:47:26.616+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:47:26.694+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:47:26.706+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:47:26.706+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:47:26.721+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:47:26.720+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:47:26.744+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.138 seconds
+[2025-04-13T23:47:58.565+0800] {processor.py:186} INFO - Started process (PID=95436) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:47:58.568+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:47:58.569+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:47:58.569+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:47:58.621+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:47:58.632+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:47:58.631+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:47:58.644+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:47:58.643+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:47:58.662+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-13T23:48:32.377+0800] {processor.py:186} INFO - Started process (PID=95593) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:48:32.380+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:48:32.381+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:48:32.380+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:48:32.454+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:48:32.472+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:48:32.471+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:48:32.492+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:48:32.491+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:48:32.514+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.144 seconds
+[2025-04-13T23:49:06.176+0800] {processor.py:186} INFO - Started process (PID=95791) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:49:06.177+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:49:06.178+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:49:06.177+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:49:06.236+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:49:06.246+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:49:06.245+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:49:06.257+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:49:06.257+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:49:06.276+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.104 seconds
+[2025-04-13T23:49:39.914+0800] {processor.py:186} INFO - Started process (PID=96074) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:49:39.917+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:49:39.918+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:49:39.918+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:49:39.971+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:49:39.980+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:49:39.980+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:49:39.990+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:49:39.990+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:49:40.008+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.098 seconds
+[2025-04-13T23:50:15.268+0800] {processor.py:186} INFO - Started process (PID=96229) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:50:15.271+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:50:15.272+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:50:15.271+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:50:15.325+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:50:15.336+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:50:15.336+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:50:15.348+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:50:15.348+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:50:15.367+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.105 seconds
+[2025-04-13T23:50:50.542+0800] {processor.py:186} INFO - Started process (PID=96414) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:50:50.545+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:50:50.546+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:50:50.546+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:50:50.596+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:50:50.605+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:50:50.604+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:50:50.615+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:50:50.615+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:50:50.633+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.095 seconds
+[2025-04-13T23:51:23.538+0800] {processor.py:186} INFO - Started process (PID=96563) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:51:23.538+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:51:23.539+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:51:23.539+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:51:23.596+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:51:23.608+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:51:23.608+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:51:23.623+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:51:23.623+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:51:23.643+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.109 seconds
+[2025-04-13T23:51:58.155+0800] {processor.py:186} INFO - Started process (PID=96748) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:51:58.158+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:51:58.159+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:51:58.158+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:51:58.206+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:51:58.216+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:51:58.215+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:51:58.226+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:51:58.226+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:51:58.244+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.094 seconds
+[2025-04-13T23:52:31.455+0800] {processor.py:186} INFO - Started process (PID=96903) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:52:31.456+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:52:31.457+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:52:31.456+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:52:31.506+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:52:31.516+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:52:31.516+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:52:31.526+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:52:31.526+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:52:31.545+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.094 seconds
+[2025-04-13T23:53:05.262+0800] {processor.py:186} INFO - Started process (PID=97060) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:53:05.265+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:53:05.266+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:53:05.266+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:53:05.314+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:53:05.329+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:53:05.328+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:53:05.340+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:53:05.340+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:53:05.359+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-13T23:53:37.929+0800] {processor.py:186} INFO - Started process (PID=97228) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:53:37.930+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:53:37.931+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:53:37.930+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:53:37.983+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:53:37.992+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:53:37.992+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:53:38.004+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:53:38.004+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:53:38.023+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-13T23:54:11.691+0800] {processor.py:186} INFO - Started process (PID=97375) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:54:11.695+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:54:11.695+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:54:11.695+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:54:11.753+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:54:11.765+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:54:11.765+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:54:11.778+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:54:11.778+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:54:11.796+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.109 seconds
+[2025-04-13T23:54:46.179+0800] {processor.py:186} INFO - Started process (PID=97539) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:54:46.182+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:54:46.183+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:54:46.183+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:54:46.232+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:54:46.241+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:54:46.241+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:54:46.253+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:54:46.253+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:54:46.271+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.095 seconds
+[2025-04-13T23:55:20.161+0800] {processor.py:186} INFO - Started process (PID=97687) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:55:20.164+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:55:20.165+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:55:20.165+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:55:20.218+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:55:20.228+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:55:20.227+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:55:20.239+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:55:20.239+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:55:20.258+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-13T23:55:53.472+0800] {processor.py:186} INFO - Started process (PID=97845) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:55:53.475+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:55:53.476+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:55:53.475+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:55:53.529+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:55:53.543+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:55:53.542+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:55:53.556+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:55:53.556+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:55:53.575+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.107 seconds
+[2025-04-13T23:56:27.248+0800] {processor.py:186} INFO - Started process (PID=97999) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:56:27.250+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:56:27.251+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:56:27.251+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:56:27.302+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:56:27.312+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:56:27.311+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:56:27.322+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:56:27.322+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:56:27.341+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.098 seconds
+[2025-04-13T23:57:01.060+0800] {processor.py:186} INFO - Started process (PID=98199) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:57:01.063+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:57:01.065+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:57:01.064+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:57:01.118+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:57:01.129+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:57:01.129+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:57:01.141+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:57:01.141+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:57:01.157+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-13T23:57:32.692+0800] {processor.py:186} INFO - Started process (PID=98348) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:57:32.693+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:57:32.694+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:57:32.693+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:57:32.743+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:57:32.755+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:57:32.755+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:57:32.768+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:57:32.768+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:57:32.789+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-13T23:58:05.530+0800] {processor.py:186} INFO - Started process (PID=98495) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:58:05.533+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:58:05.534+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:58:05.534+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:58:05.591+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:58:05.602+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:58:05.601+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:58:05.613+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:58:05.613+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:58:05.633+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.107 seconds
+[2025-04-13T23:58:39.047+0800] {processor.py:186} INFO - Started process (PID=98649) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:58:39.050+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:58:39.051+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:58:39.050+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:58:39.099+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:58:39.109+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:58:39.109+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:58:39.120+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:58:39.120+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:58:39.139+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.097 seconds
+[2025-04-13T23:59:11.768+0800] {processor.py:186} INFO - Started process (PID=98801) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:59:11.772+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:59:11.773+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:59:11.773+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:59:11.827+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:59:11.837+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:59:11.837+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:59:11.849+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:59:11.848+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:59:11.870+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.106 seconds
+[2025-04-13T23:59:46.318+0800] {processor.py:186} INFO - Started process (PID=98955) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:59:46.321+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-13T23:59:46.322+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:59:46.321+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:59:46.373+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-13T23:59:46.384+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:59:46.384+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-13T23:59:46.397+0800] {logging_mixin.py:190} INFO - [2025-04-13T23:59:46.397+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-13T23:59:46.416+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.103 seconds
+[2025-04-14T00:00:20.999+0800] {processor.py:186} INFO - Started process (PID=99219) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:00:21.002+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:00:21.003+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:00:21.002+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:00:21.057+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:00:21.066+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:00:21.066+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:00:21.078+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:00:21.078+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:00:21.094+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.100 seconds
+[2025-04-14T00:00:56.890+0800] {processor.py:186} INFO - Started process (PID=99381) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:00:56.894+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:00:56.895+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:00:56.895+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:00:56.948+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:00:56.957+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:00:56.957+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:00:56.968+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:00:56.968+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:00:56.987+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-14T00:01:30.741+0800] {processor.py:186} INFO - Started process (PID=99536) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:01:30.744+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:01:30.745+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:01:30.744+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:01:30.794+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:01:30.805+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:01:30.805+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:01:30.816+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:01:30.815+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:01:30.834+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:02:01.317+0800] {processor.py:186} INFO - Started process (PID=99705) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:02:01.321+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:02:01.322+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:02:01.322+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:02:01.369+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:02:01.379+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:02:01.378+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:02:01.390+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:02:01.390+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:02:01.409+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:02:31.981+0800] {processor.py:186} INFO - Started process (PID=99844) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:02:31.984+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:02:31.985+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:02:31.985+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:02:32.036+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:02:32.046+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:02:32.046+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:02:32.057+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:02:32.057+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:02:32.077+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-14T00:03:04.102+0800] {processor.py:186} INFO - Started process (PID=100011) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:03:04.105+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:03:04.106+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:03:04.105+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:03:04.155+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:03:04.165+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:03:04.165+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:03:04.175+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:03:04.175+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:03:04.197+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:03:37.444+0800] {processor.py:186} INFO - Started process (PID=100164) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:03:37.445+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:03:37.446+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:03:37.445+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:03:37.493+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:03:37.502+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:03:37.502+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:03:37.515+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:03:37.515+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:03:37.534+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.095 seconds
+[2025-04-14T00:04:11.902+0800] {processor.py:186} INFO - Started process (PID=100322) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:04:11.906+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:04:11.906+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:04:11.906+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:04:11.956+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:04:11.966+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:04:11.966+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:04:11.977+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:04:11.977+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:04:11.996+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.098 seconds
+[2025-04-14T00:04:47.103+0800] {processor.py:186} INFO - Started process (PID=100481) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:04:47.106+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:04:47.107+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:04:47.107+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:04:47.160+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:04:47.171+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:04:47.171+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:04:47.184+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:04:47.184+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:04:47.202+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.104 seconds
+[2025-04-14T00:05:22.083+0800] {processor.py:186} INFO - Started process (PID=100638) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:05:22.086+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:05:22.087+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:05:22.087+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:05:22.139+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:05:22.149+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:05:22.149+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:05:22.159+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:05:22.159+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:05:22.178+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:05:56.740+0800] {processor.py:186} INFO - Started process (PID=100800) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:05:56.743+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:05:56.744+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:05:56.744+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:05:56.795+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:05:56.805+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:05:56.804+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:05:56.816+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:05:56.816+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:05:56.835+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:06:30.130+0800] {processor.py:186} INFO - Started process (PID=100968) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:06:30.133+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:06:30.134+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:06:30.134+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:06:30.183+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:06:30.192+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:06:30.192+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:06:30.203+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:06:30.203+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:06:30.221+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:07:01.550+0800] {processor.py:186} INFO - Started process (PID=101123) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:07:01.553+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:07:01.554+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:07:01.554+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:07:01.604+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:07:01.614+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:07:01.614+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:07:01.625+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:07:01.625+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:07:01.644+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.098 seconds
+[2025-04-14T00:08:01.915+0800] {processor.py:186} INFO - Started process (PID=101423) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:08:01.918+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:08:01.919+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:08:01.919+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:08:01.973+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:08:01.982+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:08:01.982+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:08:01.994+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:08:01.994+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:08:02.015+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.105 seconds
+[2025-04-14T00:08:32.385+0800] {processor.py:186} INFO - Started process (PID=101563) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:08:32.388+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:08:32.389+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:08:32.389+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:08:32.439+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:08:32.448+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:08:32.448+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:08:32.460+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:08:32.460+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:08:32.479+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:09:05.140+0800] {processor.py:186} INFO - Started process (PID=101712) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:09:05.143+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:09:05.143+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:09:05.143+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:09:05.193+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:09:05.204+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:09:05.203+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:09:05.214+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:09:05.214+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:09:05.233+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.097 seconds
+[2025-04-14T00:09:39.567+0800] {processor.py:186} INFO - Started process (PID=101892) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:09:39.570+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:09:39.570+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:09:39.570+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:09:39.622+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:09:39.632+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:09:39.631+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:09:39.643+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:09:39.643+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:09:39.662+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:10:13.146+0800] {processor.py:186} INFO - Started process (PID=102047) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:10:13.149+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:10:13.150+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:10:13.150+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:10:13.202+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:10:13.211+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:10:13.211+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:10:13.221+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:10:13.221+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:10:13.242+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.101 seconds
+[2025-04-14T00:10:47.518+0800] {processor.py:186} INFO - Started process (PID=102201) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:10:47.521+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:10:47.522+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:10:47.522+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:10:47.570+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:10:47.580+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:10:47.580+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:10:47.590+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:10:47.590+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:10:47.609+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:11:20.385+0800] {processor.py:186} INFO - Started process (PID=102353) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:11:20.388+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:11:20.389+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:11:20.389+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:11:20.437+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:11:20.447+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:11:20.447+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:11:20.458+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:11:20.458+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:11:20.477+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:11:54.006+0800] {processor.py:186} INFO - Started process (PID=102506) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:11:54.010+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:11:54.011+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:11:54.011+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:11:54.062+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:11:54.072+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:11:54.072+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:11:54.083+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:11:54.083+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:11:54.104+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-14T00:12:27.690+0800] {processor.py:186} INFO - Started process (PID=102708) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:12:27.693+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:12:27.695+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:12:27.694+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:12:27.744+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:12:27.758+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:12:27.758+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:12:27.769+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:12:27.769+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:12:27.788+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-14T00:13:01.273+0800] {processor.py:186} INFO - Started process (PID=102860) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:13:01.276+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:13:01.277+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:13:01.277+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:13:01.326+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:13:01.336+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:13:01.335+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:13:01.347+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:13:01.347+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:13:01.365+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:13:33.281+0800] {processor.py:186} INFO - Started process (PID=103007) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:13:33.284+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:13:33.285+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:13:33.285+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:13:33.340+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:13:33.355+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:13:33.354+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:13:33.371+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:13:33.371+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:13:33.393+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.117 seconds
+[2025-04-14T00:14:05.365+0800] {processor.py:186} INFO - Started process (PID=103154) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:14:05.366+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:14:05.367+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:14:05.367+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:14:05.418+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:14:05.427+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:14:05.427+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:14:05.438+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:14:05.438+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:14:05.456+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:14:39.225+0800] {processor.py:186} INFO - Started process (PID=103307) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:14:39.228+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:14:39.229+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:14:39.229+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:14:39.278+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:14:39.288+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:14:39.287+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:14:39.298+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:14:39.298+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:14:39.317+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.096 seconds
+[2025-04-14T00:15:16.248+0800] {processor.py:186} INFO - Started process (PID=103472) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:15:16.251+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:15:16.252+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:15:16.252+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:15:16.307+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:15:16.317+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:15:16.317+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:15:16.329+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:15:16.329+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:15:16.347+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.104 seconds
+[2025-04-14T00:15:50.370+0800] {processor.py:186} INFO - Started process (PID=103652) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:15:50.373+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:15:50.374+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:15:50.374+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:15:50.427+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:15:50.437+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:15:50.437+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:15:50.449+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:15:50.448+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:15:50.468+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-14T00:16:22.687+0800] {processor.py:186} INFO - Started process (PID=103798) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:16:22.690+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:16:22.691+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:16:22.691+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:16:22.744+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:16:22.754+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:16:22.753+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:16:22.765+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:16:22.764+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:16:22.782+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-14T00:16:58.830+0800] {processor.py:186} INFO - Started process (PID=103980) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:16:58.832+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:16:58.832+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:16:58.832+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:16:58.884+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:16:58.895+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:16:58.894+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:16:58.910+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:16:58.909+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:16:58.932+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.106 seconds
+[2025-04-14T00:17:34.755+0800] {processor.py:186} INFO - Started process (PID=104217) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:17:34.756+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:17:34.757+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:17:34.757+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:17:34.811+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:17:34.821+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:17:34.821+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:17:34.924+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:17:34.924+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:17:34.941+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.190 seconds
+[2025-04-14T00:18:09.347+0800] {processor.py:186} INFO - Started process (PID=104370) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:18:09.350+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:18:09.352+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:18:09.351+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:18:09.405+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:18:09.415+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:18:09.415+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:18:09.428+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:18:09.428+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:18:09.545+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.203 seconds
+[2025-04-14T00:18:42.200+0800] {processor.py:186} INFO - Started process (PID=104548) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:18:42.204+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:18:42.205+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:18:42.204+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:18:42.345+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:18:42.353+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:18:42.353+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:18:42.362+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:18:42.361+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:18:42.379+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.184 seconds
+[2025-04-14T00:19:13.918+0800] {processor.py:186} INFO - Started process (PID=104688) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:19:13.918+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:19:13.919+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:19:13.919+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:19:14.091+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:19:14.099+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:19:14.099+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:19:14.110+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:19:14.110+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:19:14.126+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.213 seconds
+[2025-04-14T00:19:48.252+0800] {processor.py:186} INFO - Started process (PID=104842) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:19:48.255+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:19:48.256+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:19:48.256+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:19:48.400+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:19:48.407+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:19:48.407+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:19:48.416+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:19:48.416+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:19:48.432+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.185 seconds
+[2025-04-14T00:20:23.944+0800] {processor.py:186} INFO - Started process (PID=105007) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:20:23.947+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:20:23.948+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:20:23.948+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:20:24.091+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:20:24.098+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:20:24.098+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:20:24.107+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:20:24.107+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:20:24.127+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.188 seconds
+[2025-04-14T00:20:55.476+0800] {processor.py:186} INFO - Started process (PID=105148) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:20:55.476+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:20:55.477+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:20:55.477+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:20:55.613+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:20:55.621+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:20:55.620+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:20:55.629+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:20:55.629+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:20:55.648+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.178 seconds
+[2025-04-14T00:21:28.210+0800] {processor.py:186} INFO - Started process (PID=105301) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:21:28.213+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:21:28.214+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:21:28.214+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:21:28.350+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:21:28.356+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:21:28.356+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:21:28.366+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:21:28.365+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:21:28.387+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.180 seconds
+[2025-04-14T00:22:02.132+0800] {processor.py:186} INFO - Started process (PID=105472) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:22:02.135+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:22:02.136+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:22:02.136+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:22:02.276+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:22:02.283+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:22:02.283+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:22:02.292+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:22:02.292+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:22:02.310+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.182 seconds
+[2025-04-14T00:22:38.763+0800] {processor.py:186} INFO - Started process (PID=105642) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:22:38.766+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:22:38.767+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:22:38.767+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:22:38.906+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:22:38.913+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:22:38.913+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:22:38.922+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:22:38.922+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:22:38.938+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.179 seconds
+[2025-04-14T00:23:14.815+0800] {processor.py:186} INFO - Started process (PID=105829) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:23:14.818+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:23:14.819+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:23:14.819+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:23:14.869+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:23:14.880+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:23:14.880+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:23:14.892+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:23:14.892+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:23:14.913+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-14T00:23:46.961+0800] {processor.py:186} INFO - Started process (PID=105977) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:23:46.964+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:23:46.965+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:23:46.965+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:23:47.015+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:23:47.028+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:23:47.027+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:23:47.039+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:23:47.038+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:23:47.055+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.099 seconds
+[2025-04-14T00:24:18.047+0800] {processor.py:186} INFO - Started process (PID=106115) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:24:18.051+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:24:18.052+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:24:18.051+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:24:18.103+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:24:18.112+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:24:18.112+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:24:18.128+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:24:18.128+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:24:18.145+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.103 seconds
+[2025-04-14T00:24:52.948+0800] {processor.py:186} INFO - Started process (PID=106276) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:24:52.951+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:24:52.952+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:24:52.952+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:24:53.004+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:24:53.014+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:24:53.014+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:24:53.026+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:24:53.026+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:24:53.045+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.102 seconds
+[2025-04-14T00:25:27.798+0800] {processor.py:186} INFO - Started process (PID=106454) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:25:27.801+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:25:27.802+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:25:27.802+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:25:27.851+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:25:27.861+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:25:27.861+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:25:27.872+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:25:27.872+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:25:27.891+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.097 seconds
+[2025-04-14T00:25:58.853+0800] {processor.py:186} INFO - Started process (PID=106595) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:25:58.853+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:25:58.854+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:25:58.854+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:25:58.907+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:25:58.916+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:25:58.916+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:25:58.927+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:25:58.927+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:25:58.947+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.098 seconds
+[2025-04-14T00:26:31.242+0800] {processor.py:186} INFO - Started process (PID=106740) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:26:31.245+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py for tasks to queue
+[2025-04-14T00:26:31.246+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:26:31.246+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:26:31.300+0800] {processor.py:925} INFO - DAG(s) 'visitor_labels_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py
+[2025-04-14T00:26:31.309+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:26:31.309+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T00:26:31.321+0800] {logging_mixin.py:190} INFO - [2025-04-14T00:26:31.321+0800] {dag.py:4180} INFO - Setting next_dagrun for visitor_labels_etl_pipeline to 2025-04-01 04:00:00+00:00, run_after=2025-05-01 04:00:00+00:00
+[2025-04-14T00:26:31.341+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py took 0.104 seconds

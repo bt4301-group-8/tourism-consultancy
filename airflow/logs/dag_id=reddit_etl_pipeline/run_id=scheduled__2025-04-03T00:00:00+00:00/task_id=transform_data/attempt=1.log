@@ -1,0 +1,28 @@
+[2025-04-13T21:52:18.288+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-13T21:52:18.299+0800] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: reddit_etl_pipeline.transform_data scheduled__2025-04-03T00:00:00+00:00 [queued]>
+[2025-04-13T21:52:18.305+0800] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: reddit_etl_pipeline.transform_data scheduled__2025-04-03T00:00:00+00:00 [queued]>
+[2025-04-13T21:52:18.305+0800] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-13T21:52:18.321+0800] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): transform_data> on 2025-04-03 00:00:00+00:00
+[2025-04-13T21:52:18.325+0800] {standard_task_runner.py:72} INFO - Started process 60493 to run task
+[2025-04-13T21:52:18.327+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'reddit_etl_pipeline', 'transform_data', 'scheduled__2025-04-03T00:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/reddit_dag.py', '--cfg-path', '/tmp/tmpd_h7miyg']
+[2025-04-13T21:52:18.328+0800] {standard_task_runner.py:105} INFO - Job 10: Subtask transform_data
+[2025-04-13T21:52:18.359+0800] {task_command.py:467} INFO - Running <TaskInstance: reddit_etl_pipeline.transform_data scheduled__2025-04-03T00:00:00+00:00 [running]> on host Conglaptop.
+[2025-04-13T21:52:18.425+0800] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='reddit_etl_pipeline' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2025-04-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-03T00:00:00+00:00'
+[2025-04-13T21:52:18.426+0800] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-04-13T21:52:18.427+0800] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-04-13T21:52:18.427+0800] {logging_mixin.py:190} INFO - Current task name:transform_data state:running start_date:2025-04-13 13:52:18.299751+00:00
+[2025-04-13T21:52:18.427+0800] {logging_mixin.py:190} INFO - Dag name:reddit_etl_pipeline and current dag run status:running
+[2025-04-13T21:52:18.428+0800] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-13T21:52:18.430+0800] {reddit_dag.py:84} INFO - Starting data validation and transformation
+[2025-04-13T21:52:18.491+0800] {reddit_dag.py:144} INFO - Validation completed. Valid submissions: 36/36, Valid comments: 1424/1424
+[2025-04-13T21:52:18.491+0800] {reddit_dag.py:145} INFO - Removed 0 duplicate submissions and 0 duplicate comments
+[2025-04-13T21:52:18.491+0800] {python.py:240} INFO - Done. Returned value was: (36, 1424)
+[2025-04-13T21:52:18.507+0800] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-13T21:52:18.507+0800] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=reddit_etl_pipeline, task_id=transform_data, run_id=scheduled__2025-04-03T00:00:00+00:00, execution_date=20250403T000000, start_date=20250413T135218, end_date=20250413T135218
+[2025-04-13T21:52:18.532+0800] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-04-13T21:52:18.533+0800] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-04-13T21:52:18.533+0800] {logging_mixin.py:190} INFO - Dag name:reddit_etl_pipeline queued_at:2025-04-13 13:22:15.889254+00:00
+[2025-04-13T21:52:18.533+0800] {logging_mixin.py:190} INFO - Task hostname:Conglaptop. operator:PythonOperator
+[2025-04-13T21:52:18.542+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-13T21:52:18.553+0800] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-13T21:52:18.559+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

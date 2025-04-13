@@ -1,0 +1,49 @@
+[2025-04-13T23:31:47.116+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-13T23:31:47.123+0800] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: visitor_labels_etl_pipeline.extract_visitor_data manual__2025-04-13T15:31:44.709326+00:00 [queued]>
+[2025-04-13T23:31:47.127+0800] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: visitor_labels_etl_pipeline.extract_visitor_data manual__2025-04-13T15:31:44.709326+00:00 [queued]>
+[2025-04-13T23:31:47.127+0800] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-13T23:31:47.139+0800] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): extract_visitor_data> on 2025-04-13 15:31:44.709326+00:00
+[2025-04-13T23:31:47.142+0800] {standard_task_runner.py:72} INFO - Started process 89547 to run task
+[2025-04-13T23:31:47.145+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'visitor_labels_etl_pipeline', 'extract_visitor_data', 'manual__2025-04-13T15:31:44.709326+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/labels_dag.py', '--cfg-path', '/tmp/tmpi8natwh6']
+[2025-04-13T23:31:47.146+0800] {standard_task_runner.py:105} INFO - Job 43: Subtask extract_visitor_data
+[2025-04-13T23:31:47.177+0800] {task_command.py:467} INFO - Running <TaskInstance: visitor_labels_etl_pipeline.extract_visitor_data manual__2025-04-13T15:31:44.709326+00:00 [running]> on host Conglaptop.
+[2025-04-13T23:31:47.223+0800] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='visitor_labels_etl_pipeline' AIRFLOW_CTX_TASK_ID='extract_visitor_data' AIRFLOW_CTX_EXECUTION_DATE='2025-04-13T15:31:44.709326+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-13T15:31:44.709326+00:00'
+[2025-04-13T23:31:47.224+0800] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-04-13T23:31:47.224+0800] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-04-13T23:31:47.225+0800] {logging_mixin.py:190} INFO - Current task name:extract_visitor_data state:running start_date:2025-04-13 15:31:47.123493+00:00
+[2025-04-13T23:31:47.225+0800] {logging_mixin.py:190} INFO - Dag name:visitor_labels_etl_pipeline and current dag run status:running
+[2025-04-13T23:31:47.225+0800] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-13T23:31:47.225+0800] {logging_mixin.py:190} INFO - Starting visitor data extraction
+[2025-04-13T23:31:47.226+0800] {logging_mixin.py:190} INFO - Extracting visitor data for the month: 2025-03
+[2025-04-13T23:31:47.226+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Thailand
+[2025-04-13T23:31:47.236+0800] {logging_mixin.py:190} INFO - Found 1 records for Thailand in 2025-03
+[2025-04-13T23:31:47.236+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Singapore
+[2025-04-13T23:31:47.238+0800] {logging_mixin.py:190} INFO - Found 1 records for Singapore in 2025-03
+[2025-04-13T23:31:47.238+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Malaysia
+[2025-04-13T23:31:47.240+0800] {logging_mixin.py:190} INFO - Found 1 records for Malaysia in 2025-03
+[2025-04-13T23:31:47.241+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Indonesia
+[2025-04-13T23:31:47.242+0800] {logging_mixin.py:190} INFO - Found 1 records for Indonesia in 2025-03
+[2025-04-13T23:31:47.242+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Vietnam
+[2025-04-13T23:31:47.244+0800] {logging_mixin.py:190} INFO - Found 1 records for Vietnam in 2025-03
+[2025-04-13T23:31:47.244+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Philippines
+[2025-04-13T23:31:47.245+0800] {logging_mixin.py:190} INFO - Found 1 records for Philippines in 2025-03
+[2025-04-13T23:31:47.245+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Cambodia
+[2025-04-13T23:31:47.246+0800] {logging_mixin.py:190} INFO - Found 1 records for Cambodia in 2025-03
+[2025-04-13T23:31:47.247+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Laos
+[2025-04-13T23:31:47.248+0800] {logging_mixin.py:190} INFO - Found 1 records for Laos in 2025-03
+[2025-04-13T23:31:47.248+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Myanmar
+[2025-04-13T23:31:47.249+0800] {logging_mixin.py:190} INFO - Found 1 records for Myanmar in 2025-03
+[2025-04-13T23:31:47.249+0800] {logging_mixin.py:190} INFO - Extracting visitor data for Brunei
+[2025-04-13T23:31:47.250+0800] {logging_mixin.py:190} INFO - Found 1 records for Brunei in 2025-03
+[2025-04-13T23:31:47.250+0800] {logging_mixin.py:190} INFO - Extracted a total of 10 visitor records for 2025-03
+[2025-04-13T23:31:47.250+0800] {logging_mixin.py:190} INFO - Saved visitor data to /home/rencongchia/Y3S2/BT4301/project/backend/data/visitor_data_2025-03.json
+[2025-04-13T23:31:47.251+0800] {python.py:240} INFO - Done. Returned value was: [{"country": "Thailand", "month_year": "2025-03", "value": 3300000.0}, {"country": "Singapore", "month_year": "2025-03", "value": 1743500.0}, {"country": "Malaysia", "month_year": "2025-03", "value": 2400000.0}, {"country": "Indonesia", "month_year": "2025-03", "value": 1150000.0}, {"country": "Vietnam", "month_year": "2025-03", "value": 1750000.0}, {"country": "Philippines", "month_year": "2025-03", "value": 530000.0}, {"country": "Cambodia", "month_year": "2025-03", "value": 635000.0}, {"country": "Laos", "month_year": "2025-03", "value": 470000.0}, {"country": "Myanmar", "month_year": "2025-03", "value": 124000.0}, {"country": "Brunei", "month_year": "2025-03", "value": 63578.0}]
+[2025-04-13T23:31:47.265+0800] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-13T23:31:47.266+0800] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=visitor_labels_etl_pipeline, task_id=extract_visitor_data, run_id=manual__2025-04-13T15:31:44.709326+00:00, execution_date=20250413T153144, start_date=20250413T153147, end_date=20250413T153147
+[2025-04-13T23:31:47.287+0800] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-04-13T23:31:47.287+0800] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-04-13T23:31:47.287+0800] {logging_mixin.py:190} INFO - Dag name:visitor_labels_etl_pipeline queued_at:2025-04-13 15:31:44.734594+00:00
+[2025-04-13T23:31:47.287+0800] {logging_mixin.py:190} INFO - Task hostname:Conglaptop. operator:PythonOperator
+[2025-04-13T23:31:47.319+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-13T23:31:47.335+0800] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-13T23:31:47.342+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

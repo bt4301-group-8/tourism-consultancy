@@ -1,0 +1,208 @@
+[2025-04-13T23:29:56.010+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-13T23:29:56.017+0800] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: visitor_labels_etl_pipeline.load_to_mongodb manual__2025-04-13T15:23:24.701879+00:00 [queued]>
+[2025-04-13T23:29:56.021+0800] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: visitor_labels_etl_pipeline.load_to_mongodb manual__2025-04-13T15:23:24.701879+00:00 [queued]>
+[2025-04-13T23:29:56.021+0800] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-13T23:29:56.037+0800] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): load_to_mongodb> on 2025-04-13 15:23:24.701879+00:00
+[2025-04-13T23:29:56.039+0800] {standard_task_runner.py:72} INFO - Started process 88786 to run task
+[2025-04-13T23:29:56.041+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'visitor_labels_etl_pipeline', 'load_to_mongodb', 'manual__2025-04-13T15:23:24.701879+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/labels_dag.py', '--cfg-path', '/tmp/tmpfm4nwh67']
+[2025-04-13T23:29:56.042+0800] {standard_task_runner.py:105} INFO - Job 40: Subtask load_to_mongodb
+[2025-04-13T23:29:56.068+0800] {task_command.py:467} INFO - Running <TaskInstance: visitor_labels_etl_pipeline.load_to_mongodb manual__2025-04-13T15:23:24.701879+00:00 [running]> on host Conglaptop.
+[2025-04-13T23:29:56.111+0800] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='visitor_labels_etl_pipeline' AIRFLOW_CTX_TASK_ID='load_to_mongodb' AIRFLOW_CTX_EXECUTION_DATE='2025-04-13T15:23:24.701879+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-13T15:23:24.701879+00:00'
+[2025-04-13T23:29:56.112+0800] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-04-13T23:29:56.113+0800] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-04-13T23:29:56.113+0800] {logging_mixin.py:190} INFO - Current task name:load_to_mongodb state:running start_date:2025-04-13 15:29:56.018154+00:00
+[2025-04-13T23:29:56.113+0800] {logging_mixin.py:190} INFO - Dag name:visitor_labels_etl_pipeline and current dag run status:running
+[2025-04-13T23:29:56.113+0800] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-13T23:29:56.117+0800] {logging_mixin.py:190} INFO - Loading 406 visitor records to MongoDB
+[2025-04-13T23:29:56.191+0800] {logging_mixin.py:190} INFO - Processing visitor data for period including 2025-03
+[2025-04-13T23:31:09.087+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-04-13T23:31:09.089+0800] {process_utils.py:132} INFO - Sending 15 to group 88786. PIDs of all processes in the group: [88786]
+[2025-04-13T23:31:09.090+0800] {process_utils.py:87} INFO - Sending the signal 15 to group 88786
+[2025-04-13T23:31:09.090+0800] {taskinstance.py:3094} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-04-13T23:31:09.098+0800] {taskinstance.py:3095} ERROR - Stacktrace: 
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/bin/airflow", line 8, in <module>
+    sys.exit(main())
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/__main__.py", line 62, in main
+    args.func(args)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 254, in _run_task_by_selected_method
+    return _run_task_by_local_task_job(args, ti)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 322, in _run_task_by_local_task_job
+    ret = run_job(job=job_runner.job, execute_callable=job_runner._execute)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/jobs/job.py", line 421, in run_job
+    return execute_job(job, execute_callable=execute_callable)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/jobs/job.py", line 450, in execute_job
+    ret = execute_callable()
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/jobs/local_task_job_runner.py", line 171, in _execute
+    self.task_runner.start()
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 55, in start
+    self.process = self._start_by_fork()
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py", line 198, in load_to_mongodb
+    'country': record['country'],
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1336, in update_one
+    self._update_retryable(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1118, in _update_retryable
+    return self._database.client._retryable_write(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1896, in _retryable_write
+    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1782, in _retry_with_session
+    return self._retry_internal(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1828, in _retry_internal
+    ).run()
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2565, in run
+    return self._read() if self._is_read else self._write()
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2687, in _write
+    return self._func(self._session, conn, self._retryable)  # type: ignore
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1098, in _update
+    return self._update(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1049, in _update
+    conn.command(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/pool.py", line 536, in command
+    return command(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/network.py", line 203, in command
+    reply = receive_message(conn, request_id)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/network.py", line 315, in receive_message
+    length, _, response_to, op_code = _UNPACK_HEADER(receive_data(conn, 16, deadline))
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/network_layer.py", line 389, in receive_data
+    chunk_length = conn.conn.recv_into(mv[bytes_read:])
+  File "/usr/lib/python3.12/ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.12/ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3095, in signal_handler
+    self.log.error("Stacktrace: \n%s", "".join(traceback.format_stack()))
+
+[2025-04-13T23:31:09.101+0800] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/airflow/dags/labels_dag.py", line 198, in load_to_mongodb
+    'country': record['country'],
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1336, in update_one
+    self._update_retryable(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1118, in _update_retryable
+    return self._database.client._retryable_write(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1896, in _retryable_write
+    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1782, in _retry_with_session
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/_csot.py", line 119, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 1828, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2565, in run
+    return self._read() if self._is_read else self._write()
+                                              ^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/mongo_client.py", line 2687, in _write
+    return self._func(self._session, conn, self._retryable)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1098, in _update
+    return self._update(
+           ^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/collection.py", line 1049, in _update
+    conn.command(
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/pool.py", line 564, in command
+    self._raise_connection_failure(error)
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/pool.py", line 536, in command
+    return command(
+           ^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/network.py", line 203, in command
+    reply = receive_message(conn, request_id)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/synchronous/network.py", line 315, in receive_message
+    length, _, response_to, op_code = _UNPACK_HEADER(receive_data(conn, 16, deadline))
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/pymongo/network_layer.py", line 389, in receive_data
+    chunk_length = conn.conn.recv_into(mv[bytes_read:])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rencongchia/Y3S2/BT4301/project/.venv/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3097, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2025-04-13T23:31:09.105+0800] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-04-13T23:31:09.105+0800] {logging_mixin.py:190} INFO - Task start:2025-04-13 15:29:56.018154+00:00 end:2025-04-13 15:31:09.104857+00:00 duration:73.086703
+[2025-04-13T23:31:09.105+0800] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): load_to_mongodb> dag:<DAG: visitor_labels_etl_pipeline> dagrun:<DagRun visitor_labels_etl_pipeline @ 2025-04-13 15:23:24.701879+00:00: manual__2025-04-13T15:23:24.701879+00:00, state:running, queued_at: 2025-04-13 15:23:24.713188+00:00. externally triggered: True>
+[2025-04-13T23:31:09.106+0800] {logging_mixin.py:190} INFO - Failure caused by Task received SIGTERM signal
+[2025-04-13T23:31:09.106+0800] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=visitor_labels_etl_pipeline, task_id=load_to_mongodb, run_id=manual__2025-04-13T15:23:24.701879+00:00, execution_date=20250413T152324, start_date=20250413T152956, end_date=20250413T153109
+[2025-04-13T23:31:09.127+0800] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-13T23:31:09.142+0800] {process_utils.py:80} INFO - Process psutil.Process(pid=88786, status='terminated', exitcode=2, started='23:29:55') (88786) terminated with exit code 2

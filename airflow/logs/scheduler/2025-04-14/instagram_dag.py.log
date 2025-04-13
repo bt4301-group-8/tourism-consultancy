@@ -1,0 +1,924 @@
+[2025-04-14T21:32:45.748+0800] {processor.py:186} INFO - Started process (PID=3370) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:32:45.750+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:32:45.751+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:32:45.751+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:32:46.145+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:32:46.159+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:32:46.159+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:32:46.176+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:32:46.176+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:32:46.205+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.462 seconds
+[2025-04-14T21:33:47.078+0800] {processor.py:186} INFO - Started process (PID=3918) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:33:47.080+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:33:47.082+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:33:47.082+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:33:47.452+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:33:47.465+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:33:47.465+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:33:47.483+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:33:47.482+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:33:47.503+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.430 seconds
+[2025-04-14T21:34:46.753+0800] {processor.py:186} INFO - Started process (PID=4175) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:34:46.756+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:34:46.758+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:34:46.757+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:34:47.010+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:34:47.018+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:34:47.018+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:34:47.032+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:34:47.031+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:34:47.048+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.299 seconds
+[2025-04-14T21:35:48.701+0800] {processor.py:186} INFO - Started process (PID=4429) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:35:48.704+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:35:48.706+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:35:48.706+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:35:48.972+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:35:48.981+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:35:48.981+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:35:48.995+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:35:48.995+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:35:49.015+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.319 seconds
+[2025-04-14T21:37:34.216+0800] {processor.py:186} INFO - Started process (PID=5022) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:37:34.220+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:37:34.222+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:37:34.221+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:37:34.534+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:37:34.543+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:37:34.543+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:37:34.552+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:37:34.552+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:37:34.568+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.356 seconds
+[2025-04-14T21:38:38.307+0800] {processor.py:186} INFO - Started process (PID=5501) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:38:38.310+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:38:38.311+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:38:38.311+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:38:38.659+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:38:38.666+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:38:38.666+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:38:38.676+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:38:38.676+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:38:38.692+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.390 seconds
+[2025-04-14T21:39:09.942+0800] {processor.py:186} INFO - Started process (PID=5695) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:39:09.945+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:39:09.946+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:39:09.946+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:39:10.243+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:39:10.249+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:39:10.249+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:39:10.257+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:39:10.257+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:39:10.275+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.337 seconds
+[2025-04-14T21:39:42.391+0800] {processor.py:186} INFO - Started process (PID=5904) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:39:42.392+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:39:42.393+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:39:42.393+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:39:42.703+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:39:42.711+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:39:42.711+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:39:42.720+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:39:42.720+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:39:42.734+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.346 seconds
+[2025-04-14T21:40:45.816+0800] {processor.py:186} INFO - Started process (PID=6250) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:40:45.819+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:40:45.820+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:40:45.820+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:40:46.237+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:40:46.245+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:40:46.245+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:40:46.260+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:40:46.259+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:40:46.277+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.465 seconds
+[2025-04-14T21:41:18.510+0800] {processor.py:186} INFO - Started process (PID=6530) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:41:18.514+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:41:18.515+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:41:18.515+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:41:18.821+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:41:18.828+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:41:18.828+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:41:18.836+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:41:18.836+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:41:18.855+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.348 seconds
+[2025-04-14T21:47:07.562+0800] {processor.py:186} INFO - Started process (PID=7826) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:47:07.565+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:47:07.567+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:47:07.566+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:47:07.838+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:47:07.854+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:47:07.853+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:47:07.870+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:47:07.870+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:47:07.891+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.333 seconds
+[2025-04-14T21:48:30.384+0800] {processor.py:186} INFO - Started process (PID=8482) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:48:30.387+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:48:30.388+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:48:30.388+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:48:30.736+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:48:30.749+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:48:30.748+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:48:30.763+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:48:30.763+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:48:30.780+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.400 seconds
+[2025-04-14T21:49:32.082+0800] {processor.py:186} INFO - Started process (PID=9003) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:49:32.086+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:49:32.087+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:49:32.087+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:49:32.401+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:49:32.408+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:49:32.408+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:49:32.418+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:49:32.417+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:49:32.435+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.356 seconds
+[2025-04-14T21:50:05.828+0800] {processor.py:186} INFO - Started process (PID=9191) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:50:05.831+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:50:05.832+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:50:05.832+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:50:06.149+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:50:06.156+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:50:06.156+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:50:06.167+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:50:06.167+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:50:06.185+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.360 seconds
+[2025-04-14T21:50:40.127+0800] {processor.py:186} INFO - Started process (PID=9384) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:50:40.130+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:50:40.131+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:50:40.131+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:50:40.452+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:50:40.458+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:50:40.457+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:50:40.467+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:50:40.466+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:50:40.484+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.360 seconds
+[2025-04-14T21:51:38.841+0800] {processor.py:186} INFO - Started process (PID=9810) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:51:38.844+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:51:38.845+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:51:38.845+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:51:39.153+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:51:39.160+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:51:39.160+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:51:39.168+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:51:39.168+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:51:39.186+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.348 seconds
+[2025-04-14T21:52:42.267+0800] {processor.py:186} INFO - Started process (PID=10127) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:52:42.270+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:52:42.271+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:52:42.271+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:52:42.626+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:52:42.635+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:52:42.635+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:52:42.650+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:52:42.649+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:52:42.670+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.407 seconds
+[2025-04-14T21:53:44.550+0800] {processor.py:186} INFO - Started process (PID=10451) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:53:44.554+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:53:44.555+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:53:44.555+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:53:44.856+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:53:44.862+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:53:44.862+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:53:44.871+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:53:44.871+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:53:44.887+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.340 seconds
+[2025-04-14T21:54:17.496+0800] {processor.py:186} INFO - Started process (PID=10607) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:54:17.499+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:54:17.500+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:54:17.500+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:54:17.917+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:54:17.925+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:54:17.925+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:54:17.937+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:54:17.937+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:54:17.953+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.462 seconds
+[2025-04-14T21:55:22.464+0800] {processor.py:186} INFO - Started process (PID=10858) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:55:22.467+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:55:22.468+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:55:22.468+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:55:22.768+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:55:22.775+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:55:22.775+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:55:22.784+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:55:22.784+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:55:22.802+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.341 seconds
+[2025-04-14T21:56:25.467+0800] {processor.py:186} INFO - Started process (PID=11110) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:56:25.470+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:56:25.471+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:56:25.471+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:56:25.774+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:56:25.781+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:56:25.781+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:56:25.792+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:56:25.792+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:56:25.810+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.347 seconds
+[2025-04-14T21:57:00.455+0800] {processor.py:186} INFO - Started process (PID=11247) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:57:00.458+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:57:00.459+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:57:00.459+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:57:00.753+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:57:00.760+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:57:00.760+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:57:00.769+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:57:00.769+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:57:00.786+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.335 seconds
+[2025-04-14T21:58:01.560+0800] {processor.py:186} INFO - Started process (PID=11518) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:58:01.564+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:58:01.565+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:58:01.565+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:58:01.772+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:58:01.780+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:58:01.780+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:58:01.791+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:58:01.791+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:58:01.811+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.255 seconds
+[2025-04-14T21:59:00.324+0800] {processor.py:186} INFO - Started process (PID=11781) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:59:00.328+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:59:00.329+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:59:00.328+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:59:00.534+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:59:00.545+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:59:00.545+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:59:00.558+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:59:00.558+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:59:00.577+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.256 seconds
+[2025-04-14T21:59:58.971+0800] {processor.py:186} INFO - Started process (PID=12072) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:59:58.975+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T21:59:58.976+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:59:58.976+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:59:59.226+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T21:59:59.238+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:59:59.238+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T21:59:59.252+0800] {logging_mixin.py:190} INFO - [2025-04-14T21:59:59.252+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T21:59:59.271+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.303 seconds
+[2025-04-14T22:02:24.006+0800] {processor.py:186} INFO - Started process (PID=13182) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:02:24.009+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:02:24.011+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:02:24.010+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:02:24.372+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:02:24.383+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:02:24.383+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:02:24.394+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:02:24.394+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:02:24.412+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.409 seconds
+[2025-04-14T22:03:24.569+0800] {processor.py:186} INFO - Started process (PID=13701) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:03:24.571+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:03:24.572+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:03:24.572+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:03:24.926+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:03:24.935+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:03:24.935+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:03:24.949+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:03:24.949+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:03:24.967+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.402 seconds
+[2025-04-14T22:03:32.732+0800] {processor.py:186} INFO - Started process (PID=13824) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:03:32.733+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:03:32.735+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:03:32.734+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:03:33.036+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:03:33.048+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:03:33.048+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:03:33.067+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:03:33.067+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:03:33.093+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.367 seconds
+[2025-04-14T22:04:57.999+0800] {processor.py:186} INFO - Started process (PID=14376) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:04:58.002+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:04:58.003+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:04:58.003+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:04:58.314+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:04:58.324+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:04:58.324+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:04:58.332+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:04:58.332+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:04:58.351+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.355 seconds
+[2025-04-14T22:05:58.398+0800] {processor.py:186} INFO - Started process (PID=14688) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:05:58.402+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:05:58.403+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:05:58.402+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:05:58.705+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:05:58.711+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:05:58.711+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:05:58.721+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:05:58.721+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:05:58.740+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.345 seconds
+[2025-04-14T22:07:02.723+0800] {processor.py:186} INFO - Started process (PID=15227) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:07:02.727+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:07:02.728+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:07:02.728+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:07:03.106+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:07:03.113+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:07:03.113+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:07:03.122+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:07:03.122+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:07:03.139+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.421 seconds
+[2025-04-14T22:08:29.742+0800] {processor.py:186} INFO - Started process (PID=15729) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:08:29.745+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:08:29.746+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:08:29.746+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:08:30.172+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:08:30.183+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:08:30.183+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:08:30.193+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:08:30.193+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:08:30.210+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.475 seconds
+[2025-04-14T22:09:31.340+0800] {processor.py:186} INFO - Started process (PID=16082) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:09:31.343+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:09:31.344+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:09:31.344+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:09:31.638+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:09:31.645+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:09:31.644+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:09:31.653+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:09:31.653+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:09:31.670+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.333 seconds
+[2025-04-14T22:12:03.725+0800] {processor.py:186} INFO - Started process (PID=16795) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:12:03.728+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:12:03.729+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:12:03.729+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:12:04.059+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:12:04.068+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:12:04.068+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:12:04.078+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:12:04.078+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:12:04.095+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.374 seconds
+[2025-04-14T22:13:03.037+0800] {processor.py:186} INFO - Started process (PID=17127) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:13:03.038+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:13:03.039+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:13:03.038+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:13:03.331+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:13:03.337+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:13:03.337+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:13:03.346+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:13:03.345+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:13:03.363+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.330 seconds
+[2025-04-14T22:13:35.476+0800] {processor.py:186} INFO - Started process (PID=17302) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:13:35.476+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:13:35.477+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:13:35.477+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:13:35.685+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:13:35.693+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:13:35.693+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:13:35.703+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:13:35.703+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:13:35.721+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.250 seconds
+[2025-04-14T22:14:34.505+0800] {processor.py:186} INFO - Started process (PID=17587) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:14:34.508+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:14:34.510+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:14:34.509+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:14:34.718+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:14:34.726+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:14:34.726+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:14:34.736+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:14:34.736+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:14:34.756+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.254 seconds
+[2025-04-14T22:15:36.562+0800] {processor.py:186} INFO - Started process (PID=17879) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:15:36.564+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:15:36.564+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:15:36.564+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:15:36.769+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:15:36.778+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:15:36.778+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:15:36.788+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:15:36.788+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:15:36.807+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.249 seconds
+[2025-04-14T22:16:37.483+0800] {processor.py:186} INFO - Started process (PID=18192) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:16:37.486+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:16:37.487+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:16:37.487+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:16:37.714+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:16:37.724+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:16:37.724+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:16:37.738+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:16:37.738+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:16:37.759+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.281 seconds
+[2025-04-14T22:17:38.682+0800] {processor.py:186} INFO - Started process (PID=18488) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:17:38.683+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:17:38.684+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:17:38.684+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:17:38.912+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:17:38.921+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:17:38.921+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:17:38.934+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:17:38.933+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:17:38.948+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.271 seconds
+[2025-04-14T22:18:37.819+0800] {processor.py:186} INFO - Started process (PID=18800) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:18:37.822+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:18:37.823+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:18:37.823+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:18:38.046+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:18:38.054+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:18:38.054+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:18:38.064+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:18:38.064+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:18:38.082+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.266 seconds
+[2025-04-14T22:19:11.122+0800] {processor.py:186} INFO - Started process (PID=18978) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:19:11.126+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:19:11.127+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:19:11.127+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:19:11.333+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:19:11.342+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:19:11.342+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:19:11.353+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:19:11.353+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:19:11.373+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.254 seconds
+[2025-04-14T22:20:10.545+0800] {processor.py:186} INFO - Started process (PID=19259) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:20:10.546+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:20:10.547+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:20:10.546+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:20:10.764+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:20:10.774+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:20:10.774+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:20:10.788+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:20:10.788+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:20:10.807+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.266 seconds
+[2025-04-14T22:20:42.888+0800] {processor.py:186} INFO - Started process (PID=19410) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:20:42.891+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:20:42.893+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:20:42.892+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:20:43.125+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:20:43.133+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:20:43.133+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:20:43.145+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:20:43.145+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:20:43.161+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.277 seconds
+[2025-04-14T22:21:44.688+0800] {processor.py:186} INFO - Started process (PID=19710) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:21:44.691+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:21:44.692+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:21:44.692+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:21:44.895+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:21:44.907+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:21:44.907+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:21:44.918+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:21:44.917+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:21:44.935+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.251 seconds
+[2025-04-14T22:22:45.217+0800] {processor.py:186} INFO - Started process (PID=20016) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:22:45.221+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:22:45.222+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:22:45.222+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:22:45.430+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:22:45.438+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:22:45.438+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:22:45.448+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:22:45.448+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:22:45.467+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.253 seconds
+[2025-04-14T22:23:45.529+0800] {processor.py:186} INFO - Started process (PID=20328) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:23:45.533+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:23:45.534+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:23:45.534+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:23:45.738+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:23:45.746+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:23:45.746+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:23:45.756+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:23:45.756+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:23:45.774+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.248 seconds
+[2025-04-14T22:24:42.833+0800] {processor.py:186} INFO - Started process (PID=20602) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:24:42.836+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:24:42.837+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:24:42.837+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:24:43.040+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:24:43.048+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:24:43.048+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:24:43.059+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:24:43.059+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:24:43.078+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.249 seconds
+[2025-04-14T22:25:45.779+0800] {processor.py:186} INFO - Started process (PID=20925) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:25:45.783+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:25:45.784+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:25:45.783+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:25:46.004+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:25:46.014+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:25:46.013+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:25:46.025+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:25:46.025+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:25:46.040+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.266 seconds
+[2025-04-14T22:26:18.163+0800] {processor.py:186} INFO - Started process (PID=21080) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:26:18.169+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:26:18.170+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:26:18.170+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:26:18.383+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:26:18.392+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:26:18.392+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:26:18.404+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:26:18.404+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:26:18.424+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.265 seconds
+[2025-04-14T22:27:18.837+0800] {processor.py:186} INFO - Started process (PID=21366) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:27:18.840+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:27:18.841+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:27:18.841+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:27:19.060+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:27:19.071+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:27:19.071+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:27:19.083+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:27:19.083+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:27:19.100+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.267 seconds
+[2025-04-14T22:28:20.735+0800] {processor.py:186} INFO - Started process (PID=21682) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:28:20.736+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:28:20.737+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:28:20.737+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:28:20.992+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:28:21.003+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:28:21.002+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:28:21.017+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:28:21.017+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:28:21.037+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.306 seconds
+[2025-04-14T22:28:53.057+0800] {processor.py:186} INFO - Started process (PID=21862) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:28:53.060+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:28:53.061+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:28:53.061+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:28:53.267+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:28:53.276+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:28:53.275+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:28:53.286+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:28:53.286+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:28:53.303+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.250 seconds
+[2025-04-14T22:29:25.387+0800] {processor.py:186} INFO - Started process (PID=22020) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:29:25.388+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:29:25.389+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:29:25.388+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:29:25.608+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:29:25.617+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:29:25.617+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:29:25.628+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:29:25.628+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:29:25.645+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.262 seconds
+[2025-04-14T22:30:24.101+0800] {processor.py:186} INFO - Started process (PID=22295) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:30:24.102+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:30:24.103+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:30:24.103+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:30:24.330+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:30:24.339+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:30:24.338+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:30:24.349+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:30:24.349+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:30:24.367+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.272 seconds
+[2025-04-14T22:30:56.318+0800] {processor.py:186} INFO - Started process (PID=22472) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:30:56.321+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:30:56.323+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:30:56.322+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:30:56.551+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:30:56.559+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:30:56.559+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:30:56.570+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:30:56.569+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:30:56.590+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.275 seconds
+[2025-04-14T22:31:28.420+0800] {processor.py:186} INFO - Started process (PID=22627) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:31:28.420+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:31:28.421+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:31:28.421+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:31:28.640+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:31:28.648+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:31:28.648+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:31:28.659+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:31:28.658+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:31:28.677+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.261 seconds
+[2025-04-14T22:32:28.210+0800] {processor.py:186} INFO - Started process (PID=22913) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:32:28.212+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:32:28.212+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:32:28.212+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:32:28.421+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:32:28.430+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:32:28.429+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:32:28.441+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:32:28.441+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:32:28.460+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.253 seconds
+[2025-04-14T22:33:26.943+0800] {processor.py:186} INFO - Started process (PID=23188) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:33:26.946+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:33:26.947+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:33:26.947+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:33:27.193+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:33:27.205+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:33:27.205+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:33:27.217+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:33:27.217+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:33:27.234+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.295 seconds
+[2025-04-14T22:34:26.325+0800] {processor.py:186} INFO - Started process (PID=23519) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:34:26.328+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:34:26.329+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:34:26.329+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:34:26.537+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:34:26.546+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:34:26.546+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:34:26.556+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:34:26.556+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:34:26.574+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.253 seconds
+[2025-04-14T22:35:28.190+0800] {processor.py:186} INFO - Started process (PID=23811) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:35:28.194+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:35:28.195+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:35:28.194+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:35:28.418+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:35:28.427+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:35:28.427+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:35:28.438+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:35:28.438+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:35:28.456+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.271 seconds
+[2025-04-14T22:36:27.329+0800] {processor.py:186} INFO - Started process (PID=24097) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:36:27.332+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:36:27.334+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:36:27.334+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:36:27.542+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:36:27.550+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:36:27.550+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:36:27.561+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:36:27.560+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:36:27.578+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.253 seconds
+[2025-04-14T22:37:28.059+0800] {processor.py:186} INFO - Started process (PID=24408) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:37:28.062+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:37:28.063+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:37:28.063+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:37:28.294+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:37:28.303+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:37:28.303+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:37:28.314+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:37:28.314+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:37:28.330+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.275 seconds
+[2025-04-14T22:38:28.422+0800] {processor.py:186} INFO - Started process (PID=24694) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:38:28.425+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:38:28.427+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:38:28.426+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:38:28.656+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:38:28.664+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:38:28.664+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:38:28.769+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:38:28.769+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:38:28.787+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.370 seconds
+[2025-04-14T22:39:00.766+0800] {processor.py:186} INFO - Started process (PID=24878) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:39:00.769+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:39:00.770+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:39:00.770+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:39:00.999+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:39:01.009+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:39:01.008+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:39:01.019+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:39:01.019+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:39:01.038+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.277 seconds
+[2025-04-14T22:40:01.605+0800] {processor.py:186} INFO - Started process (PID=25190) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:40:01.606+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:40:01.607+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:40:01.607+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:40:01.816+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:40:01.825+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:40:01.825+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:40:01.925+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:40:01.925+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:40:01.943+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.343 seconds
+[2025-04-14T22:41:04.664+0800] {processor.py:186} INFO - Started process (PID=25484) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:41:04.665+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:41:04.666+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:41:04.666+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:41:04.975+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:41:04.981+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:41:04.981+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:41:04.990+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:41:04.990+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:41:05.007+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.347 seconds
+[2025-04-14T22:42:05.397+0800] {processor.py:186} INFO - Started process (PID=25776) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:42:05.401+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:42:05.402+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:42:05.401+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:42:05.609+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:42:05.618+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:42:05.617+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:42:05.628+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:42:05.628+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:42:05.646+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.253 seconds
+[2025-04-14T22:43:04.582+0800] {processor.py:186} INFO - Started process (PID=26081) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:43:04.584+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:43:04.585+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:43:04.584+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:43:04.792+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:43:04.801+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:43:04.800+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:43:04.811+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:43:04.811+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:43:04.921+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.343 seconds
+[2025-04-14T22:44:06.643+0800] {processor.py:186} INFO - Started process (PID=26400) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:44:06.647+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:44:06.648+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:44:06.647+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:44:06.957+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:44:06.964+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:44:06.964+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:44:06.973+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:44:06.973+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:44:06.987+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.348 seconds
+[2025-04-14T22:44:39.590+0800] {processor.py:186} INFO - Started process (PID=26558) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:44:39.591+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:44:39.592+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:44:39.592+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:44:39.902+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:44:39.910+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:44:39.909+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:44:39.919+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:44:39.919+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:44:39.934+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.348 seconds
+[2025-04-14T22:45:39.200+0800] {processor.py:186} INFO - Started process (PID=26843) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:45:39.204+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:45:39.205+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:45:39.204+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:45:39.505+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:45:39.511+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:45:39.511+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:45:39.520+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:45:39.520+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:45:39.537+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.341 seconds
+[2025-04-14T22:46:43.751+0800] {processor.py:186} INFO - Started process (PID=27163) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:46:43.754+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:46:43.755+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:46:43.755+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:46:44.055+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:46:44.065+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:46:44.064+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:46:44.073+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:46:44.073+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:46:44.087+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.340 seconds
+[2025-04-14T22:47:17.330+0800] {processor.py:186} INFO - Started process (PID=27327) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:47:17.333+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:47:17.334+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:47:17.334+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:47:17.635+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:47:17.641+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:47:17.641+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:47:17.650+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:47:17.650+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:47:17.667+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.343 seconds
+[2025-04-14T22:48:15.175+0800] {processor.py:186} INFO - Started process (PID=27606) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:48:15.178+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:48:15.180+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:48:15.179+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:48:15.489+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:48:15.496+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:48:15.496+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:48:15.505+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:48:15.504+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:48:15.521+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.350 seconds
+[2025-04-14T22:49:16.006+0800] {processor.py:186} INFO - Started process (PID=27940) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:49:16.007+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:49:16.008+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:49:16.007+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:49:16.352+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:49:16.358+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:49:16.358+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:49:16.366+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:49:16.366+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:49:16.384+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.383 seconds
+[2025-04-14T22:49:49.177+0800] {processor.py:186} INFO - Started process (PID=28100) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:49:49.181+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:49:49.182+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:49:49.181+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:49:49.481+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:49:49.487+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:49:49.487+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:49:49.495+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:49:49.495+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:49:49.511+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.337 seconds
+[2025-04-14T22:50:46.474+0800] {processor.py:186} INFO - Started process (PID=28369) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:50:46.477+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:50:46.478+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:50:46.478+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:50:46.813+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:50:46.820+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:50:46.819+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:50:46.828+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:50:46.828+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:50:46.845+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.375 seconds
+[2025-04-14T22:51:45.996+0800] {processor.py:186} INFO - Started process (PID=28655) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:51:46.000+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:51:46.001+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:51:46.000+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:51:46.339+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:51:46.346+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:51:46.346+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:51:46.354+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:51:46.354+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:51:46.371+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.380 seconds
+[2025-04-14T22:52:45.409+0800] {processor.py:186} INFO - Started process (PID=28959) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:52:45.412+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:52:45.413+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:52:45.413+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:52:45.718+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:52:45.725+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:52:45.725+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:52:45.734+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:52:45.734+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:52:45.752+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.347 seconds
+[2025-04-14T22:53:46.081+0800] {processor.py:186} INFO - Started process (PID=29277) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:53:46.084+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:53:46.085+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:53:46.085+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:53:46.383+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:53:46.389+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:53:46.389+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:53:46.399+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:53:46.399+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:53:46.416+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.339 seconds
+[2025-04-14T22:54:47.401+0800] {processor.py:186} INFO - Started process (PID=29569) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:54:47.404+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:54:47.405+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:54:47.404+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:54:47.719+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:54:47.725+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:54:47.725+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:54:47.733+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:54:47.733+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:54:47.750+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.353 seconds
+[2025-04-14T22:55:20.535+0800] {processor.py:186} INFO - Started process (PID=29746) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:55:20.537+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:55:20.538+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:55:20.538+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:55:20.893+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:55:20.900+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:55:20.900+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:55:20.911+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:55:20.911+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:55:20.928+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.401 seconds
+[2025-04-14T22:55:54.535+0800] {processor.py:186} INFO - Started process (PID=29904) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:55:54.539+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:55:54.540+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:55:54.539+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:55:54.837+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:55:54.844+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:55:54.844+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:55:54.854+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:55:54.854+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:55:54.873+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.342 seconds
+[2025-04-14T22:56:29.134+0800] {processor.py:186} INFO - Started process (PID=30054) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:56:29.135+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:56:29.136+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:56:29.136+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:56:29.493+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:56:29.500+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:56:29.500+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:56:29.510+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:56:29.510+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:56:29.526+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.395 seconds
+[2025-04-14T22:57:02.293+0800] {processor.py:186} INFO - Started process (PID=30197) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:57:02.297+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:57:02.298+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:57:02.298+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:57:02.608+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:57:02.615+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:57:02.615+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:57:02.624+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:57:02.624+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:57:02.641+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.352 seconds
+[2025-04-14T22:57:36.089+0800] {processor.py:186} INFO - Started process (PID=30361) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:57:36.093+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:57:36.094+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:57:36.093+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:57:36.380+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:57:36.391+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:57:36.391+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:57:36.401+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:57:36.401+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:57:36.417+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.332 seconds
+[2025-04-14T22:58:38.497+0800] {processor.py:186} INFO - Started process (PID=30709) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:58:38.500+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:58:38.501+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:58:38.501+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:58:38.798+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:58:38.804+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:58:38.804+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:58:38.812+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:58:38.812+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:58:38.830+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.338 seconds
+[2025-04-14T22:59:13.204+0800] {processor.py:186} INFO - Started process (PID=30870) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:59:13.208+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:59:13.209+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:59:13.208+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:59:13.415+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:59:13.423+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:59:13.423+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:59:13.433+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:59:13.433+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:59:13.451+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.251 seconds
+[2025-04-14T22:59:48.043+0800] {processor.py:186} INFO - Started process (PID=31036) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:59:48.046+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T22:59:48.048+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:59:48.048+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:59:48.287+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T22:59:48.297+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:59:48.297+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T22:59:48.310+0800] {logging_mixin.py:190} INFO - [2025-04-14T22:59:48.310+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T22:59:48.330+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.292 seconds
+[2025-04-14T23:00:47.429+0800] {processor.py:186} INFO - Started process (PID=31324) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:00:47.433+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:00:47.434+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:00:47.433+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:00:47.658+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:00:47.667+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:00:47.667+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:00:47.681+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:00:47.680+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:00:47.699+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.273 seconds
+[2025-04-14T23:01:50.582+0800] {processor.py:186} INFO - Started process (PID=31627) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:01:50.586+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:01:50.588+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:01:50.587+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:01:50.927+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:01:50.936+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:01:50.936+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:01:50.947+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:01:50.947+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:01:50.966+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.392 seconds
+[2025-04-14T23:02:50.942+0800] {processor.py:186} INFO - Started process (PID=31885) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:02:50.945+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:02:50.946+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:02:50.946+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:02:51.156+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:02:51.165+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:02:51.164+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:02:51.177+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:02:51.176+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:02:51.196+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.258 seconds
+[2025-04-14T23:03:55.198+0800] {processor.py:186} INFO - Started process (PID=32171) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:03:55.199+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:03:55.200+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:03:55.200+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:03:55.462+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:03:55.473+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:03:55.473+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:03:55.491+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:03:55.491+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:03:55.511+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.319 seconds
+[2025-04-14T23:04:58.516+0800] {processor.py:186} INFO - Started process (PID=32478) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:04:58.520+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:04:58.521+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:04:58.521+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:04:58.732+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:04:58.741+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:04:58.741+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:04:58.752+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:04:58.752+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:04:58.767+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.254 seconds
+[2025-04-14T23:06:01.658+0800] {processor.py:186} INFO - Started process (PID=32778) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:06:01.661+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:06:01.662+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:06:01.662+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:06:01.872+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:06:01.881+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:06:01.881+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:06:01.892+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:06:01.892+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:06:01.912+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.258 seconds
+[2025-04-14T23:07:04.950+0800] {processor.py:186} INFO - Started process (PID=33065) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:07:04.953+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:07:04.954+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:07:04.954+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:07:05.171+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:07:05.181+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:07:05.180+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:07:05.191+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:07:05.191+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:07:05.209+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.263 seconds
+[2025-04-14T23:08:08.969+0800] {processor.py:186} INFO - Started process (PID=33316) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:08:08.973+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:08:08.974+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:08:08.973+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:08:09.186+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:08:09.195+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:08:09.195+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:08:09.206+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:08:09.206+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:08:09.225+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.260 seconds
+[2025-04-14T23:09:10.454+0800] {processor.py:186} INFO - Started process (PID=33636) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:09:10.458+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:09:10.459+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:09:10.459+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:09:10.682+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:09:10.691+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:09:10.690+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:09:10.701+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:09:10.701+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:09:10.720+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.271 seconds
+[2025-04-14T23:10:09.452+0800] {processor.py:186} INFO - Started process (PID=33889) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:10:09.455+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:10:09.456+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:10:09.456+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:10:09.667+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:10:09.676+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:10:09.676+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:10:09.687+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:10:09.687+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:10:09.706+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.258 seconds
+[2025-04-14T23:11:09.272+0800] {processor.py:186} INFO - Started process (PID=34162) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:11:09.275+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:11:09.276+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:11:09.276+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:11:09.625+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:11:09.636+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:11:09.636+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:11:09.652+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:11:09.652+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:11:09.668+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.403 seconds
+[2025-04-14T23:11:45.372+0800] {processor.py:186} INFO - Started process (PID=34349) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:11:45.375+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:11:45.376+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:11:45.376+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:11:45.599+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:11:45.608+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:11:45.607+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:11:45.618+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:11:45.618+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:11:45.638+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.271 seconds
+[2025-04-14T23:12:49.142+0800] {processor.py:186} INFO - Started process (PID=34704) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:12:49.145+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:12:49.146+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:12:49.146+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:12:49.360+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:12:49.370+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:12:49.370+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:12:49.381+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:12:49.381+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:12:49.401+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.263 seconds
+[2025-04-14T23:13:48.814+0800] {processor.py:186} INFO - Started process (PID=35004) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:13:48.817+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:13:48.818+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:13:48.818+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:13:49.066+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:13:49.077+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:13:49.077+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:13:49.090+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:13:49.089+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:13:49.109+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.299 seconds
+[2025-04-14T23:14:49.287+0800] {processor.py:186} INFO - Started process (PID=35506) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:14:49.290+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:14:49.291+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:14:49.291+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:14:49.511+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:14:49.521+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:14:49.520+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:14:49.534+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:14:49.534+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:14:49.552+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.269 seconds
+[2025-04-14T23:15:50.042+0800] {processor.py:186} INFO - Started process (PID=35906) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:15:50.046+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:15:50.047+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:15:50.047+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:15:50.275+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:15:50.284+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:15:50.284+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:15:50.301+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:15:50.301+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:15:50.318+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.281 seconds
+[2025-04-14T23:16:48.616+0800] {processor.py:186} INFO - Started process (PID=36372) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:16:48.618+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:16:48.621+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:16:48.620+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:16:48.859+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:16:48.868+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:16:48.867+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:16:48.885+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:16:48.885+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:16:48.905+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.295 seconds
+[2025-04-14T23:17:48.307+0800] {processor.py:186} INFO - Started process (PID=36767) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:17:48.311+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:17:48.313+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:17:48.313+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:17:48.602+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:17:48.613+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:17:48.613+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:17:48.627+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:17:48.627+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:17:48.651+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.348 seconds
+[2025-04-14T23:18:49.344+0800] {processor.py:186} INFO - Started process (PID=37230) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:18:49.348+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:18:49.349+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:18:49.349+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:18:49.562+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:18:49.570+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:18:49.570+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:18:49.581+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:18:49.581+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:18:49.600+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.259 seconds
+[2025-04-14T23:19:52.957+0800] {processor.py:186} INFO - Started process (PID=37650) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:19:52.960+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:19:52.961+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:19:52.961+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:19:53.172+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:19:53.182+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:19:53.181+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:19:53.195+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:19:53.195+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:19:53.211+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.257 seconds
+[2025-04-14T23:20:51.055+0800] {processor.py:186} INFO - Started process (PID=37983) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:20:51.058+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:20:51.059+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:20:51.059+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:20:51.282+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:20:51.290+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:20:51.290+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:20:51.300+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:20:51.300+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:20:51.317+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.266 seconds
+[2025-04-14T23:21:52.017+0800] {processor.py:186} INFO - Started process (PID=38368) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:21:52.021+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:21:52.022+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:21:52.022+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:21:52.233+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:21:52.243+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:21:52.242+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:21:52.253+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:21:52.253+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:21:52.271+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.258 seconds
+[2025-04-14T23:22:50.969+0800] {processor.py:186} INFO - Started process (PID=38763) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:22:50.972+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:22:50.973+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:22:50.973+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:22:51.213+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:22:51.225+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:22:51.225+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:22:51.245+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:22:51.244+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:22:51.379+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.414 seconds
+[2025-04-14T23:23:53.117+0800] {processor.py:186} INFO - Started process (PID=39385) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:23:53.120+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:23:53.121+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:23:53.121+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:23:53.347+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:23:53.357+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:23:53.357+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:23:53.457+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:23:53.457+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:23:53.475+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.362 seconds
+[2025-04-14T23:24:54.414+0800] {processor.py:186} INFO - Started process (PID=39866) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:24:54.418+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:24:54.419+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:24:54.418+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:24:54.627+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:24:54.635+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:24:54.635+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:24:54.646+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:24:54.646+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:24:54.664+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.254 seconds
+[2025-04-14T23:25:53.802+0800] {processor.py:186} INFO - Started process (PID=40158) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:25:53.806+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:25:53.807+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:25:53.807+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:25:54.109+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:25:54.115+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:25:54.115+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:25:54.123+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:25:54.123+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:25:54.139+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.340 seconds
+[2025-04-14T23:26:52.618+0800] {processor.py:186} INFO - Started process (PID=40414) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:26:52.619+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:26:52.620+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:26:52.620+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:26:53.031+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:26:53.039+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:26:53.039+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:26:53.053+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:26:53.052+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:26:53.074+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.460 seconds
+[2025-04-14T23:27:25.012+0800] {processor.py:186} INFO - Started process (PID=40650) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:27:25.015+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:27:25.016+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:27:25.016+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:27:25.397+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:27:25.406+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:27:25.406+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:27:25.417+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:27:25.417+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:27:25.434+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.428 seconds
+[2025-04-14T23:27:57.893+0800] {processor.py:186} INFO - Started process (PID=41051) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:27:57.896+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:27:57.897+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:27:57.896+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:27:58.206+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:27:58.212+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:27:58.212+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:27:58.222+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:27:58.222+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:27:58.239+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.350 seconds
+[2025-04-14T23:28:56.483+0800] {processor.py:186} INFO - Started process (PID=41446) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:28:56.487+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:28:56.488+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:28:56.487+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:28:56.812+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:28:56.819+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:28:56.819+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:28:56.829+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:28:56.829+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:28:56.845+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.366 seconds
+[2025-04-14T23:29:28.306+0800] {processor.py:186} INFO - Started process (PID=41680) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:29:28.307+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:29:28.309+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:29:28.308+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:29:28.692+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:29:28.699+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:29:28.699+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:29:28.709+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:29:28.709+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:29:28.723+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.422 seconds
+[2025-04-14T23:30:27.743+0800] {processor.py:186} INFO - Started process (PID=42101) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:30:27.746+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:30:27.747+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:30:27.747+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:30:28.117+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:30:28.124+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:30:28.124+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:30:28.134+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:30:28.134+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:30:28.151+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.412 seconds
+[2025-04-14T23:31:26.089+0800] {processor.py:186} INFO - Started process (PID=42581) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:31:26.092+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:31:26.094+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:31:26.093+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:31:26.474+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:31:26.484+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:31:26.484+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:31:26.493+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:31:26.493+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:31:26.510+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.427 seconds
+[2025-04-14T23:32:23.242+0800] {processor.py:186} INFO - Started process (PID=42914) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:32:23.245+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:32:23.246+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:32:23.245+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:32:23.577+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:32:23.585+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:32:23.585+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:32:23.595+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:32:23.595+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:32:23.612+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.374 seconds
+[2025-04-14T23:33:24.035+0800] {processor.py:186} INFO - Started process (PID=43472) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:33:24.038+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:33:24.039+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:33:24.039+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:33:24.339+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:33:24.346+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:33:24.345+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:33:24.355+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:33:24.354+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:33:24.371+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.340 seconds
+[2025-04-14T23:34:23.620+0800] {processor.py:186} INFO - Started process (PID=44084) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:34:23.624+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:34:23.625+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:34:23.625+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:34:23.928+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:34:23.934+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:34:23.934+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:34:23.943+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:34:23.943+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:34:23.960+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.344 seconds
+[2025-04-14T23:35:20.189+0800] {processor.py:186} INFO - Started process (PID=44321) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:35:20.192+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:35:20.194+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:35:20.193+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:35:20.540+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:35:20.548+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:35:20.548+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:35:20.557+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:35:20.557+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:35:20.577+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.392 seconds
+[2025-04-14T23:36:18.122+0800] {processor.py:186} INFO - Started process (PID=44678) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:36:18.125+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:36:18.126+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:36:18.125+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:36:18.449+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:36:18.456+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:36:18.456+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:36:18.466+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:36:18.466+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:36:18.482+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.364 seconds
+[2025-04-14T23:37:17.521+0800] {processor.py:186} INFO - Started process (PID=44915) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:37:17.525+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:37:17.527+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:37:17.527+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:37:17.990+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:37:17.997+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:37:17.997+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:37:18.007+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:37:18.007+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:37:18.024+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.507 seconds
+[2025-04-14T23:38:17.807+0800] {processor.py:186} INFO - Started process (PID=45402) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:38:17.810+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:38:17.811+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:38:17.810+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:38:18.144+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:38:18.157+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:38:18.157+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:38:18.171+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:38:18.170+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:38:18.189+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.386 seconds
+[2025-04-14T23:39:15.665+0800] {processor.py:186} INFO - Started process (PID=45701) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:39:15.668+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:39:15.669+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:39:15.669+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:39:15.997+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:39:16.004+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:39:16.004+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:39:16.013+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:39:16.013+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:39:16.029+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.371 seconds
+[2025-04-14T23:39:47.973+0800] {processor.py:186} INFO - Started process (PID=45856) to work on /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:39:47.976+0800] {processor.py:914} INFO - Processing file /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py for tasks to queue
+[2025-04-14T23:39:47.977+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:39:47.977+0800] {dagbag.py:588} INFO - Filling up the DagBag from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:39:48.358+0800] {processor.py:925} INFO - DAG(s) 'instagram_etl_pipeline' retrieved from /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py
+[2025-04-14T23:39:48.364+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:39:48.364+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-04-14T23:39:48.374+0800] {logging_mixin.py:190} INFO - [2025-04-14T23:39:48.374+0800] {dag.py:4180} INFO - Setting next_dagrun for instagram_etl_pipeline to 2025-04-01 02:00:00+00:00, run_after=2025-05-01 02:00:00+00:00
+[2025-04-14T23:39:48.392+0800] {processor.py:208} INFO - Processing /home/rencongchia/Y3S2/BT4301/project/airflow/dags/instagram_dag.py took 0.424 seconds
