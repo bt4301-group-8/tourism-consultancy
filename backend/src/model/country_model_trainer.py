@@ -1,5 +1,6 @@
 import os
 import glob
+import json
 import pandas as pd
 import numpy as np
 import mlflow
@@ -13,6 +14,7 @@ from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 from hyperopt.pyll import scope
 from typing import List, Dict, Tuple, Optional, Any
 from mlflow.models import infer_signature
+from mlflow.tracking import MlflowClient
 
 from backend.src.services import logger
 
@@ -519,7 +521,8 @@ class CountryModelTrainer:
         )
 
         # start mlflow run for this country
-        with mlflow.start_run(run_name=f"{country_name}_training"):
+        with mlflow.start_run(run_name=f"{country_name}_training") as run:
+            run_id = run.info.run_id  # get run id
             # log country as a tag for easier filtering in ui
             mlflow.set_tag("country", country_name)
             mlflow.set_tag("target_variable", self.target_variable)
@@ -544,6 +547,20 @@ class CountryModelTrainer:
                     f"could not log features list for {country_name}: {e}"
                 )
 
+            # calculate and log training data statistics for drift detection
+            try:
+                train_stats = x_train.describe().to_dict()
+                # select specific stats for simplicity if needed, e.g., ['mean', 'std', 'min', '50%', 'max']
+                # train_stats = x_train.describe().loc[['mean', 'std', 'min', '50%', 'max']].to_dict()
+                mlflow.log_dict(train_stats, "training_feature_stats.json")
+                self.logger.info(
+                    f"[monitoring] logged training feature statistics for {country_name}"
+                )
+            except Exception as e:
+                self.logger.warning(
+                    f"could not calculate or log training feature stats for {country_name}: {e}"
+                )
+
             # 2. run hp optimization (on train set)
             hyperopt_result = self._run_hyperopt(
                 x_train, y_train, features, country_name
@@ -552,15 +569,14 @@ class CountryModelTrainer:
                 self.logger.warning(
                     f"skipping final model training for {country_name} due to hyperopt issues or insufficient data."
                 )
-                mlflow.log_metric("training_status", 0)  # indicate failure/skip
+                mlflow.log_metric("training_status", 0)
                 mlflow.set_tag("status", "skipped_hyperopt")
                 return
 
-            best_params, trials, best_cv_rmse = hyperopt_result
+            best_params, trials, _ = hyperopt_result
 
             # log best hyperopt parameters and the best cv score
             mlflow.log_params(best_params)
-            # mlflow.log_metric("best_hyperopt_cv_rmse", best_cv_rmse)
 
             # log hyperopt trials object as artifact
             try:
@@ -592,7 +608,6 @@ class CountryModelTrainer:
 
             # log the validation score achieved during final training
             mlflow.log_metric("final_model_best_val_rmse", final_model.best_score)
-            # mlflow.log_metric("final_model_best_iteration", final_model.best_iteration)
 
             # 4. evaluate final model (on test set)
             eval_metrics = self._evaluate_model(
@@ -601,8 +616,7 @@ class CountryModelTrainer:
             if eval_metrics:
                 mlflow.log_metrics(eval_metrics)
 
-            # 5. log the final model using mlflow's xgboost flavor
-            # infer signature for better model tracking
+            # 5. log the final model using mlflow's xgboost
             try:
                 signature = infer_signature(
                     x_train, final_model.predict(xgb.DMatrix(x_train))
@@ -619,13 +633,15 @@ class CountryModelTrainer:
                     artifact_path="model",  # subdirectory within the run's artifacts
                     signature=signature,
                     registered_model_name=f"{country_name}_visitor_model",
+                    # added run_id to potentially link monitoring results later
+                    # input_example=x_train.iloc[:5], # optional: log input example
+                    # metadata={"run_id": run_id} # optional: add metadata
                 )
-                self.logger.info(f"[mlflow] logged model for {country_name}")
             except Exception as e:
                 self.logger.error(
                     f"failed to log model to mlflow for {country_name}: {e}"
                 )
-                mlflow.log_metric("training_status", 0)  # indicate failure
+                mlflow.log_metric("training_status", 0)
                 mlflow.set_tag("status", "failed_model_logging")
                 return
 
@@ -635,6 +651,94 @@ class CountryModelTrainer:
             self.logger.info(
                 f"--- finished training pipeline for {country_name.upper()} ---"
             )
+
+    def monitor_input_drift(
+        self,
+        run_id: str,
+        new_data: pd.DataFrame,
+    ) -> Dict[str, bool]:
+        """
+        performs basic input drift detection by comparing statistics of new data
+        against the statistics of the training data stored in an mlflow run.
+
+        args:
+            run_id: the mlflow run id corresponding to the trained model.
+            new_data: a pandas dataframe containing new input features (columns should
+                      match the features used during training).
+
+        returns:
+            a dictionary where keys are feature names and values are boolean indicating
+            if drift was detected for that feature based on the defined rule.
+        """
+        self.logger.info(
+            f"[monitoring] starting input drift check for run_id: {run_id}"
+        )
+        drift_detected = {}
+        client = MlflowClient()
+
+        try:
+            # download the training stats artifact
+            local_path = client.download_artifacts(
+                run_id, "training_feature_stats.json"
+            )
+            with open(local_path) as f:
+                train_stats = json.load(f)
+            self.logger.info(f"[monitoring] loaded training stats from {local_path}")
+
+            # ensure new_data has the features present in train_stats
+            features = list(train_stats.keys())
+            new_data_features = new_data[features]  # select only the relevant columns
+
+            # calculate stats for the new data
+            new_stats = new_data_features.describe().to_dict()
+
+            # compare statistics (simple mean +/- 3*std rule, lowkey not sure if this is the best)
+            for feature in features:
+                if feature not in new_stats:
+                    self.logger.warning(
+                        f"[monitoring] feature '{feature}' not found in new data. skipping drift check."
+                    )
+                    drift_detected[feature] = False
+                    continue
+
+                train_mean = train_stats[feature].get("mean")
+                train_std = train_stats[feature].get("std")
+                new_mean = new_stats[feature].get("mean")
+
+                if train_mean is None or train_std is None or new_mean is None:
+                    self.logger.warning(
+                        f"[monitoring] missing stats for feature '{feature}'. skipping drift check."
+                    )
+                    drift_detected[feature] = False
+                    continue
+
+                # define drift threshold (e.g., mean outside 3 standard deviations)
+                lower_bound = train_mean - 3 * train_std
+                upper_bound = train_mean + 3 * train_std
+
+                if not (lower_bound <= new_mean <= upper_bound):
+                    drift_detected[feature] = True
+                    self.logger.warning(
+                        f"[monitoring] drift detected for feature '{feature}'! "
+                        f"train mean: {train_mean:.4f}, train std: {train_std:.4f}, "
+                        f"new mean: {new_mean:.4f}. bounds: [{lower_bound:.4f}, {upper_bound:.4f}]"
+                    )
+                else:
+                    drift_detected[feature] = False
+
+            num_drifted = sum(drift_detected.values())
+            self.logger.info(
+                f"[monitoring] drift check complete. {num_drifted}/{len(features)} features drifted."
+            )
+
+        except Exception as e:
+            self.logger.error(
+                f"[monitoring] failed to perform drift detection for run_id {run_id}: {e}",
+                exc_info=True,
+            )
+            return {}
+
+        return drift_detected
 
     def run_training(self):
         """
@@ -680,7 +784,8 @@ if __name__ == "__main__":
 
     # example of how to load a model logged by mlflow:
     # country = 'brunei' # example
-    # logged_model_uri = f"runs:/{run_id}/model" # replace run_id with the actual id from mlflow ui/api
+    # run_id = 'YOUR_RUN_ID_HERE' # replace run_id with the actual id from mlflow ui/api for the country model
+    # logged_model_uri = f"runs:/{run_id}/model"
     # # or use model registry uri: f"models:/{country}_visitor_model/latest"
     # try:
     #    loaded_model = mlflow.xgboost.load_model(logged_model_uri)
@@ -693,3 +798,17 @@ if __name__ == "__main__":
     #    #     features = features_data['features']
     # except Exception as e:
     #     print(f"error loading model from mlflow: {e}")
+
+    # example of how to run drift detection (requires a run_id and new data):
+    # try:
+    #     # assume 'new_production_data_df' is a pandas dataframe with new data
+    #     # ensure its columns match the features used during training
+    #     # new_production_data_df = pd.read_csv(...) # load your new data
+    #     # run_id_to_monitor = 'YOUR_RUN_ID_HERE' # replace with a valid run_id
+    #     # drift_results = trainer.monitor_input_drift(run_id_to_monitor, new_production_data_df)
+    #     # print("drift detection results:", drift_results)
+    #     # based on drift_results, you might trigger alerts, retraining, etc.
+    # except NameError:
+    #     print("\n[info] skipping drift detection example as 'new_production_data_df' and 'run_id_to_monitor' are not defined.")
+    # except Exception as e:
+    #     print(f"\nerror running drift detection example: {e}")
