@@ -31,6 +31,8 @@ class CountryModelTrainer:
         target_variable: str = "log_visitors",
         original_target: Optional[str] = "num_visitors",
         cols_to_drop: List[str] = [
+            "month",
+            "year",
             "month_year",
             "country",
             "num_visitors",  # identifiers and original target
