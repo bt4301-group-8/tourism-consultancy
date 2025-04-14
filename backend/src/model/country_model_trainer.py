@@ -560,7 +560,7 @@ class CountryModelTrainer:
 
             # log best hyperopt parameters and the best cv score
             mlflow.log_params(best_params)
-            mlflow.log_metric("best_hyperopt_cv_rmse", best_cv_rmse)
+            # mlflow.log_metric("best_hyperopt_cv_rmse", best_cv_rmse)
 
             # log hyperopt trials object as artifact
             try:
@@ -592,7 +592,7 @@ class CountryModelTrainer:
 
             # log the validation score achieved during final training
             mlflow.log_metric("final_model_best_val_rmse", final_model.best_score)
-            mlflow.log_metric("final_model_best_iteration", final_model.best_iteration)
+            # mlflow.log_metric("final_model_best_iteration", final_model.best_iteration)
 
             # 4. evaluate final model (on test set)
             eval_metrics = self._evaluate_model(
