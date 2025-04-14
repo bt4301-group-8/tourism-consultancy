@@ -9,8 +9,8 @@ class CountrySplitter:
 
     def __init__(
         self,
-        final_df_path: str = "data/processed/final_df.csv",
-        output_dir: str = "data/processed/countries",
+        final_df_path: str = "backend/data/processed_data.csv",
+        output_dir: str = "backend/data/countries",
     ):
         self.final_df_path = final_df_path
         self.output_dir = output_dir
@@ -18,7 +18,7 @@ class CountrySplitter:
 
     def split_into_countries(
         self,
-        directory: str = "data/processed/countries",
+        directory: str = "backend/data/countries",
         trailing_name: str = "_final_df.csv",
     ) -> None:
         countries = self.df["country"].unique()
@@ -30,3 +30,8 @@ class CountrySplitter:
             # create filename with country name
             file_path = f"{directory}/{country.lower()}{trailing_name}"
             country_df.to_csv(file_path, index=False)
+
+
+if __name__ == "__main__":
+    splitter = CountrySplitter()
+    splitter.split_into_countries()

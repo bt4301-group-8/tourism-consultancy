@@ -1,32 +1,38 @@
 import os
 import glob
-import json
-import joblib
 import pandas as pd
 import numpy as np
+import mlflow
+import mlflow.xgboost
 import xgboost as xgb
-from typing import List, Dict, Tuple, Optional, Any
+import tempfile
 
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_squared_error
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 from hyperopt.pyll import scope
+from typing import List, Dict, Tuple, Optional, Any
+from mlflow.models import infer_signature
 
 from backend.src.services import logger
+
+mlflow_tracking_uri = "http://localhost:9080"
+mlflow_experiment_name = "Country Visitor Forecasting"
+mlflow.set_tracking_uri(mlflow_tracking_uri)
+mlflow.set_experiment(mlflow_experiment_name)
 
 
 class CountryModelTrainer:
     """
-    trains an xgboost model for predicting visitor numbers for individual countries.
+    trains an xgboost model for predicting visitor numbers for individual countries using mlflow.
 
     handles data loading, hyperparameter tuning using hyperopt, final model
-    training, and saving artifacts (model, parameters, trials).
+    training, and logging artifacts (model, parameters, metrics, trials) to mlflow.
     """
 
     def __init__(
         self,
-        data_path: str = "backend/data/processed/countries/",  # temp, before migrating to DB
-        output_dir: str = "backend/trained_models/",
+        data_path: str = "backend/data/countries/",  # temp, before migrating to db
         file_pattern: str = "*_final_df.csv",
         target_variable: str = "log_visitors",
         original_target: Optional[str] = "num_visitors",
@@ -46,15 +52,15 @@ class CountryModelTrainer:
             "ig_under-performing",
             "ig_normal",
             "ig_outperforming",
-            # TODO: add any other columns that should not be features
+            # todo: add any other columns that should not be features
         ],
-        train_ratio: float = 0.75,  # portion of data for training
-        val_ratio: float = 0.15,  # portion of data for validation
+        train_ratio: float = 0.75,
+        val_ratio: float = 0.15,
         n_cv_splits: int = 5,
         max_hyperopt_evals: int = 50,
         early_stopping_rounds_cv: int = 25,
         early_stopping_rounds_final: int = 50,
-        final_model_boost_rounds: int = 1500,  # high number for final training with early stopping
+        final_model_boost_rounds: int = 1500,
         seed: int = 42,
     ):
         """
@@ -62,7 +68,7 @@ class CountryModelTrainer:
 
         args:
             data_path: path to the directory containing processed country csv files.
-            output_dir: path to the directory where models and results will be saved.
+            # output_dir: removed, artifacts saved to mlflow.
             file_pattern: glob pattern to identify country csv files.
             target_variable: the name of the column to predict (e.g., 'log_visitors').
             original_target: the name of the original, non-transformed target variable (optional).
@@ -77,7 +83,6 @@ class CountryModelTrainer:
             seed: random seed for reproducibility.
         """
         self.data_path = data_path
-        self.output_dir = output_dir
         self.file_pattern = file_pattern
         self.target_variable = target_variable
         self.cols_to_drop = list(set(cols_to_drop + [target_variable]))
@@ -108,17 +113,14 @@ class CountryModelTrainer:
             "seed": self.seed,
         }
 
-        # create output directory
-        os.makedirs(self.output_dir, exist_ok=True)
         self.logger = logger
-        self.logger.info(f"output directory set to: {self.output_dir}")
 
     def _load_and_prepare_data(
         self,
         csv_path: str,
     ):
         """
-        loads data, prepares features/target, and splits into train/val/test sets CHRONOLOGICALLY (to adhere to time)
+        loads data, prepares features/target, and splits into train/val/test sets chronologically.
 
         args:
             csv_path: path to the country's csv file.
@@ -160,6 +162,7 @@ class CountryModelTrainer:
             potential_features = [
                 col for col in df.columns if col not in self.cols_to_drop
             ]
+            # only keep features actually present in the dataframe
             features = [f for f in potential_features if f in df.columns]
 
             if not features:
@@ -175,10 +178,11 @@ class CountryModelTrainer:
             n = len(df)
             n_train = int(n * self.train_ratio)
             n_val = int(n * self.val_ratio)
-            if n_train == 0 or n_val == 0 or (n - n_train - n_val) == 0:
+            # ensure all splits have at least one sample
+            if n_train == 0 or n_val == 0 or (n - n_train - n_val) <= 0:
                 self.logger.error(
                     f"cannot split data for {country_name} with {n} samples and ratios "
-                    f"({self.train_ratio}, {self.val_ratio}). skipping."
+                    f"({self.train_ratio}, {self.val_ratio}). needs at least one sample per split. skipping."
                 )
                 return None
 
@@ -219,7 +223,7 @@ class CountryModelTrainer:
         y_train: pd.Series,
         features: List[str],
         country_name: str,
-    ) -> Optional[Tuple[Dict[str, Any], Trials]]:
+    ) -> Optional[Tuple[Dict[str, Any], Trials, float]]:
         """
         performs hyperparameter optimization using hyperopt and time series cv on the training set.
 
@@ -230,7 +234,7 @@ class CountryModelTrainer:
             country_name: name of the country for self.logger.
 
         returns:
-            a tuple containing (best parameter dictionary, hyperopt trials object),
+            a tuple containing (best parameter dictionary, hyperopt trials object, best cv rmse),
             or none if optimization fails or data is insufficient.
         """
         if len(x_train) < self.n_cv_splits * 2:
@@ -243,11 +247,9 @@ class CountryModelTrainer:
         tscv = TimeSeriesSplit(n_splits=self.n_cv_splits)
 
         def objective(params: Dict[str, Any]) -> Dict[str, Any]:
-            """objective function for hyperopt to minimize (average cv rmse on train folds)."""
             params["max_depth"] = int(params["max_depth"])
             params["min_child_weight"] = int(params["min_child_weight"])
             cv_rmses = []
-            # iterate through cv folds on the training data
             for fold, (train_fold_index, val_fold_index) in enumerate(
                 tscv.split(x_train)
             ):
@@ -282,47 +284,53 @@ class CountryModelTrainer:
                     self.logger.debug(
                         f"warning during xgb.train in hyperopt cv for {country_name} fold {fold+1}: {e}"
                     )
+                    # return infinite loss if a fold fails
                     return {"loss": np.inf, "status": STATUS_OK}
 
-            if not cv_rmses:
+            if (
+                not cv_rmses
+            ):  # handle case where all folds failed (though unlikely with above return)
                 return {"loss": np.inf, "status": STATUS_OK}
 
             avg_rmse = np.mean(cv_rmses)
-            # log less frequently during hyperopt to avoid clutter
-            # self.logger.debug(f"hyperopt eval for {country_name}: params={params}, avg_rmse={avg_rmse:.4f}")
             return {"loss": avg_rmse, "status": STATUS_OK}
 
         self.logger.info(
-            f"[HP Tuning] starting hp optimization for {country_name} on training data..."
+            f"[hp tuning] starting hp optimization for {country_name} on training data..."
         )
         trials = Trials()
         try:
-            best_result = fmin(
+            best_result_values = fmin(
                 fn=objective,
                 space=self.search_space,
                 algo=tpe.suggest,
                 max_evals=self.max_hyperopt_evals,
                 trials=trials,
                 rstate=self.rng,
+                show_progressbar=False,
             )
 
-            final_params = self.search_space.copy()
-            final_params.update(best_result)
+            # reconstruct the full best parameter dictionary
+            # start with base parameters like objective, metric, seed
+            final_params = {
+                k: v
+                for k, v in self.search_space.items()
+                if not hasattr(v, "pos_args")  # filter out hp space definitions
+            }
+            # update with the best values found by fmin
+            final_params.update(best_result_values)
+            # ensure integer types are correct after fmin
             final_params["max_depth"] = int(final_params["max_depth"])
             final_params["min_child_weight"] = int(final_params["min_child_weight"])
-            final_params = {
-                k: v for k, v in final_params.items() if not hasattr(v, "pos_args")
-            }
-            final_params["objective"] = "reg:squarederror"
-            final_params["eval_metric"] = "rmse"
+            # ensure seed is set for final training consistency
             final_params["seed"] = self.seed
 
             best_loss = min(trials.losses()) if trials.losses() else float("inf")
             self.logger.info(
-                f"[HP Results] best cross-validation rmse ({self.target_variable} scale) on train data: {best_loss:.4f}"
+                f"[hp results] best cross-validation rmse ({self.target_variable} scale) on train data: {best_loss:.4f}"
             )
 
-            return final_params, trials
+            return final_params, trials, best_loss
 
         except Exception as e:
             self.logger.error(
@@ -357,7 +365,7 @@ class CountryModelTrainer:
             the trained xgboost booster object, or none if training fails.
         """
         self.logger.info(
-            f"[Training] training final model for {country_name.upper()} using best parameters..."
+            f"[training] training final model for {country_name.upper()} using best parameters..."
         )
         # create dmatrices for train and validation
         dtrain = xgb.DMatrix(x_train, label=y_train, feature_names=features)
@@ -372,12 +380,13 @@ class CountryModelTrainer:
                 dtrain,
                 num_boost_round=self.final_model_boost_rounds,
                 evals=watchlist,
-                early_stopping_rounds=self.early_stopping_rounds_final,  # use validation set for stopping
-                verbose_eval=100,  # log progress periodically
+                early_stopping_rounds=self.early_stopping_rounds_final,
+                verbose_eval=100,
             )
+            # log final validation score achieved during training
             self.logger.info(
-                f"[Training] final model training completed. best iteration: {final_model.best_iteration}\n"
-                f"[Training] best val rmse: {final_model.best_score:.4f}"
+                f"[training] final model training completed. best iteration: {final_model.best_iteration}, "
+                f"best val rmse: {final_model.best_score:.4f}"
             )
             return final_model
         except Exception as e:
@@ -413,43 +422,68 @@ class CountryModelTrainer:
             or none if evaluation fails.
         """
         self.logger.info(
-            f"[Evaluation] evaluating final model for {country_name.upper()} on test set ({len(x_test)} samples)..."
+            f"[evaluation] evaluating final model for {country_name.upper()} on test set ({len(x_test)} samples)..."
         )
         try:
             dtest = xgb.DMatrix(x_test, label=y_test, feature_names=features)
-            preds_log = model.predict(dtest)
-            rmse_log = np.sqrt(mean_squared_error(y_test, preds_log))
+            preds_transformed = model.predict(
+                dtest
+            )  # predictions are on the transformed scale
+            rmse_transformed = np.sqrt(mean_squared_error(y_test, preds_transformed))
 
-            metrics = {f"test_rmse_{self.target_variable}": rmse_log}
-            self.logger.info(f"  test rmse ({self.target_variable}): {rmse_log:.4f}")
+            metrics = {f"test_rmse_{self.target_variable}": rmse_transformed}
+            self.logger.info(
+                f"  test rmse ({self.target_variable}): {rmse_transformed:.4f}"
+            )
 
             # calculate rmse on original scale if possible
             if (
                 self.original_target
                 and self.original_target in df_test_original.columns
+                and self.target_variable.startswith("log_")
             ):
                 try:
+                    # ensure index alignment when selecting original target values
                     y_test_original = df_test_original.loc[
                         y_test.index, self.original_target
                     ]
 
-                    # inverse transform predictions and true values (assuming log transform)
-                    # add check for negative predictions if log transform was used
-                    preds_original = np.exp(preds_log)
-                    rmse_original = np.sqrt(
-                        mean_squared_error(y_test_original, preds_original)
+                    preds_original = np.exp(preds_transformed)
+                    valid_indices = ~np.isnan(y_test_original) & ~np.isinf(
+                        y_test_original
                     )
-                    metrics[f"test_rmse_{self.original_target}"] = rmse_original
-                    self.logger.info(
-                        f"  test rmse ({self.original_target}): {rmse_original:.2f}"
-                    )
+                    if valid_indices.sum() < len(y_test_original):
+                        self.logger.warning(
+                            f"  found nan/inf in original test target '{self.original_target}'. evaluating on valid subset."
+                        )
+
+                    if valid_indices.sum() > 0:
+                        rmse_original = np.sqrt(
+                            mean_squared_error(
+                                y_test_original[valid_indices],
+                                preds_original[valid_indices],
+                            )
+                        )
+                        metrics[f"test_rmse_{self.original_target}"] = rmse_original
+                        self.logger.info(
+                            f"  test rmse ({self.original_target}): {rmse_original:.2f}"
+                        )
+                    else:
+                        self.logger.warning(
+                            f"  no valid original test target values found for {country_name} to calculate original scale rmse."
+                        )
+
                 except Exception as e_orig:
                     self.logger.warning(
-                        f"[Evaluation] could not calculate rmse on original scale ({self.original_target}) for {country_name}: {e_orig}"
+                        f"[evaluation] could not calculate rmse on original scale ({self.original_target}) for {country_name}: {e_orig}"
                     )
+            elif not self.target_variable.startswith("log_"):
+                self.logger.info(
+                    f"  target variable '{self.target_variable}' does not appear log-transformed. skipping original scale calculation."
+                )
             else:
                 self.logger.info(
-                    f"[Evaluation] original target '{self.original_target}' not specified or not found in test data. skipping original scale rmse."
+                    f"  original target '{self.original_target}' not specified or not found in test data. skipping original scale rmse."
                 )
 
             return metrics
@@ -458,70 +492,10 @@ class CountryModelTrainer:
             self.logger.error(f"evaluation failed for {country_name}: {e}")
             return None
 
-    def _save_artifacts(
-        self,
-        country_name: str,
-        model: xgb.Booster,
-        trials: Optional[Trials],
-        params: Dict[str, Any],
-        eval_metrics: Optional[Dict[str, float]],
-    ):
-        """
-        saves the trained model, hyperopt trials, best parameters, and evaluation metrics.
-
-        args:
-            country_name: name of the country.
-            model: the trained xgboost booster object.
-            trials: the hyperopt trials object (can be none).
-            params: the dictionary of best hyperparameters used.
-            eval_metrics: dictionary containing test set evaluation metrics (can be none).
-        """
-        country_output_dir = os.path.join(self.output_dir, country_name)
-        os.makedirs(country_output_dir, exist_ok=True)  # ensure dir exists
-
-        model_filename = os.path.join(country_output_dir, "xgb_model.json")
-        trials_filename = os.path.join(country_output_dir, "hyperopt_trials.pkl")
-        params_filename = os.path.join(country_output_dir, "best_params.json")
-        metrics_filename = os.path.join(country_output_dir, "evaluation_metrics.json")
-
-        try:
-            model.save_model(model_filename)
-
-            # save trials if they exist
-            if trials:
-                with open(trials_filename, "wb") as f:
-                    joblib.dump(trials, f)
-            else:
-                self.logger.info(
-                    "no hyperopt trials to save (tuning might have been skipped)."
-                )
-
-            # save parameters (ensure json serializable)
-            serializable_params = {
-                k: (
-                    int(v)
-                    if isinstance(v, (np.int_, np.integer))
-                    else float(v) if isinstance(v, (np.float_, np.floating)) else v
-                )
-                for k, v in params.items()
-            }
-            with open(params_filename, "w") as f:
-                json.dump(serializable_params, f, indent=4)
-
-            # save evaluation metrics if they exist
-            if eval_metrics:
-                with open(metrics_filename, "w") as f:
-                    json.dump(eval_metrics, f, indent=4)
-            else:
-                self.logger.info("no evaluation metrics to save.")
-
-        except Exception as e:
-            self.logger.error(f"failed to save artifacts for {country_name}: {e}")
-
     def train_for_country(self, csv_path: str):
         """
         orchestrates the full training pipeline for a single country's csv file,
-        including data splitting, hp tuning, training, evaluation, and saving.
+        logging results and artifacts to mlflow within a dedicated run.
 
         args:
             csv_path: the path to the country's csv file.
@@ -531,53 +505,144 @@ class CountryModelTrainer:
             .replace(self.file_pattern.replace("*", ""), "")
             .split("_")[0]
         )
+        self.logger.info(
+            f"--- starting training pipeline for {country_name.upper()} ---"
+        )
+
         # 1. load and split data
         prep_result = self._load_and_prepare_data(csv_path)
         if prep_result is None:
             self.logger.error(
                 f"failed to load/prepare/split data for {country_name}. stopping."
             )
+            # maybe log a failed run to mlflow? or just skip as done here.
             return
         x_train, y_train, x_val, y_val, x_test, y_test, features, df_test_original = (
             prep_result
         )
 
-        # 2. run hp optimization (on train set)
-        hyperopt_result = self._run_hyperopt(x_train, y_train, features, country_name)
-        if hyperopt_result is None:
-            self.logger.warning(
-                f"skipping final model training for {country_name} due to hyperopt issues or insufficient data."
+        # start mlflow run for this country
+        with mlflow.start_run(run_name=f"{country_name}_training"):
+            # log country as a tag for easier filtering in ui
+            mlflow.set_tag("country", country_name)
+            mlflow.set_tag("target_variable", self.target_variable)
+            mlflow.log_param("data_file", os.path.basename(csv_path))
+            mlflow.log_param("train_ratio", self.train_ratio)
+            mlflow.log_param("val_ratio", self.val_ratio)
+            mlflow.log_param("test_ratio", self.test_ratio)
+            mlflow.log_param("n_cv_splits_hp", self.n_cv_splits)
+            mlflow.log_param("max_hyperopt_evals", self.max_hyperopt_evals)
+            mlflow.log_param("early_stopping_rounds_cv", self.early_stopping_rounds_cv)
+            mlflow.log_param(
+                "early_stopping_rounds_final", self.early_stopping_rounds_final
             )
-            # save dummy artifacts? or nothing? let's save nothing for now.
-            return
-        best_params, trials = hyperopt_result
+            mlflow.log_param("random_seed", self.seed)
 
-        # 3. train final model (on train, validate on val)
-        final_model = self._train_final_model(
-            x_train, y_train, x_val, y_val, features, best_params, country_name
-        )
-        if final_model is None:
-            self.logger.error(
-                f"failed to train final model for {country_name}. stopping."
+            # log features list as an artifact (json)
+            try:
+                features_dict = {"features": features}
+                mlflow.log_dict(features_dict, "features.json")
+            except Exception as e:
+                self.logger.warning(
+                    f"could not log features list for {country_name}: {e}"
+                )
+
+            # 2. run hp optimization (on train set)
+            hyperopt_result = self._run_hyperopt(
+                x_train, y_train, features, country_name
             )
-            return
+            if hyperopt_result is None:
+                self.logger.warning(
+                    f"skipping final model training for {country_name} due to hyperopt issues or insufficient data."
+                )
+                mlflow.log_metric("training_status", 0)  # indicate failure/skip
+                mlflow.set_tag("status", "skipped_hyperopt")
+                return
 
-        # 4. evaluate final model (on test set)
-        eval_metrics = self._evaluate_model(
-            final_model, x_test, y_test, features, df_test_original, country_name
-        )
-        # 5. save artifacts (model, params, trials, metrics)
-        self._save_artifacts(
-            country_name, final_model, trials, best_params, eval_metrics
-        )
+            best_params, trials, best_cv_rmse = hyperopt_result
 
-        self.logger.info(
-            f"--- finished training pipeline for {country_name.upper()} ---"
-        )
+            # log best hyperopt parameters and the best cv score
+            mlflow.log_params(best_params)
+            mlflow.log_metric("best_hyperopt_cv_rmse", best_cv_rmse)
+
+            # log hyperopt trials object as artifact
+            try:
+                # use tempfile to save trials before logging to mlflow (apparently this is best practice)
+                with tempfile.NamedTemporaryFile(
+                    suffix=".pkl", delete=False
+                ) as tmp_file:
+                    import joblib
+
+                    joblib.dump(trials, tmp_file.name)
+                    mlflow.log_artifact(tmp_file.name, artifact_path="hyperopt_trials")
+                os.remove(tmp_file.name)  # clean up temp file
+            except Exception as e:
+                self.logger.warning(
+                    f"could not log hyperopt trials for {country_name}: {e}"
+                )
+
+            # 3. train final model (on train, validate on val)
+            final_model = self._train_final_model(
+                x_train, y_train, x_val, y_val, features, best_params, country_name
+            )
+            if final_model is None:
+                self.logger.error(
+                    f"failed to train final model for {country_name}. stopping."
+                )
+                mlflow.log_metric("training_status", 0)  # indicate failure
+                mlflow.set_tag("status", "failed_final_training")
+                return
+
+            # log the validation score achieved during final training
+            mlflow.log_metric("final_model_best_val_rmse", final_model.best_score)
+            mlflow.log_metric("final_model_best_iteration", final_model.best_iteration)
+
+            # 4. evaluate final model (on test set)
+            eval_metrics = self._evaluate_model(
+                final_model, x_test, y_test, features, df_test_original, country_name
+            )
+            if eval_metrics:
+                mlflow.log_metrics(eval_metrics)
+
+            # 5. log the final model using mlflow's xgboost flavor
+            # infer signature for better model tracking
+            try:
+                signature = infer_signature(
+                    x_train, final_model.predict(xgb.DMatrix(x_train))
+                )
+            except Exception as e:
+                self.logger.warning(
+                    f"could not infer model signature for {country_name}: {e}"
+                )
+                signature = None  # log model without signature if inference fails
+
+            try:
+                mlflow.xgboost.log_model(
+                    xgb_model=final_model,
+                    artifact_path="model",  # subdirectory within the run's artifacts
+                    signature=signature,
+                    registered_model_name=f"{country_name}_visitor_model",
+                )
+                self.logger.info(f"[mlflow] logged model for {country_name}")
+            except Exception as e:
+                self.logger.error(
+                    f"failed to log model to mlflow for {country_name}: {e}"
+                )
+                mlflow.log_metric("training_status", 0)  # indicate failure
+                mlflow.set_tag("status", "failed_model_logging")
+                return
+
+            # if we reach here, the run was successful
+            mlflow.log_metric("training_status", 1)
+            mlflow.set_tag("status", "completed")
+            self.logger.info(
+                f"--- finished training pipeline for {country_name.upper()} ---"
+            )
 
     def run_training(self):
         """
-        finds all country data files and runs the training pipeline for each.
+        finds all country data files and runs the training pipeline for each,
+        logging each country to a separate mlflow run.
         """
         all_files = glob.glob(os.path.join(self.data_path, self.file_pattern))
         self.logger.info(
@@ -592,34 +657,42 @@ class CountryModelTrainer:
         for f in sorted(all_files):  # sort for consistent order
             try:
                 self.train_for_country(f)
-                processed_count += 1
+                processed_count += 1  # count attempts
             except Exception as e:
+                # this catches errors outside the main train_for_country logic or before mlflow run starts
                 country_name = os.path.basename(f).split("_")[0]
                 self.logger.error(
-                    f"unexpected error during training for {country_name} ({f}): {e}",
+                    f"unexpected error during training setup for {country_name} ({f}): {e}",
                     exc_info=True,
                 )
                 skipped_count += 1
 
-        self.logger.info(f"--- overall training finished ---")
-        self.logger.info(
-            f"processed: {processed_count}, skipped/failed: {skipped_count}"
-        )
+        self.logger.info(f"--- overall training process finished ---")
+        self.logger.info(f"attempted training for: {processed_count} countries.")
+        if skipped_count > 0:
+            self.logger.warning(
+                f"skipped {skipped_count} countries due to errors before mlflow run start."
+            )
 
 
 if __name__ == "__main__":
+    # ensure mlflow uri and experiment are set before running
+    # (already done globally above here)
     trainer = CountryModelTrainer()
     trainer.run_training()
 
-    # you can now load models like this:
+    # example of how to load a model logged by mlflow:
     # country = 'brunei' # example
-    # model_path = os.path.join(trainer.output_dir, f"{country}/xgb_model.json")
-    # if os.path.exists(model_path):
-    #     loaded_model = xgb.Booster()
-    #     loaded_model.load_model(model_path)
-    #     print(f"loaded model for {country}")
-    # # remember to load corresponding features for prediction
-    # params_path = os.path.join(trainer.output_dir, f"{country}_best_params.json")
-    # with open(params_path, 'r') as f:
-    #     params = json.load(f)
-    # # you might need feature list from data prep phase if loading separately
+    # logged_model_uri = f"runs:/{run_id}/model" # replace run_id with the actual id from mlflow ui/api
+    # # or use model registry uri: f"models:/{country}_visitor_model/latest"
+    # try:
+    #    loaded_model = mlflow.xgboost.load_model(logged_model_uri)
+    #    print(f"loaded mlflow model for {country}")
+    #    # you would typically also load the corresponding 'features.json' artifact
+    #    # client = mlflow.tracking.MlflowClient()
+    #    # features_path = client.download_artifacts(run_id, "features.json")
+    #    # with open(features_path, 'r') as f:
+    #    #     features_data = json.load(f)
+    #    #     features = features_data['features']
+    # except Exception as e:
+    #     print(f"error loading model from mlflow: {e}")
