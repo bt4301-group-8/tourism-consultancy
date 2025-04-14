@@ -27,9 +27,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# MongoDB connection details
 mongo_uri = os.getenv("MONGO_URI")
-mongodb_name = os.getenv("MONGODB_NAME")
 
 default_args = {
     'owner': 'airflow',
@@ -45,16 +43,15 @@ dag = DAG(
     'reddit_etl_pipeline',
     default_args=default_args,
     description='Reddit data ETL pipeline that scrapes travel subreddits weekly and uploads to MongoDB collections',
-    schedule_interval=timedelta(days=7),  # Run weekly
+    schedule_interval='0 1 * * 1',  # Run every Monday at 1AM
     start_date=datetime(2025, 4, 1),
     catchup=False,
 )
 
 def extract_reddit_data(**context):
-    """Extract data from Reddit API, focusing on the last 7 days"""
+    """Extract data from Reddit API for submissions and comments over the last 7 days"""
     logging.info("Starting Reddit data extraction")
     
-    # Initialize the Reddit crawler
     crawler = RedditCrawler()
     
     # Airflow python operators run with synchronous context, does not natively support async
@@ -73,7 +70,6 @@ def extract_reddit_data(**context):
         loop.close()
     
     # Store data to pass on to transform stage
-    # Use JSON dumps/loads to handle any non-serializable objects
     context['ti'].xcom_push(key='submissions_data', value=json.dumps(submissions_data))
     context['ti'].xcom_push(key='comments_data', value=json.dumps(comments_data))
     
@@ -90,7 +86,7 @@ def transform_data(**context):
     
     # Validate submissions
     valid_submissions = []
-    submission_ids = set()  # Track IDs to prevent duplicates
+    submission_ids = set()
     
     for submission in submissions_data:
         if "submission_id" not in submission:
@@ -115,7 +111,7 @@ def transform_data(**context):
     
     # Validate comments
     valid_comments = []
-    comment_ids = set()  # Track IDs to prevent duplicates
+    comment_ids = set()
     
     for comment in comments_data:
         if "comment_id" not in comment:
@@ -164,18 +160,15 @@ def load_to_mongodb(**context):
     
     # Check MongoDB connection before proceeding
     try:
-        # Connect to MongoDB
         logging.info(f"Connecting to MongoDB at {mongo_uri.split('@')[-1] if mongo_uri and '@' in mongo_uri else 'configured URI'}")
         client = MongoClient(mongo_uri, server_api=ServerApi('1'))
         # Verify connection works
         client.admin.command('ping')
         logging.info("MongoDB connection successful")
         
-        db = client[mongodb_name]
-        
         # Collections
-        submissions_collection = db.posts.reddit_submissions
-        comments_collection = db.posts.reddit_comments
+        submissions_collection = client.posts.reddit_submissions
+        comments_collection = client.posts.reddit_comments
         
         # Track progress metrics
         submission_results = []
@@ -184,12 +177,12 @@ def load_to_mongodb(**context):
         comment_count = len(comments_data)
         progress_interval = max(1, min(100, int(submission_count / 10))) if submission_count > 0 else 1
         
-        # Insert submissions with progress logging
         if submissions_data:
             logging.info(f"Processing {submission_count} submissions")
             for i, submission in enumerate(submissions_data):
                 try:
-                    # Use upsert to handle duplicate submission IDs - this will update existing records
+                    # Upsert to update existing or insert new records
+                    # but by right there should be no updates of existing records
                     result = submissions_collection.update_one(
                         {"submission_id": submission["submission_id"]},
                         {"$set": submission},
@@ -205,9 +198,7 @@ def load_to_mongodb(**context):
                         
                 except Exception as e:
                     logging.error(f"Error inserting submission {submission.get('submission_id', 'unknown')}: {e}")
-                    # Continue processing other records
         
-        # Insert comments with progress logging
         if comments_data:
             comment_start_time = datetime.now()
             logging.info(f"Processing {comment_count} comments")
@@ -215,7 +206,8 @@ def load_to_mongodb(**context):
             
             for i, comment in enumerate(comments_data):
                 try:
-                    # Use upsert to handle duplicate comment IDs - this will update existing records
+                    # Upsert to update existing or insert new records
+                    # but by right there should be no updates of existing records
                     result = comments_collection.update_one(
                         {"comment_id": comment["comment_id"]},
                         {"$set": comment},
@@ -232,9 +224,7 @@ def load_to_mongodb(**context):
                         
                 except Exception as e:
                     logging.error(f"Error inserting comment {comment.get('comment_id', 'unknown')}: {e}")
-                    # Continue processing other records
         
-        # Final stats
         total_time = datetime.now() - start_time
         success_rate_submissions = (len(submission_results) / submission_count * 100) if submission_count > 0 else 0
         success_rate_comments = (len(comment_results) / comment_count * 100) if comment_count > 0 else 0

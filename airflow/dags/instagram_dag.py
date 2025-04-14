@@ -255,5 +255,4 @@ with DAG(
         provide_context=True,
     )
     
-    # Set task dependencies
     extract_task >> transform_task >> load_task

@@ -49,7 +49,7 @@ with DAG(
     'visitor_labels_etl_pipeline',
     default_args=default_args,
     description='Monthly ETL pipeline for visitor statistics from Southeast Asian countries',
-    schedule_interval='0 4 1 * *',  # Staggered running to avoid resource clash
+    schedule_interval='0 4 1 * *',  # Staggered to 4am to avoid resource clash
     start_date=datetime(2025, 4, 1),
     catchup=False,
     tags=['visitors', 'labels', 'etl'],

@@ -8,7 +8,7 @@ __pycache__/
 logs/
 
 # Exclude Airflow runtime and configuration files
-airflow-webserver.pid
-airflow.cfg
-airflow.db
-webserver_config.py
+airflow/airflow-webserver.pid
+airflow/airflow.cfg
+airflow/airflow.db
+airflow/webserver_config.py
