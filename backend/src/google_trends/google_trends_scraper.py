@@ -131,8 +131,8 @@ class GoogleTrendsScraper:
         df['month_year'] = df['month_year'].dt.strftime('%Y-%m')
         
         os.makedirs('extracted_data', exist_ok=True)
-        df.to_csv('extracted_data/google_trends_data.csv', index=False)
-        df.to_json('extracted_data/google_trends_data.json', orient='records', indent=4)
+        # df.to_csv('extracted_data/google_trends_data.csv', index=False)
+        # df.to_json('extracted_data/google_trends_data.json', orient='records', indent=4)
         return df
     
     def get_data(self):

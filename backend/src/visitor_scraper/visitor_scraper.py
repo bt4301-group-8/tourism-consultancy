@@ -1,7 +1,7 @@
 import pandas as pd
 
 class VisitorScraper:
-    def init(self, historical_data: list):
+    def __init__(self):
         self.historical_data = [
             {'country': 'Thailand', 'month_year': '2022-01', 'value': 134000.0},
             {'country': 'Thailand', 'month_year': '2022-02', 'value': 153000.0},
