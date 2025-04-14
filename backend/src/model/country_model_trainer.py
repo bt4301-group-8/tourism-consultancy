@@ -432,9 +432,6 @@ class CountryModelTrainer:
             rmse_transformed = np.sqrt(mean_squared_error(y_test, preds_transformed))
 
             metrics = {f"test_rmse_{self.target_variable}": rmse_transformed}
-            self.logger.info(
-                f"  test rmse ({self.target_variable}): {rmse_transformed:.4f}"
-            )
 
             # calculate rmse on original scale if possible
             if (
