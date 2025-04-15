@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from backend.src.supabase_retriever import supabase_retriever
 
 
 class CountrySplitter:
@@ -9,6 +10,7 @@ class CountrySplitter:
 
     def __init__(
         self,
+
         final_df_path: str = "backend/data/processed_data.csv",
         output_dir: str = "backend/data/countries",
     ):
@@ -32,6 +34,6 @@ class CountrySplitter:
             country_df.to_csv(file_path, index=False)
 
 
-if __name__ == "__main__":
-    splitter = CountrySplitter()
-    splitter.split_into_countries()
+# if __name__ == "__main__":
+#     splitter = CountrySplitter()
+#     splitter.split_into_countries()

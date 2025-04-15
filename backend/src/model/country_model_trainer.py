@@ -776,11 +776,11 @@ class CountryModelTrainer:
             )
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # ensure mlflow uri and experiment are set before running
     # (already done globally above here)
-    trainer = CountryModelTrainer()
-    trainer.run_training()
+    # trainer = CountryModelTrainer()
+    # trainer.run_training()
 
     # example of how to load a model logged by mlflow:
     # country = 'brunei' # example
