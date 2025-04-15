@@ -49,12 +49,10 @@ class SupabaseRetriever:
                 base = pd.merge(base, df, on=["country", "month_year"], how="left")
 
         base = base.sort_values(["country", "month_year"]).reset_index(drop=True)
-        save_dir = "processed_data"
+        save_dir = "backend/data"
         os.makedirs(save_dir, exist_ok=True)
         base.to_csv(os.path.join(save_dir, "processed_data.csv"), index=False)
         print(f"[SUCCESS] Merged dataset saved to '{save_dir}/processed_data.csv'. Shape: {base.shape}")
         return base
     
-if __name__ == "__main__":
-    retriever = SupabaseRetriever()
-    retriever.get_processed_data()
+supabase_retriever = SupabaseRetriever()
