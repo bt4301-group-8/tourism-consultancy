@@ -775,12 +775,169 @@ class CountryModelTrainer:
                 f"skipped {skipped_count} countries due to errors before mlflow run start."
             )
 
+    def train_incrementally_for_country(self, csv_path: str, min_months: int = 3):
+        """
+        Performs incremental training for a single country's CSV data.
+        Each iteration trains with increasing months of data and evaluates on the fixed test set.
+        Logs evaluation metrics for each training window to MLflow.
 
-# if __name__ == "__main__":
+        Args:
+            csv_path: Path to the country's CSV file.
+            min_months: Minimum number of months to start training with.
+        """
+        country_name = os.path.basename(csv_path).split("_")[0]
+        self.logger.info(f"--- starting incremental training for {country_name.upper()} ---")
+
+        try:
+            df = pd.read_csv(csv_path)
+            df["month_year"] = pd.to_datetime(df["month_year"])
+            df = df.set_index("month_year").sort_index()
+
+            # filter usable columns
+            if self.target_variable not in df.columns:
+                self.logger.error(f"Target variable {self.target_variable} not in data for {country_name}")
+                return
+
+            df = df.dropna(subset=[self.target_variable])
+            if df.empty:
+                self.logger.warning(f"No valid data in {csv_path}")
+                return
+
+            features = [col for col in df.columns if col not in self.cols_to_drop and col != self.target_variable]
+            if not features:
+                self.logger.error(f"No valid features found for {country_name}")
+                return
+
+            # split into trainval and test (fixed test set from last N months)
+            n_total = len(df)
+            n_test = int(n_total * self.test_ratio)
+            df_trainval = df.iloc[:-n_test]
+            df_test = df.iloc[-n_test:]
+
+            x_test = df_test[features]
+            y_test = df_test[self.target_variable]
+            df_test_original = df_test.copy()
+
+            results = []
+
+            for i in range(min_months, len(df_trainval) + 1):
+                df_subset = df_trainval.iloc[:i]
+                x_train = df_subset[features]
+                y_train = df_subset[self.target_variable]
+
+                dtrain = xgb.DMatrix(x_train, label=y_train, feature_names=features)
+                dtest = xgb.DMatrix(x_test, label=y_test, feature_names=features)
+
+                run_name = f"{country_name}_incremental_{i}_months"
+                with mlflow.start_run(run_name=run_name, nested=True):
+                    mlflow.set_tag("country", country_name)
+                    mlflow.set_tag("target_variable", self.target_variable)
+                    mlflow.set_tag("status", "incremental")
+                    mlflow.log_param("training_months", i)
+                    mlflow.log_param("test_samples", len(df_test))
+                    mlflow.log_param("random_seed", self.seed)
+
+                    # Train model with default or simplified params
+                    params = {
+                        "objective": "reg:squarederror",
+                        "eval_metric": "rmse",
+                        "eta": 0.1,
+                        "max_depth": 5,
+                        "seed": self.seed,
+                    }
+
+                    model = xgb.train(
+                        params,
+                        dtrain,
+                        num_boost_round=300,
+                        evals=[(dtrain, "train")],
+                        early_stopping_rounds=10,
+                        verbose_eval=False
+                    )
+
+                    # Evaluate
+                    preds_log = model.predict(dtest)
+                    rmse_log = np.sqrt(mean_squared_error(y_test, preds_log))
+                    mlflow.log_metric("rmse_log", rmse_log)
+
+                    result_row = {"months": i, "rmse_log": rmse_log}
+
+                    if self.original_target and self.original_target in df_test_original.columns:
+                        try:
+                            y_test_orig = df_test_original[self.original_target]
+                            preds_orig = np.exp(preds_log)
+                            rmse_orig = np.sqrt(mean_squared_error(y_test_orig, preds_orig))
+                            mlflow.log_metric("rmse_original", rmse_orig)
+                            result_row["rmse_original"] = rmse_orig
+                        except Exception as e:
+                            self.logger.warning(f"Failed to compute original RMSE: {e}")
+
+                    results.append(result_row)
+
+            # Log RMSE vs Months plot
+            result_df = pd.DataFrame(results)
+            import matplotlib.pyplot as plt
+            plt.figure(figsize=(10, 6))
+            plt.plot(result_df["months"], result_df["rmse_log"], marker="o", label="Log RMSE")
+            if "rmse_original" in result_df.columns:
+                plt.plot(result_df["months"], result_df["rmse_original"], marker="o", label="Original RMSE")
+            plt.xlabel("Months of Training Data")
+            plt.ylabel("RMSE")
+            plt.title(f"Performance vs Training Window: {country_name}")
+            plt.legend()
+            plt.grid(True)
+
+            fig_path = f"{country_name}_rmse_curve.png"
+            plt.savefig(fig_path)
+            mlflow.log_artifact(fig_path)
+            os.remove(fig_path)
+
+            self.logger.info(f"--- finished incremental training for {country_name.upper()} ---")
+
+        except Exception as e:
+            self.logger.error(f"Incremental training failed for {country_name}: {e}", exc_info=True)
+
+    def run_iterative_training(self):
+        """
+        finds all country data files and runs the training pipeline for each,
+        logging each country to a separate mlflow run.
+        """
+        all_files = glob.glob(os.path.join(self.data_path, self.file_pattern))
+        self.logger.info(
+            f"found {len(all_files)} country csvs in {self.data_path} matching '{self.file_pattern}'"
+        )
+        if not all_files:
+            self.logger.warning("no files found. exiting.")
+            return
+
+        processed_count = 0
+        skipped_count = 0
+        for f in sorted(all_files):  # sort for consistent order
+            try:
+                self.train_incrementally_for_country(f)
+                processed_count += 1  # count attempts
+            except Exception as e:
+                # this catches errors outside the main train_for_country logic or before mlflow run starts
+                country_name = os.path.basename(f).split("_")[0]
+                self.logger.error(
+                    f"unexpected error during training setup for {country_name} ({f}): {e}",
+                    exc_info=True,
+                )
+                skipped_count += 1
+
+        self.logger.info(f"--- overall training process finished ---")
+        self.logger.info(f"attempted training for: {processed_count} countries.")
+        if skipped_count > 0:
+            self.logger.warning(
+                f"skipped {skipped_count} countries due to errors before mlflow run start."
+            )
+
+
+if __name__ == "__main__":
     # ensure mlflow uri and experiment are set before running
     # (already done globally above here)
-    # trainer = CountryModelTrainer()
-    # trainer.run_training()
+    trainer = CountryModelTrainer()
+    trainer.run_iterative_training()
 
     # example of how to load a model logged by mlflow:
     # country = 'brunei' # example
