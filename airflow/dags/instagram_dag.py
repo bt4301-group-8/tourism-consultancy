@@ -81,7 +81,7 @@ with DAG(
             crawler.get_and_write_to_city_posts_hashtag(
                 hashtags=city_hashtags,
                 hashtags_master_dict=hashtags_master_dict,
-                search_type="top",
+                search_type="recent",
                 amount=20  # Limit to 20 posts per hashtag to avoid rate limiting
             )
             
@@ -92,7 +92,7 @@ with DAG(
                     crawler.get_and_write_to_city_posts_location(
                         city_name=city,
                         location_master_dict=location_master_dict,
-                        search_type="top",
+                        search_type="recent",
                         amount=20  # Limit to 20 posts per location
                     )
                 except Exception as e:
