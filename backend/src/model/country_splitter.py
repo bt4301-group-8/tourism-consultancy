@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-from backend.src.supabase_retriever import supabase_retriever
 
 
 class CountrySplitter:
@@ -10,13 +9,14 @@ class CountrySplitter:
 
     def __init__(
         self,
-
         final_df_path: str = "backend/data/processed_data.csv",
-        output_dir: str = "backend/data/countries",
     ):
         self.final_df_path = final_df_path
-        self.output_dir = output_dir
         self.df = pd.read_csv(final_df_path)
+        self.df["month_year"] = pd.to_datetime(self.df["month_year"], errors="coerce")
+        self.df.dropna(subset=["month_year"], inplace=True)
+        cutoff_date = pd.to_datetime("2025-02-01")
+        self.df = self.df[self.df["month_year"] <= cutoff_date]
 
     def split_into_countries(
         self,
@@ -34,6 +34,6 @@ class CountrySplitter:
             country_df.to_csv(file_path, index=False)
 
 
-# if __name__ == "__main__":
-#     splitter = CountrySplitter()
-#     splitter.split_into_countries()
+if __name__ == "__main__":
+    splitter = CountrySplitter()
+    splitter.split_into_countries()
