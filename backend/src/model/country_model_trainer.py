@@ -19,7 +19,7 @@ from mlflow.tracking import MlflowClient
 from backend.src.services import logger
 
 mlflow_tracking_uri = "http://localhost:9080"
-mlflow_experiment_name = "Country Visitor Forecasting"
+mlflow_experiment_name = "Country Visitor Model Training"
 mlflow.set_tracking_uri(mlflow_tracking_uri)
 mlflow.set_experiment(mlflow_experiment_name)
 
@@ -550,8 +550,6 @@ class CountryModelTrainer:
             # calculate and log training data statistics for drift detection
             try:
                 train_stats = x_train.describe().to_dict()
-                # select specific stats for simplicity if needed, e.g., ['mean', 'std', 'min', '50%', 'max']
-                # train_stats = x_train.describe().loc[['mean', 'std', 'min', '50%', 'max']].to_dict()
                 mlflow.log_dict(train_stats, "training_feature_stats.json")
                 self.logger.info(
                     f"[monitoring] logged training feature statistics for {country_name}"
@@ -559,6 +557,43 @@ class CountryModelTrainer:
             except Exception as e:
                 self.logger.warning(
                     f"could not calculate or log training feature stats for {country_name}: {e}"
+                )
+
+            # log a sample of training data for drift detection
+            try:
+                # determine feature types (categorical vs continuous)
+                feature_types = {}
+                for feature in features:
+                    if x_train[
+                        feature
+                    ].dtype == "object" or pd.api.types.is_categorical_dtype(
+                        x_train[feature]
+                    ):
+                        feature_types[feature] = "categorical"
+                    elif len(x_train[feature].unique()) < 5 and x_train[
+                        feature
+                    ].dtype in ["int64", "int32"]:
+                        # integers with few unique values are likely categorical
+                        feature_types[feature] = "categorical"
+                    else:
+                        feature_types[feature] = "continuous"
+
+                # log feature types for drift detection
+                mlflow.log_dict(feature_types, "feature_types.json")
+
+                # save a sample of training data (up to 1000 rows to keep size manageable)
+                sample_size = min(1000, len(x_train))
+                training_sample = x_train.sample(n=sample_size, random_state=self.seed)
+                training_sample.to_csv("training_data_sample.csv", index=False)
+                mlflow.log_artifact("training_data_sample.csv")
+                os.remove("training_data_sample.csv")
+
+                self.logger.info(
+                    f"[monitoring] logged training data sample ({sample_size} rows) for {country_name}"
+                )
+            except Exception as e:
+                self.logger.warning(
+                    f"could not log training data sample for {country_name}: {e}"
                 )
 
             # 2. run hp optimization (on train set)
@@ -633,9 +668,7 @@ class CountryModelTrainer:
                     artifact_path="model",  # subdirectory within the run's artifacts
                     signature=signature,
                     registered_model_name=f"{country_name}_visitor_model",
-                    # added run_id to potentially link monitoring results later
-                    # input_example=x_train.iloc[:5], # optional: log input example
-                    # metadata={"run_id": run_id} # optional: add metadata
+                    metadata={"run_id": run_id},
                 )
             except Exception as e:
                 self.logger.error(
@@ -651,94 +684,6 @@ class CountryModelTrainer:
             self.logger.info(
                 f"--- finished training pipeline for {country_name.upper()} ---"
             )
-
-    def monitor_input_drift(
-        self,
-        run_id: str,
-        new_data: pd.DataFrame,
-    ) -> Dict[str, bool]:
-        """
-        performs basic input drift detection by comparing statistics of new data
-        against the statistics of the training data stored in an mlflow run.
-
-        args:
-            run_id: the mlflow run id corresponding to the trained model.
-            new_data: a pandas dataframe containing new input features (columns should
-                      match the features used during training).
-
-        returns:
-            a dictionary where keys are feature names and values are boolean indicating
-            if drift was detected for that feature based on the defined rule.
-        """
-        self.logger.info(
-            f"[monitoring] starting input drift check for run_id: {run_id}"
-        )
-        drift_detected = {}
-        client = MlflowClient()
-
-        try:
-            # download the training stats artifact
-            local_path = client.download_artifacts(
-                run_id, "training_feature_stats.json"
-            )
-            with open(local_path) as f:
-                train_stats = json.load(f)
-            self.logger.info(f"[monitoring] loaded training stats from {local_path}")
-
-            # ensure new_data has the features present in train_stats
-            features = list(train_stats.keys())
-            new_data_features = new_data[features]  # select only the relevant columns
-
-            # calculate stats for the new data
-            new_stats = new_data_features.describe().to_dict()
-
-            # compare statistics (simple mean +/- 3*std rule, lowkey not sure if this is the best)
-            for feature in features:
-                if feature not in new_stats:
-                    self.logger.warning(
-                        f"[monitoring] feature '{feature}' not found in new data. skipping drift check."
-                    )
-                    drift_detected[feature] = False
-                    continue
-
-                train_mean = train_stats[feature].get("mean")
-                train_std = train_stats[feature].get("std")
-                new_mean = new_stats[feature].get("mean")
-
-                if train_mean is None or train_std is None or new_mean is None:
-                    self.logger.warning(
-                        f"[monitoring] missing stats for feature '{feature}'. skipping drift check."
-                    )
-                    drift_detected[feature] = False
-                    continue
-
-                # define drift threshold (e.g., mean outside 3 standard deviations)
-                lower_bound = train_mean - 3 * train_std
-                upper_bound = train_mean + 3 * train_std
-
-                if not (lower_bound <= new_mean <= upper_bound):
-                    drift_detected[feature] = True
-                    self.logger.warning(
-                        f"[monitoring] drift detected for feature '{feature}'! "
-                        f"train mean: {train_mean:.4f}, train std: {train_std:.4f}, "
-                        f"new mean: {new_mean:.4f}. bounds: [{lower_bound:.4f}, {upper_bound:.4f}]"
-                    )
-                else:
-                    drift_detected[feature] = False
-
-            num_drifted = sum(drift_detected.values())
-            self.logger.info(
-                f"[monitoring] drift check complete. {num_drifted}/{len(features)} features drifted."
-            )
-
-        except Exception as e:
-            self.logger.error(
-                f"[monitoring] failed to perform drift detection for run_id {run_id}: {e}",
-                exc_info=True,
-            )
-            return {}
-
-        return drift_detected
 
     def run_training(self):
         """
@@ -786,7 +731,9 @@ class CountryModelTrainer:
             min_months: Minimum number of months to start training with.
         """
         country_name = os.path.basename(csv_path).split("_")[0]
-        self.logger.info(f"--- starting incremental training for {country_name.upper()} ---")
+        self.logger.info(
+            f"--- starting incremental training for {country_name.upper()} ---"
+        )
 
         try:
             df = pd.read_csv(csv_path)
@@ -795,7 +742,9 @@ class CountryModelTrainer:
 
             # filter usable columns
             if self.target_variable not in df.columns:
-                self.logger.error(f"Target variable {self.target_variable} not in data for {country_name}")
+                self.logger.error(
+                    f"Target variable {self.target_variable} not in data for {country_name}"
+                )
                 return
 
             df = df.dropna(subset=[self.target_variable])
@@ -803,7 +752,11 @@ class CountryModelTrainer:
                 self.logger.warning(f"No valid data in {csv_path}")
                 return
 
-            features = [col for col in df.columns if col not in self.cols_to_drop and col != self.target_variable]
+            features = [
+                col
+                for col in df.columns
+                if col not in self.cols_to_drop and col != self.target_variable
+            ]
             if not features:
                 self.logger.error(f"No valid features found for {country_name}")
                 return
@@ -852,7 +805,7 @@ class CountryModelTrainer:
                         num_boost_round=300,
                         evals=[(dtrain, "train")],
                         early_stopping_rounds=10,
-                        verbose_eval=False
+                        verbose_eval=False,
                     )
 
                     # Evaluate
@@ -862,11 +815,16 @@ class CountryModelTrainer:
 
                     result_row = {"months": i, "rmse_log": rmse_log}
 
-                    if self.original_target and self.original_target in df_test_original.columns:
+                    if (
+                        self.original_target
+                        and self.original_target in df_test_original.columns
+                    ):
                         try:
                             y_test_orig = df_test_original[self.original_target]
                             preds_orig = np.exp(preds_log)
-                            rmse_orig = np.sqrt(mean_squared_error(y_test_orig, preds_orig))
+                            rmse_orig = np.sqrt(
+                                mean_squared_error(y_test_orig, preds_orig)
+                            )
                             mlflow.log_metric("rmse_original", rmse_orig)
                             result_row["rmse_original"] = rmse_orig
                         except Exception as e:
@@ -877,10 +835,18 @@ class CountryModelTrainer:
             # Log RMSE vs Months plot
             result_df = pd.DataFrame(results)
             import matplotlib.pyplot as plt
+
             plt.figure(figsize=(10, 6))
-            plt.plot(result_df["months"], result_df["rmse_log"], marker="o", label="Log RMSE")
+            plt.plot(
+                result_df["months"], result_df["rmse_log"], marker="o", label="Log RMSE"
+            )
             if "rmse_original" in result_df.columns:
-                plt.plot(result_df["months"], result_df["rmse_original"], marker="o", label="Original RMSE")
+                plt.plot(
+                    result_df["months"],
+                    result_df["rmse_original"],
+                    marker="o",
+                    label="Original RMSE",
+                )
             plt.xlabel("Months of Training Data")
             plt.ylabel("RMSE")
             plt.title(f"Performance vs Training Window: {country_name}")
@@ -892,10 +858,14 @@ class CountryModelTrainer:
             mlflow.log_artifact(fig_path)
             os.remove(fig_path)
 
-            self.logger.info(f"--- finished incremental training for {country_name.upper()} ---")
+            self.logger.info(
+                f"--- finished incremental training for {country_name.upper()} ---"
+            )
 
         except Exception as e:
-            self.logger.error(f"Incremental training failed for {country_name}: {e}", exc_info=True)
+            self.logger.error(
+                f"Incremental training failed for {country_name}: {e}", exc_info=True
+            )
 
     def run_iterative_training(self):
         """
@@ -932,40 +902,175 @@ class CountryModelTrainer:
                 f"skipped {skipped_count} countries due to errors before mlflow run start."
             )
 
+    def monitor_input_drift(
+        self,
+        run_id: str,
+        new_data: pd.DataFrame,
+        alpha: float = 0.05,
+    ) -> Dict[str, bool]:
+        """
+        performs drift detection by comparing distributions of new data against training data
+        using kolmogorov-smirnov test for continuous variables and chi-squared test for categorical ones.
+
+        args:
+            run_id: the mlflow run id corresponding to the trained model.
+            new_data: a pandas dataframe containing new input features.
+            alpha: significance level for drift detection (default 0.05).
+
+        returns:
+            a dictionary where keys are feature names and values are boolean indicating
+            if drift was detected for that feature based on statistical tests.
+        """
+        from scipy.stats import ks_2samp, chisquare
+        import time
+
+        self.logger.info(
+            f"[monitoring] starting input drift check for run_id: {run_id}"
+        )
+        drift_detected = {}
+        client = MlflowClient()
+
+        # add a timeout for artifact download
+        max_wait_seconds = 30
+        start_time = time.time()
+
+        try:
+            # download with timeout tracking
+            while time.time() - start_time < max_wait_seconds:
+                try:
+                    # get artifact download paths
+                    artifact_dir = client.download_artifacts(run_id, "")
+                    training_data_path = None
+                    feature_types_path = None
+
+                    for root, dirs, files in os.walk(artifact_dir):
+                        for f in files:
+                            if f == "training_data_sample.csv":
+                                training_data_path = os.path.join(root, f)
+                            elif f == "feature_types.json":
+                                feature_types_path = os.path.join(root, f)
+
+                    missing_files = []
+                    if not training_data_path:
+                        missing_files.append("training_data_sample.csv")
+                    if not feature_types_path:
+                        missing_files.append("feature_types.json")
+
+                    if missing_files:
+                        raise FileNotFoundError(
+                            f"Could not find required files: {', '.join(missing_files)}"
+                        )
+
+                    break
+                except Exception as e:
+                    if time.time() - start_time >= max_wait_seconds:
+                        raise TimeoutError(
+                            f"download timed out after {max_wait_seconds}s: {e}"
+                        )
+                    time.sleep(1)
+
+            # read data and feature types
+            train_data = pd.read_csv(training_data_path)
+
+            with open(feature_types_path) as f:
+                feature_types = json.load(f)
+
+            # test features present in both datasets
+            common_features = [
+                col for col in train_data.columns if col in new_data.columns
+            ]
+
+            # test each feature
+            for feature in common_features:
+                # skip features with missing data
+                if (
+                    train_data[feature].isnull().any()
+                    or new_data[feature].isnull().any()
+                ):
+                    self.logger.warning(
+                        f"[monitoring] feature '{feature}' has null values, skipping"
+                    )
+                    drift_detected[feature] = False
+                    continue
+
+                # appropriate test based on feature type
+                if feature_types.get(feature) == "categorical":
+                    try:
+                        train_counts = train_data[feature].value_counts()
+                        new_counts = new_data[feature].value_counts()
+
+                        common_categories = set(train_counts.index).intersection(
+                            set(new_counts.index)
+                        )
+                        if len(common_categories) < 2:
+                            self.logger.warning(
+                                f"[monitoring] not enough common categories for '{feature}'"
+                            )
+                            drift_detected[feature] = False
+                            continue
+
+                        # arrays for chi-squared test
+                        observed = np.array(
+                            [new_counts.get(cat, 0) for cat in common_categories]
+                        )
+                        expected_ratio = sum(new_counts) / sum(train_counts)
+                        expected = np.array(
+                            [
+                                train_counts.get(cat, 0) * expected_ratio
+                                for cat in common_categories
+                            ]
+                        )
+
+                        # chi-squared test and check p-value
+                        chi2, p_value = chisquare(observed, expected)
+                        drift_detected[feature] = p_value < alpha
+
+                        if drift_detected[feature]:
+                            self.logger.warning(
+                                f"[monitoring] drift in categorical feature '{feature}', p={p_value:.6f}"
+                            )
+
+                    except Exception as e:
+                        self.logger.warning(
+                            f"[monitoring] chi-squared test failed for '{feature}': {e}"
+                        )
+                        drift_detected[feature] = False
+                else:
+                    # continuous features
+                    try:
+                        ks_stat, p_value = ks_2samp(
+                            train_data[feature].values, new_data[feature].values
+                        )
+                        drift_detected[feature] = p_value < alpha
+
+                        if drift_detected[feature]:
+                            self.logger.warning(
+                                f"[monitoring] drift in continuous feature '{feature}', p={p_value:.6f}"
+                            )
+
+                    except Exception as e:
+                        self.logger.warning(
+                            f"[monitoring] ks test failed for '{feature}': {e}"
+                        )
+                        drift_detected[feature] = False
+
+            # results
+            drifted_features = [f for f, drifted in drift_detected.items() if drifted]
+            self.logger.info(
+                f"[monitoring] drift check complete: {len(drifted_features)}/{len(common_features)} features drifted"
+            )
+
+        except Exception as e:
+            self.logger.error(
+                f"[monitoring] drift detection failed: {e}", exc_info=True
+            )
+            return {}
+
+        return drift_detected
+
 
 if __name__ == "__main__":
     # ensure mlflow uri and experiment are set before running
     # (already done globally above here)
     trainer = CountryModelTrainer()
     trainer.run_iterative_training()
-
-    # example of how to load a model logged by mlflow:
-    # country = 'brunei' # example
-    # run_id = 'YOUR_RUN_ID_HERE' # replace run_id with the actual id from mlflow ui/api for the country model
-    # logged_model_uri = f"runs:/{run_id}/model"
-    # # or use model registry uri: f"models:/{country}_visitor_model/latest"
-    # try:
-    #    loaded_model = mlflow.xgboost.load_model(logged_model_uri)
-    #    print(f"loaded mlflow model for {country}")
-    #    # you would typically also load the corresponding 'features.json' artifact
-    #    # client = mlflow.tracking.MlflowClient()
-    #    # features_path = client.download_artifacts(run_id, "features.json")
-    #    # with open(features_path, 'r') as f:
-    #    #     features_data = json.load(f)
-    #    #     features = features_data['features']
-    # except Exception as e:
-    #     print(f"error loading model from mlflow: {e}")
-
-    # example of how to run drift detection (requires a run_id and new data):
-    # try:
-    #     # assume 'new_production_data_df' is a pandas dataframe with new data
-    #     # ensure its columns match the features used during training
-    #     # new_production_data_df = pd.read_csv(...) # load your new data
-    #     # run_id_to_monitor = 'YOUR_RUN_ID_HERE' # replace with a valid run_id
-    #     # drift_results = trainer.monitor_input_drift(run_id_to_monitor, new_production_data_df)
-    #     # print("drift detection results:", drift_results)
-    #     # based on drift_results, you might trigger alerts, retraining, etc.
-    # except NameError:
-    #     print("\n[info] skipping drift detection example as 'new_production_data_df' and 'run_id_to_monitor' are not defined.")
-    # except Exception as e:
-    #     print(f"\nerror running drift detection example: {e}")
