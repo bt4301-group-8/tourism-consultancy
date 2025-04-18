@@ -205,8 +205,8 @@ elif page == "Visualizations":
                 if model_name:
                     model_version = "2"  # Load version 2 (you can adjust this)
                     model_uri = f"models:/{model_name}/{model_version}"
+                    st.info(f"Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
                     try:
-                        st.info(f"Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
                         model = mlflow.xgboost.load_model(model_uri)  # Consistent loading with XGBoost
 
                         try:
@@ -216,25 +216,9 @@ elif page == "Visualizations":
                                 freq='M'
                             )
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
-                            forecast_df['country'] = country_filter
+                            forecast_df['country'] = country_filter # Ensure 'country' column is present if your model used it
 
-                            # --- Feature Engineering for XGBoost ---
-                            # This needs to be adapted for EACH country's model
-                            if country_filter.lower() == 'brunei':
-                                forecast_df['year'] = forecast_df['month_year'].dt.year
-                                forecast_df['month'] = forecast_df['month_year'].dt.month
-                                X_forecast = forecast_df[['year', 'month']] # Example for Brunei
-                            elif country_filter.lower() == 'cambodia':
-                                # Add feature engineering for Cambodia's model
-                                forecast_df['year'] = forecast_df['month_year'].dt.year - 2000 # Example
-                                X_forecast = forecast_df[['year']]
-                            # Add 'elif' blocks for other countries and their specific feature engineering
-                            else:
-                                # Default or error if no specific engineering is defined
-                                st.warning(f"No feature engineering defined for {country_filter}. Forecasting may not work.")
-                                X_forecast = pd.DataFrame(forecast_df['month_year']) # Pass original if no engineering
-
-                            forecast_df['num_visitors'] = model.predict(X_forecast)
+                            forecast_df['num_visitors'] = model.predict(forecast_df)
 
                             forecast_chart = alt.Chart(forecast_df).mark_line().encode(
                                 x='month_year:T',
