@@ -341,8 +341,8 @@ def tripadvisor_myanmar_scraper():
             client.admin.command('ping')
             logging.info("MongoDB connection successful.")
 
-            db = client.tripadvisor_test
-            review_collection = db.tripadvisor_reviews
+            db = client.posts
+            review_collection = db.tripadvisor
             logging.info(f"Connected to MongoDB. Database: {db.name}, Collection: {review_collection.name}")
         
             # insert reviews into collection
