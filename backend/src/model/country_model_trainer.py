@@ -99,7 +99,8 @@ class CountryModelTrainer:
         self.final_model_boost_rounds = final_model_boost_rounds
         self.seed = seed
         self.rng = np.random.default_rng(seed)
-
+        self.iterative_results_df = pd.DataFrame()
+        
         # define hyperparameter search space
         self.search_space = {
             "objective": "reg:squarederror",
@@ -868,7 +869,7 @@ class CountryModelTrainer:
                             preds_orig = np.exp(preds_log)
                             rmse_orig = np.sqrt(mean_squared_error(y_test_orig, preds_orig))
                             mlflow.log_metric("rmse_original", rmse_orig)
-                            result_row["rmse_original"] = rmse_orig
+                            # result_row["rmse_original"] = rmse_orig
                         except Exception as e:
                             self.logger.warning(f"Failed to compute original RMSE: {e}")
 
@@ -879,10 +880,10 @@ class CountryModelTrainer:
             import matplotlib.pyplot as plt
             plt.figure(figsize=(10, 6))
             plt.plot(result_df["months"], result_df["rmse_log"], marker="o", label="Log RMSE")
-            if "rmse_original" in result_df.columns:
-                plt.plot(result_df["months"], result_df["rmse_original"], marker="o", label="Original RMSE")
+            # if "rmse_original" in result_df.columns:
+            #     plt.plot(result_df["months"], result_df["rmse_original"], marker="o", label="Original RMSE")
             plt.xlabel("Months of Training Data")
-            plt.ylabel("RMSE")
+            plt.ylabel("Log RMSE")
             plt.title(f"Performance vs Training Window: {country_name}")
             plt.legend()
             plt.grid(True)
@@ -896,11 +897,13 @@ class CountryModelTrainer:
 
         except Exception as e:
             self.logger.error(f"Incremental training failed for {country_name}: {e}", exc_info=True)
+        
+        return result_df
 
-    def run_iterative_training(self):
+    def run_iterative_training(self, output_csv: str = "incremental_rmse_results.csv"):
         """
-        finds all country data files and runs the training pipeline for each,
-        logging each country to a separate mlflow run.
+        Runs incremental training for all country files, stores evaluation metrics
+        for each incremental step, and writes the summary results to a CSV file.
         """
         all_files = glob.glob(os.path.join(self.data_path, self.file_pattern))
         self.logger.info(
@@ -910,20 +913,34 @@ class CountryModelTrainer:
             self.logger.warning("no files found. exiting.")
             return
 
+        all_results = []
+
         processed_count = 0
         skipped_count = 0
         for f in sorted(all_files):  # sort for consistent order
             try:
-                self.train_incrementally_for_country(f)
-                processed_count += 1  # count attempts
+                result_df = self.train_incrementally_for_country(f)
+                if result_df is not None:
+                    country_name = os.path.basename(f).split("_")[0]
+                    result_df["country"] = country_name
+                    all_results.append(result_df)
+                    processed_count += 1
             except Exception as e:
-                # this catches errors outside the main train_for_country logic or before mlflow run starts
                 country_name = os.path.basename(f).split("_")[0]
                 self.logger.error(
                     f"unexpected error during training setup for {country_name} ({f}): {e}",
                     exc_info=True,
                 )
                 skipped_count += 1
+
+        if all_results:
+            self.iterative_results_df = pd.concat(all_results, ignore_index=True)
+            save_path = os.path.join("backend", "results")
+            os.makedirs(save_path, exist_ok=True)
+            self.iterative_results_df.to_csv(os.path.join(os.path.join(save_path, output_csv)), index=False)
+            self.logger.info(f"[output] saved aggregated RMSE results to: {output_csv}")
+        else:
+            self.logger.warning("No results to save.")
 
         self.logger.info(f"--- overall training process finished ---")
         self.logger.info(f"attempted training for: {processed_count} countries.")
