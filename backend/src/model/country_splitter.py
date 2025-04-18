@@ -15,7 +15,10 @@ class CountrySplitter:
         self.df = pd.read_csv(final_df_path)
         self.df["month_year"] = pd.to_datetime(self.df["month_year"], errors="coerce")
         self.df.dropna(subset=["month_year"], inplace=True)
+        # filter out data after cutoff date and prior cutoff date
         cutoff_date = pd.to_datetime("2025-02-01")
+        prior_cutoff_date = pd.to_datetime("2022-01-01")
+        self.df = self.df[self.df["month_year"] > prior_cutoff_date]
         self.df = self.df[self.df["month_year"] <= cutoff_date]
 
     def split_into_countries(
