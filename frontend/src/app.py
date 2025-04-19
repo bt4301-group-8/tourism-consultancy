@@ -5,11 +5,13 @@ from glob import glob
 import os
 import mlflow
 import mlflow.xgboost
+import mlflow.pyfunc
 from mlflow.tracking import MlflowClient
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import numpy as np
 
-# mlflow.set_tracking_uri("http://127.0.0.1:9080")
+mlflow.set_tracking_uri("http://127.0.0.1:9080")
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -99,10 +101,6 @@ MODEL_NAMES = {
     "vietnam": "vietnam_visitor_model",
 }
 
-# --- Function to get the registered model URI by version ---
-def get_registered_model_uri_by_version(model_name, version="2"):  # Default to version 2
-    return f"models:/{model_name}/{version}"
-
 # --- Overview Page ---
 if page == "Overview":
     st.title("🌍 Country Visitor Forecast Dashboard")
@@ -187,48 +185,91 @@ elif page == "Visualizations":
             if hist_df.empty:
                 st.warning(f"No historical data found for {country_filter.title()} after filtering.")
             else:
-                st.subheader(f"Historical Visitor Data for {country_filter.title()}")
-                hist_chart = alt.Chart(hist_df).mark_line(point=True).encode(
-                    x='month_year:T',
-                    y='num_visitors:Q',
-                    tooltip=['month_year', 'num_visitors']
-                ).properties(
-                    title=f"Historical Visitors for {country_filter.title()}"
-                ).interactive()
-                st.altair_chart(hist_chart, use_container_width=True)
-                st.divider()
+                # st.subheader(f"Historical Visitor Data for {country_filter.title()}")
+                # hist_chart = alt.Chart(hist_df).mark_line(point=True).encode(
+                #     x='month_year:T',
+                #     y='num_visitors:Q',
+                #     tooltip=['month_year', 'num_visitors']
+                # ).properties(
+                #     title=f"Historical Visitors for {country_filter.title()}"
+                # ).interactive()
+                # st.altair_chart(hist_chart, use_container_width=True)
+                # st.divider()
 
-                st.subheader(f"🔮 Future Visitor Forecast (Next 5 Years)")
+                st.subheader(f"🔮 Visitor Forecast for {country_filter.title()}")
 
                 model_name = MODEL_NAMES.get(country_filter.lower())
 
-                if model_name:
-                    model_version = "2"  # Load version 2 (you can adjust this)
-                    model_uri = f"models:/{model_name}/{model_version}"
-                    st.info(f"Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
-                    try:
-                        model = mlflow.xgboost.load_model(model_uri)  # Consistent loading with XGBoost
+                client = MlflowClient()
+                model_metadata = client.get_latest_versions(model_name, stages=["None"])
+                latest_model_version = model_metadata[0].version
 
+                if model_name: # retrieve latest version??
+                    model_version = latest_model_version  # Load version 2 (you can adjust this)
+                    model_uri = f"models:/{model_name}/{model_version}"
+                    try:
+                        st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
+                        model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
+                            mv = client.get_model_version(
+                                name=model_name,
+                                version=model_version
+                            )
+                            run_id = mv.run_id
+
+                            local_test_path = client.download_artifacts(
+                                run_id,
+                                "test_data/test_set.csv"
+                            )
+
+                            test_df = pd.read_csv(local_test_path)
                             forecast_data = pd.date_range(
-                                start=hist_df['month_year'].max(),
-                                periods=60,
+                                start=hist_df['month_year'].max(),## change this to test set start date
+                                periods=len(test_df),
                                 freq='M'
                             )
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
-                            forecast_df['country'] = country_filter # Ensure 'country' column is present if your model used it
+                            forecast_df['country'] = country_filter
+                            
+                            forecast_df['num_visitors'] = model.predict(test_df)
+                            forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
+                            st.dataframe(forecast_df.head())
+                            last_hist = hist_df.iloc[-1:]
+                            forecast_df = pd.concat([last_hist, forecast_df], ignore_index=True)
 
-                            forecast_df['num_visitors'] = model.predict(forecast_df)
+                            # Label the type of data
+                            hist_df['type'] = 'historical'
+                            forecast_df['type'] = 'forecasted'
 
-                            forecast_chart = alt.Chart(forecast_df).mark_line().encode(
-                                x='month_year:T',
+                            # Combine historical and forecast data
+                            combined_df = pd.concat([hist_df[['month_year', 'num_visitors', 'type']],
+                                                    forecast_df[['month_year', 'num_visitors', 'type']]])
+
+                            # Plot combined chart
+                            combined_chart = alt.Chart(combined_df).mark_line(point=True).encode(
+                                x='month_year:T', #change to year month
                                 y='num_visitors:Q',
-                                tooltip=['month_year', 'num_visitors']
+                                color='type:N',
+                                tooltip=['month_year:T', 'num_visitors:Q', 'type:N'],
+                                strokeDash=alt.condition(
+                                    alt.datum.type == 'forecasted',
+                                    alt.value([4, 5]),  # Dotted line for forecasted
+                                    alt.value([0, 0])   # Solid line for historical
+                                )
                             ).properties(
-                                title=f"Visitor Forecast for {country_filter.title()} (Next 5 Years)"
+                                title=f"Historical and Forecasted Visitors for {country_filter.title()}"
                             ).interactive()
 
-                            st.altair_chart(forecast_chart, use_container_width=True)
+                            st.altair_chart(combined_chart, use_container_width=True)
+                            # forecast_chart = alt.Chart(forecast_df).mark_line().encode(
+                            #     x='month_year:T',
+                            #     y='num_visitors:Q',
+                            #     tooltip=['month_year', 'num_visitors']
+                            # ).properties(
+                            #     title=f"Visitor Forecast for {country_filter.title()}"
+                            # ).interactive()
+
+                            # st.altair_chart(forecast_chart, use_container_width=True)
                         except Exception as e:
                             st.error(f"Error during forecasting: {e}")
                     except Exception as e:
