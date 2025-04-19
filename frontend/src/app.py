@@ -199,7 +199,6 @@ elif page == "Visualizations":
                     model_uri = f"models:/{model_name}/{model_version}"
                     try:
                         st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
-
                         model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
                             mv = client.get_model_version(
@@ -241,32 +240,18 @@ elif page == "Visualizations":
                             hist_df['type'] = 'historical'
                             forecast_df['type'] = 'forecasted'
 
-                            st.dataframe(forecast_df.head())
-
-                            forecast_df['num_visitors'] = model.predict(hist_df)
-
-                            last_hist = hist_df.iloc[-1:]
-                            forecast_df = pd.concat([last_hist, forecast_df], ignore_index=True)
-
-                            # Label the type of data
-                            hist_df['type'] = 'historical'
-                            forecast_df['type'] = 'forecasted'
-
                             # Combine historical and forecast data
                             combined_df = pd.concat([hist_df[['month_year', 'num_visitors', 'type']],
                                                     forecast_df[['month_year', 'num_visitors', 'type']]])
 
                             # Plot combined chart
                             combined_chart = alt.Chart(combined_df).mark_line(point=True).encode(
-
                                 x=alt.X('month_year:T',
                                         axis=alt.Axis(format='%Y/%-m/%-d', title='Date')),
-
                                 y='num_visitors:Q',
                                 color='type:N',
                                 tooltip=['month_year:T', 'num_visitors:Q', 'type:N'],
                                 strokeDash=alt.condition(
-                                        
                                     alt.datum.type == 'forecasted',
                                     alt.value([5, 5]),  # Dotted line for forecasted
                                     alt.value([0, 0])   # Solid line for historical
