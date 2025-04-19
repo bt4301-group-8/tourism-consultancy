@@ -1,6 +1,9 @@
+import argparse
+
 from backend.src.supabase_retriever import supabase_retriever
 from backend.src.model.country_splitter import CountrySplitter
 from backend.src.model.country_model_trainer import CountryModelTrainer
+
 
 class MLPipeline:
     """
@@ -14,10 +17,23 @@ class MLPipeline:
         self.country_splitter = CountrySplitter()
         self.country_model_trainer = CountryModelTrainer()
 
-    def run(self):
+    def run(
+        self,
+        csv_path: str = None,
+    ):
         self.country_splitter.split_into_countries()
-        self.country_model_trainer.run_training()
+        self.country_model_trainer.run_training(csv_path=csv_path)
+
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run the ML pipeline for tourism data")
+    parser.add_argument(
+        "--csv_path",
+        type=str,
+        default=None,
+        help="Optional path to a CSV file. If not provided, a model will be trained for all countries.",
+    )
+
+    args = parser.parse_args()
     ml_pipeline = MLPipeline()
-    ml_pipeline.run()
+    ml_pipeline.run(csv_path=args.csv_path)
