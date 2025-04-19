@@ -11,12 +11,10 @@ from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import json
 
-# Define base directory (project root)
+# Define base directory
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env_path = BASE_DIR / '.env'
 load_dotenv(dotenv_path=env_path)
-
-# Add backend directory to Python path for imports
 sys.path.append(str(BASE_DIR))
 
 from backend.src.reddit.reddit_crawler import RedditCrawler
@@ -38,12 +36,11 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-# Create DAG
 dag = DAG(
     'reddit_etl_pipeline',
     default_args=default_args,
     description='Reddit data ETL pipeline that scrapes travel subreddits weekly and uploads to MongoDB collections',
-    schedule_interval='0 1 * * 1',  # Run every Monday at 1AM
+    schedule_interval='0 4 1 * *',  # Stagger
     start_date=datetime(2025, 4, 1),
     catchup=False,
 )
@@ -158,19 +155,15 @@ def load_to_mongodb(**context):
         logging.warning("No data to load. Skipping MongoDB operations.")
         return 0, 0
     
-    # Check MongoDB connection before proceeding
     try:
         logging.info(f"Connecting to MongoDB at {mongo_uri.split('@')[-1] if mongo_uri and '@' in mongo_uri else 'configured URI'}")
         client = MongoClient(mongo_uri, server_api=ServerApi('1'))
-        # Verify connection works
         client.admin.command('ping')
         logging.info("MongoDB connection successful")
         
-        # Collections
         submissions_collection = client.posts.reddit_submissions
         comments_collection = client.posts.reddit_comments
         
-        # Track progress metrics
         submission_results = []
         comment_results = []
         submission_count = len(submissions_data)

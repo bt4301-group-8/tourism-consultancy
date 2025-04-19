@@ -1,4 +1,3 @@
-
 import os
 import sys
 from datetime import datetime, timedelta
@@ -14,6 +13,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env_path = BASE_DIR / '.env'
 load_dotenv(dotenv_path=env_path)
+
+# Add base directory
 sys.path.append(str(BASE_DIR))
 
 from backend.src.visitor_scraper.visitor_scraper import VisitorScraper
@@ -29,73 +30,77 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-# List of countries to extract visitor data for
-countries = [
-    "Thailand",
-    "Singapore",
-    "Malaysia",
-    "Indonesia",
-    "Vietnam",
-    "Philippines",
-    "Cambodia",
-    "Laos",
-    "Myanmar",
-    "Brunei"
-]
+# Only process Singapore data for the demo
+country = "Singapore"
 
 with DAG(
-    'visitor_labels_etl_pipeline',
+    'visitor_labels_demo_etl_pipeline',
     default_args=default_args,
-    description='Monthly ETL pipeline for visitor statistics from Southeast Asian countries',
-    schedule_interval='0 3 1 * *',  # Staggered initialisation
+    description=f'Demo ETL pipeline for {country} visitor statistics only',
+    schedule_interval=None,  # Set to None for manual triggering
     start_date=datetime(2025, 4, 1),
     catchup=False,
-    tags=['visitors', 'labels', 'etl'],
+    tags=['visitors', 'labels', 'demo', 'etl'],
 ) as dag:
     
-    def extract_visitor_data(**kwargs):
-        """Extract visitor data for Southeast Asian countries for the previous month only"""
-        print("Starting visitor data extraction")
+    def extract_singapore_visitor_data(**kwargs):
+        """Extract visitor data for Singapore for the previous month only"""
+        print(f"Starting visitor data extraction for {country}")
         
+        # Calculate previous month in YYYY-MM format
         today = datetime.now()
         first_day_of_current_month = datetime(today.year, today.month, 1)
         last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
-        last_month = last_day_of_previous_month.strftime('%Y-%m')
+        previous_month = last_day_of_previous_month.strftime('%Y-%m')
         
-        print(f"Extracting visitor data for the month: {last_month}")
+        print(f"Targeting visitor data for the month: {previous_month}")
         
         scraper = VisitorScraper()
         
-        previous_month_data = []
-        
-        # Extract data for each country
-        for country in countries:
-            try:
-                print(f"Extracting visitor data for {country}")
+        try:
+            visitor_json = scraper.get_visitors(country)
+            visitor_data = json.loads(visitor_json)
+            
+            # Filter for previous month only
+            filtered_data = []
+            for record in visitor_data:
+                # Convert ISO date format to YYYY-MM for comparison
+                record_date = datetime.fromisoformat(record.get('month_year').replace('Z', '+00:00'))
+                record_month_year = record_date.strftime('%Y-%m')
                 
-                visitor_json = scraper.get_visitors(country)
-                visitor_data = json.loads(visitor_json)
+                if record_month_year == previous_month:
+                    filtered_data.append(record)
+            
+            print(f"Found {len(filtered_data)} records for {country} in {previous_month}")
+            
+            if not filtered_data:
+                print(f"No visitor data found for {country} in {previous_month}. Checking for most recent data.")
                 
-                # Filter for the previous month only
-                for record in visitor_data:
-                    # Check if the record is for last month
-                    if record.get('month_year') == last_month:
-                        previous_month_data.append(record)
+                # If no data for the previous month, get the most recent data
+                df = pd.DataFrame(visitor_data)
+                df['month_year'] = pd.to_datetime(df['month_year'])
+                df = df.sort_values('month_year', ascending=False).head(1)
                 
-                print(f"Found {sum(1 for r in previous_month_data if r['country'] == country)} records for {country} in {last_month}")
+                most_recent_data = df.to_dict('records')
                 
-            except Exception as e:
-                print(f"Error extracting visitor data for {country}: {e}")
-        
-        print(f"Extracted a total of {len(previous_month_data)} visitor records for {last_month}")
-        
-        # to pull for next task
-        return json.dumps(previous_month_data)
+                # Convert datetime back to string format
+                for record in most_recent_data:
+                    record['month_year'] = record['month_year'].strftime('%Y-%m')
+                
+                print(f"Using most recent data from {most_recent_data[0]['month_year'] if most_recent_data else 'N/A'}")
+                
+                return json.dumps(most_recent_data)
+            
+            return json.dumps(filtered_data)
+            
+        except Exception as e:
+            print(f"Error extracting visitor data for {country}: {e}")
+            raise
     
     def transform_visitor_data(**kwargs):
         """Transform visitor data to match MongoDB schema"""
         ti = kwargs['ti']
-        visitor_data_json = ti.xcom_pull(task_ids='extract_visitor_data')
+        visitor_data_json = ti.xcom_pull(task_ids='extract_singapore_visitor_data')
         visitor_data = json.loads(visitor_data_json)
         
         print(f"Transforming {len(visitor_data)} visitor records")
@@ -131,25 +136,17 @@ with DAG(
         
         try:
             client = MongoClient(mongo_uri)
-            visitor_collection = client.labels.visitor_count
+            visitor_collection = client.demo.labels.visitor_count
             
             inserted_count = 0
             updated_count = 0
             
-            # Get the month we're processing from the first record
-            if transformed_data:
-                current_month = transformed_data[0].get('month_year')
-            else:
-                # Last check if no data found
-                today = datetime.now()
-                first_day_of_current_month = datetime(today.year, today.month, 1)
-                last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
-                current_month = last_day_of_previous_month.strftime('%Y-%m')
-            
-            print(f"Processing visitor data for period: {current_month}")
+            processed_months = set()
             
             for record in transformed_data:
                 try:
+                    processed_months.add(record['month_year'])
+                    
                     # Upsert can handle both new and existing records
                     result = visitor_collection.update_one(
                         {
@@ -169,24 +166,28 @@ with DAG(
                     print(f"Error processing record: {e}")
                     print(f"Record: {record}")
             
-            # Verify num records added
-            verification_count = visitor_collection.count_documents({
-                'month_year': current_month
-            })
+            # Verify records added for each month
+            verification_results = []
+            for month in processed_months:
+                count = visitor_collection.count_documents({
+                    'month_year': month,
+                    'country': country
+                })
+                verification_results.append(f"{month}: {count}")
             
             client.close()
             print(f"MongoDB loading completed. Inserted: {inserted_count}, Updated: {updated_count}")
-            print(f"Verification: Collection now contains {verification_count} records for {current_month}")
+            print(f"Verification results: {', '.join(verification_results)}")
             
-            return f"Inserted: {inserted_count}, Updated: {updated_count}, Verified: {verification_count}"
+            return f"Inserted: {inserted_count}, Updated: {updated_count}, Verified: {', '.join(verification_results)}"
         
         except Exception as e:
             print(f"Error during MongoDB operations: {e}")
             raise
     
     extract_task = PythonOperator(
-        task_id='extract_visitor_data',
-        python_callable=extract_visitor_data,
+        task_id='extract_singapore_visitor_data',
+        python_callable=extract_singapore_visitor_data,
         provide_context=True,
     )
     
