@@ -39,19 +39,24 @@ def calculate_date_range():
     
     return first_day_of_previous_month.date(), last_day_of_previous_month.date()
 
-def extract_currency_data(**kwargs):
-    """Extract currency data for the past month."""
+def extract_sgd_currency_data(**kwargs):
+    """Extract SGD currency data for the past month only."""
     start_date, end_date = calculate_date_range()
+    
+    print(f"Extracting SGD currency data from {start_date} to {end_date}")
     
     scraper = CurrencyScraper(
         start_date=start_date,
         end_date=end_date
     )
     
+    # Replace currency list with SGD only
+    scraper.currencies = ['SGD']
+    
     monthly_avg_df = scraper.scrape()
     
     if monthly_avg_df is None or monthly_avg_df.empty:
-        raise ValueError("No currency data was extracted")
+        raise ValueError("No SGD currency data was extracted")
     
     # Ensure JSON serializable
     result = []
@@ -68,17 +73,15 @@ def extract_currency_data(**kwargs):
 def transform_currency_data(**kwargs):
     """Transform currency data to match MongoDB schema."""
     ti = kwargs['ti']
-    monthly_avg_json = ti.xcom_pull(task_ids='extract_currency_data')
+    monthly_avg_json = ti.xcom_pull(task_ids='extract_sgd_currency_data')
     monthly_avg_data = json.loads(monthly_avg_json)
     
     transformed_data = []
-    invalid_records = 0
     
     for item in monthly_avg_data:
         # Validate fields
         if not all(key in item for key in ['YearMonth', 'Currency', 'AverageRate']):
             print(f"Skipping record missing required fields: {item}")
-            invalid_records += 1
             continue
         
         # Validate data types
@@ -90,20 +93,20 @@ def transform_currency_data(**kwargs):
             
         except (ValueError, TypeError) as e:
             print(f"Validation error in record {item}: {e}")
-            invalid_records += 1
     
-    print(f"Validation completed: {len(transformed_data)} valid records, {invalid_records} invalid records")
+    print(f"Validation completed: {len(transformed_data)} valid records")
     
     return json.dumps(transformed_data)
 
 def load_to_mongodb(**kwargs):
-    """Load transformed currency data to MongoDB."""
+    """Load transformed SGD currency data to MongoDB."""
     ti = kwargs['ti']
     transformed_data_json = ti.xcom_pull(task_ids='transform_currency_data')
     transformed_data = json.loads(transformed_data_json)
     
     client = MongoClient(mongo_uri)
-    currency_collection = client.factors.currency
+    client = MongoClient(mongo_uri)
+    currency_collection = client.demo.factors.currency
     
     if transformed_data:
         inserted_count = 0
@@ -122,23 +125,23 @@ def load_to_mongodb(**kwargs):
             elif result.modified_count > 0:
                 updated_count += 1
     
-        return f"Processed {len(transformed_data)} currency records. Inserted {inserted_count} new records, updated {updated_count} existing records."
+        return f"Processed {len(transformed_data)} SGD currency records. Inserted {inserted_count} new records, updated {updated_count} existing records."
     
-    return "No currency data to load"
+    return "No SGD currency data to load"
 
 with DAG(
-    'currency_etl_pipeline',
+    'currency_demo_etl_pipeline',
     default_args=default_args,
-    description='Monthly ETL pipeline for Southeast Asian currency exchange rates',
-    schedule_interval='0 0 1 * *',  # Run at midnight on the 1st day of each month
+    description='Demo ETL pipeline for SGD currency exchange rates for the past month',
+    schedule_interval=None,  # For demo purposes only, manually trigger
     start_date=datetime(2025, 4, 1),
     catchup=False,
-    tags=['currency', 'etl'],
+    tags=['currency', 'demo', 'etl'],
 ) as dag:
     
     extract_task = PythonOperator(
-        task_id='extract_currency_data',
-        python_callable=extract_currency_data,
+        task_id='extract_sgd_currency_data',
+        python_callable=extract_sgd_currency_data,
         provide_context=True,
     )
     
