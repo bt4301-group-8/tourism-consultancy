@@ -5,11 +5,12 @@ from glob import glob
 import os
 import mlflow
 import mlflow.xgboost
+import mlflow.pyfunc
 from mlflow.tracking import MlflowClient
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-# mlflow.set_tracking_uri("http://127.0.0.1:9080")
+mlflow.set_tracking_uri("http://127.0.0.1:9080")
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -207,34 +208,17 @@ elif page == "Visualizations":
                     model_uri = f"models:/{model_name}/{model_version}"
                     try:
                         st.info(f"Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
-                        model = mlflow.xgboost.load_model(model_uri)  # Consistent loading with XGBoost
-
+                        model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
                             forecast_data = pd.date_range(
                                 start=hist_df['month_year'].max(),
-                                periods=60,
+                                periods=len(hist_df),
                                 freq='M'
                             )
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
                             forecast_df['country'] = country_filter
 
-                            # --- Feature Engineering for XGBoost ---
-                            # This needs to be adapted for EACH country's model
-                            if country_filter.lower() == 'brunei':
-                                forecast_df['year'] = forecast_df['month_year'].dt.year
-                                forecast_df['month'] = forecast_df['month_year'].dt.month
-                                X_forecast = forecast_df[['year', 'month']] # Example for Brunei
-                            elif country_filter.lower() == 'cambodia':
-                                # Add feature engineering for Cambodia's model
-                                forecast_df['year'] = forecast_df['month_year'].dt.year - 2000 # Example
-                                X_forecast = forecast_df[['year']]
-                            # Add 'elif' blocks for other countries and their specific feature engineering
-                            else:
-                                # Default or error if no specific engineering is defined
-                                st.warning(f"No feature engineering defined for {country_filter}. Forecasting may not work.")
-                                X_forecast = pd.DataFrame(forecast_df['month_year']) # Pass original if no engineering
-
-                            forecast_df['num_visitors'] = model.predict(X_forecast)
+                            forecast_df['num_visitors'] = model.predict(hist_df)
 
                             forecast_chart = alt.Chart(forecast_df).mark_line().encode(
                                 x='month_year:T',
