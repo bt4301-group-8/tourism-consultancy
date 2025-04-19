@@ -840,13 +840,13 @@ class CountryModelTrainer:
             plt.plot(
                 result_df["months"], result_df["rmse_log"], marker="o", label="Log RMSE"
             )
-            if "rmse_original" in result_df.columns:
-                plt.plot(
-                    result_df["months"],
-                    result_df["rmse_original"],
-                    marker="o",
-                    label="Original RMSE",
-                )
+            # if "rmse_original" in result_df.columns:
+            #     plt.plot(
+            #         result_df["months"],
+            #         result_df["rmse_original"],
+            #         marker="o",
+            #         label="Original RMSE",
+            #     )
             plt.xlabel("Months of Training Data")
             plt.ylabel("RMSE")
             plt.title(f"Performance vs Training Window: {country_name}")
@@ -1073,4 +1073,4 @@ if __name__ == "__main__":
     # ensure mlflow uri and experiment are set before running
     # (already done globally above here)
     trainer = CountryModelTrainer()
-    trainer.run_iterative_training()
+    trainer.run_training()

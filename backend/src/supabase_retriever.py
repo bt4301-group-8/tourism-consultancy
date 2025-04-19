@@ -48,7 +48,19 @@ class SupabaseRetriever:
                 print(f"[INFO] Merging '{name}' on ['country', 'month_year']")
                 base = pd.merge(base, df, on=["country", "month_year"], how="left")
 
+        base['month_year'] = pd.to_datetime(base['month_year'])
         base = base.sort_values(["country", "month_year"]).reset_index(drop=True)
+        # apply interpolation + forward/backfill within each country to each numeric column 
+        base = (
+            base
+            .groupby('country')
+            .apply(lambda g: 
+                g.interpolate(method='linear', limit_direction='both')
+                .ffill()
+                .bfill() 
+            )
+            .reset_index(drop=True)
+        )
         save_dir = "backend/data"
         os.makedirs(save_dir, exist_ok=True)
         base.to_csv(os.path.join(save_dir, "processed_data.csv"), index=False)
