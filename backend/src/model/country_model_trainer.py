@@ -693,11 +693,20 @@ class CountryModelTrainer:
                 f"--- finished training pipeline for {country_name.upper()} ---"
             )
 
-    def run_training(self):
+    def run_training(
+        self,
+        csv_path: str = None,
+    ):
         """
         finds all country data files and runs the training pipeline for each,
         logging each country to a separate mlflow run.
         """
+        if csv_path:
+            # if a specific csv path is provided, run training for that country only
+            self.logger.info(f"running training for specific country file: {csv_path}")
+            self.train_for_country(csv_path)
+            return
+
         all_files = glob.glob(os.path.join(self.data_path, self.file_pattern))
         self.logger.info(
             f"found {len(all_files)} country csvs in {self.data_path} matching '{self.file_pattern}'"
@@ -842,7 +851,6 @@ class CountryModelTrainer:
 
             # Log RMSE vs Months plot
             result_df = pd.DataFrame(results)
-
 
             # Add country column to identify rows
             result_df["country"] = country_name
