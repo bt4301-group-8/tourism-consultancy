@@ -17,6 +17,7 @@ from mlflow.models import infer_signature
 from mlflow.tracking import MlflowClient
 
 from backend.src.services import logger
+import os
 
 mlflow_tracking_uri = "http://localhost:9080"
 mlflow_experiment_name = "Country Visitor Model Training"
@@ -720,7 +721,7 @@ class CountryModelTrainer:
                 f"skipped {skipped_count} countries due to errors before mlflow run start."
             )
 
-    def train_incrementally_for_country(self, csv_path: str, min_months: int = 3):
+    def train_incrementally_for_country(self, csv_path: str, min_months: int = 1):
         """
         Performs incremental training for a single country's CSV data.
         Each iteration trains with increasing months of data and evaluates on the fixed test set.
@@ -773,7 +774,7 @@ class CountryModelTrainer:
 
             results = []
 
-            for i in range(min_months, len(df_trainval) + 1):
+            for i in range(min_months, len(df_trainval) + 1, 5):
                 df_subset = df_trainval.iloc[:i]
                 x_train = df_subset[features]
                 y_train = df_subset[self.target_variable]
@@ -834,6 +835,22 @@ class CountryModelTrainer:
 
             # Log RMSE vs Months plot
             result_df = pd.DataFrame(results)
+
+
+            # Add country column to identify rows
+            result_df["country"] = country_name
+
+            # Define global output path
+            summary_csv_path = os.path.join("results", "incremental_rmse_summary.csv")
+
+            # Create directory if needed
+            os.makedirs(os.path.dirname(summary_csv_path), exist_ok=True)
+
+            # Append to CSV
+            if not os.path.exists(summary_csv_path):
+                result_df.to_csv(summary_csv_path, index=False)
+            else:
+                result_df.to_csv(summary_csv_path, mode="a", index=False, header=False)
             import matplotlib.pyplot as plt
 
             plt.figure(figsize=(10, 6))
@@ -1073,4 +1090,4 @@ if __name__ == "__main__":
     # ensure mlflow uri and experiment are set before running
     # (already done globally above here)
     trainer = CountryModelTrainer()
-    trainer.run_training()
+    trainer.run_iterative_training()
