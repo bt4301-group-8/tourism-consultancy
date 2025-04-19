@@ -231,7 +231,6 @@ elif page == "Visualizations":
                             
                             forecast_df['num_visitors'] = model.predict(test_df)
                             forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
-
                             forecast_df['num_visitors'] = forecast_df['num_visitors'] \
                                 .apply(lambda x: float(f"{x:.3g}"))
                             st.dataframe(forecast_df.head())
@@ -269,7 +268,6 @@ elif page == "Visualizations":
                                 strokeDash=alt.condition(
                                         
                                     alt.datum.type == 'forecasted',
-
                                     alt.value([5, 5]),  # Dotted line for forecasted
                                     alt.value([0, 0])   # Solid line for historical
                                 )
