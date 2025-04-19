@@ -208,7 +208,11 @@ elif page == "Visualizations":
                     model_version = latest_model_version  # Load version 2 (you can adjust this)
                     model_uri = f"models:/{model_name}/{model_version}"
                     try:
+<<<<<<< HEAD
+                        st.info(f"Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
+=======
                         st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
+>>>>>>> 6f875ab2eb610c0f071654f54d85a17ac231b401
                         model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
                             mv = client.get_model_version(
@@ -225,7 +229,11 @@ elif page == "Visualizations":
                             test_df = pd.read_csv(local_test_path)
                             forecast_data = pd.date_range(
                                 start=hist_df['month_year'].max(),
+<<<<<<< HEAD
+                                periods=len(hist_df),
+=======
                                 periods=len(test_df),
+>>>>>>> 6f875ab2eb610c0f071654f54d85a17ac231b401
                                 freq='M'
                             )
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
@@ -235,12 +243,16 @@ elif page == "Visualizations":
                             forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
                             st.dataframe(forecast_df.head())
 
+<<<<<<< HEAD
+                            forecast_df['num_visitors'] = model.predict(hist_df)
+=======
                             last_hist = hist_df.iloc[-1:]
                             forecast_df = pd.concat([last_hist, forecast_df], ignore_index=True)
 
                             # Label the type of data
                             hist_df['type'] = 'historical'
                             forecast_df['type'] = 'forecasted'
+>>>>>>> 6f875ab2eb610c0f071654f54d85a17ac231b401
 
                             # Combine historical and forecast data
                             combined_df = pd.concat([hist_df[['month_year', 'num_visitors', 'type']],
