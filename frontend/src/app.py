@@ -235,6 +235,9 @@ elif page == "Visualizations":
                             forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
                             st.dataframe(forecast_df.head())
 
+                            last_hist = hist_df.iloc[-1:]
+                            forecast_df = pd.concat([last_hist, forecast_df], ignore_index=True)
+
                             # Label the type of data
                             hist_df['type'] = 'historical'
                             forecast_df['type'] = 'forecasted'
