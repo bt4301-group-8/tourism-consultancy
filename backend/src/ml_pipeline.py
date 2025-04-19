@@ -55,10 +55,10 @@ class MLPipeline:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the ML pipeline for tourism data")
     parser.add_argument(
-        "--retrain",
+        "--train",
         type=bool,
         default=False,
-        help="Whether to retrain the model. Default is False.",
+        help="Whether to train the models. Default is False.",
     )
     parser.add_argument(
         "--csv_path",
@@ -76,10 +76,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     ml_pipeline = MLPipeline()
     ml_pipeline.detect_input_drift(csv_path=args.csv_path, run_id=args.run_id)
-    if args.retrain:
+    if args.train:
         ml_pipeline.run(csv_path=args.csv_path)
     else:
-        ml_pipeline.logger.info(
-            "Skipping retraining. Use --retrain True to retrain the model."
-        )
+        ml_pipeline.logger.info("Skipping train. Use --train True to train the model.")
         ml_pipeline.logger.info("ML pipeline completed successfully.")
