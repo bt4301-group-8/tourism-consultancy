@@ -4,9 +4,9 @@ FROM python:3.9-slim
 # 1) System deps
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-      build-essential \
-      default-libmysqlclient-dev \
-      curl \
+    build-essential \
+    default-libmysqlclient-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # 2) Copy and install Python requirements
@@ -14,23 +14,18 @@ COPY requirements.txt /app/requirements.txt
 ARG AIRFLOW_VERSION=2.7.1
 ARG PYTHON_VERSION=3.9
 RUN pip install --upgrade pip \
-# install Airflow with its pinned deps, including the right Pendulum
-&& pip install \
+    # install Airflow with its pinned deps, including the right Pendulum
+    && pip install \
     "apache-airflow==${AIRFLOW_VERSION}" \
     --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt" \
-# then install everything else
-&& pip install -r /app/requirements.txt \
-&& pip install -U email-validator \
-&& pip install python-multipart
+    # then install everything else
+    && pip install -r /app/requirements.txt \
+    && pip install -U email-validator \
+    && pip install python-multipart
 
 # 3) Create app directory and copy code
 WORKDIR /app
 COPY . /app
-# COPY backend /app/backend
-# COPY frontend /app/frontend
-# COPY airflow /app/airflow
-# COPY mlartifacts /app/mlartifacts
-# COPY mlruns /app/mlruns
 
 # 4) Set Airflow home & disable examples
 ENV AIRFLOW_HOME=/app/airflow_home \

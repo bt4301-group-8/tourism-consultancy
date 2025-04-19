@@ -706,7 +706,6 @@ class CountryModelTrainer:
             self.logger.info(f"running training for specific country file: {csv_path}")
             self.train_for_country(csv_path)
             return
-
         all_files = glob.glob(os.path.join(self.data_path, self.file_pattern))
         self.logger.info(
             f"found {len(all_files)} country csvs in {self.data_path} matching '{self.file_pattern}'"
