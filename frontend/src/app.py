@@ -9,6 +9,7 @@ import mlflow.pyfunc
 from mlflow.tracking import MlflowClient
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import numpy as np
 
 mlflow.set_tracking_uri("http://127.0.0.1:9080")
 
@@ -199,33 +200,54 @@ elif page == "Visualizations":
                 st.altair_chart(hist_chart, use_container_width=True)
                 st.divider()
 
-                st.subheader(f"🔮 Future Visitor Forecast (Next 5 Years)")
+                st.subheader(f"🔮 Future Visitor Forecast")
 
                 model_name = MODEL_NAMES.get(country_filter.lower())
 
-                if model_name:
-                    model_version = "2"  # Load version 2 (you can adjust this)
+                if model_name: # retrieve latest version??
+                    model_version = "4"  # Load version 2 (you can adjust this)
                     model_uri = f"models:/{model_name}/{model_version}"
                     try:
-                        st.info(f"Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
+                        st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
                         model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
+                            # 1) Instantiate the client
+                            client = MlflowClient()
+
+                            # 2) Find the run_id for this model version
+                            #    (this assumes you only have one version '2' registered; adjust if you have multiple)
+                            mv = client.get_model_version(
+                                name=model_name,
+                                version=model_version
+                            )
+                            run_id = mv.run_id
+
+                            # 3) Download your test_set.csv artifact under test_data/
+                            # ✅ positional args only
+                            local_test_path = client.download_artifacts(
+                                run_id,
+                                "test_data/test_set.csv"
+                            )
+
+                            # 4) Read it into a DataFrame
+                            test_df = pd.read_csv(local_test_path)
                             forecast_data = pd.date_range(
                                 start=hist_df['month_year'].max(),
-                                periods=len(hist_df),
+                                periods=len(test_df),
                                 freq='M'
                             )
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
                             forecast_df['country'] = country_filter
-
-                            forecast_df['num_visitors'] = model.predict(hist_df)
-
+                            # 6) Predict
+                            forecast_df['num_visitors'] = model.predict(test_df)
+                            forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
+                            st.dataframe(forecast_df.head())
                             forecast_chart = alt.Chart(forecast_df).mark_line().encode(
                                 x='month_year:T',
                                 y='num_visitors:Q',
                                 tooltip=['month_year', 'num_visitors']
                             ).properties(
-                                title=f"Visitor Forecast for {country_filter.title()} (Next 5 Years)"
+                                title=f"Visitor Forecast for {country_filter.title()}"
                             ).interactive()
 
                             st.altair_chart(forecast_chart, use_container_width=True)
