@@ -2,6 +2,7 @@ import pandas as pd
 from backend.src.supabase.supabase import supabase
 import os
 
+
 class SupabaseRetriever:
     def __init__(self):
         self.supabase = supabase
@@ -16,10 +17,14 @@ class SupabaseRetriever:
         trends = pd.DataFrame(self.supabase.get_data("google_trends"))
 
         for df in [instagram, reddit, tripadvisor, labels, currency, trends]:
-            if 'country' in df.columns:
-                df['country'] = df['country'].str.lower()
+            if "country" in df.columns:
+                df["country"] = df["country"].str.lower()
 
-        base = labels[["country", "month_year", "num_visitors", "log_visitors"]].drop_duplicates().copy()
+        base = (
+            labels[["country", "month_year", "num_visitors", "log_visitors"]]
+            .drop_duplicates()
+            .copy()
+        )
 
         datasets = [
             ("calendar", calendar),
@@ -37,34 +42,34 @@ class SupabaseRetriever:
             post_id_cols = [col for col in df.columns if "id" in col.lower()]
             if post_id_cols:
                 df = df.drop(columns=post_id_cols)
-                print(f"[INFO] Dropped columns {post_id_cols} from '{name}'")
 
             if name == "calendar":
-                print(f"[INFO] Merging '{name}' on ['month_year'] (no country)")
                 base = pd.merge(base, df, on="month_year", how="left")
             else:
                 if "country" not in df.columns:
                     raise ValueError(f"[ERROR] '{name}' is missing 'country'.")
-                print(f"[INFO] Merging '{name}' on ['country', 'month_year']")
                 base = pd.merge(base, df, on=["country", "month_year"], how="left")
 
-        base['month_year'] = pd.to_datetime(base['month_year'])
+        base["month_year"] = pd.to_datetime(base["month_year"])
         base = base.sort_values(["country", "month_year"]).reset_index(drop=True)
-        # apply interpolation + forward/backfill within each country to each numeric column 
+        # apply interpolation + forward/backfill within each country to each numeric column
         base = (
-            base
-            .groupby('country')
-            .apply(lambda g: 
-                g.interpolate(method='linear', limit_direction='both')
+            base.groupby("country")
+            .apply(
+                lambda g: g.select_dtypes(
+                    include="number"
+                )  # Process only numeric columns
+                .interpolate(method="linear", limit_direction="both")
+                .combine_first(g)  # Merge back with original data
                 .ffill()
-                .bfill() 
+                .bfill()
             )
             .reset_index(drop=True)
         )
         save_dir = "backend/data"
         os.makedirs(save_dir, exist_ok=True)
         base.to_csv(os.path.join(save_dir, "processed_data.csv"), index=False)
-        print(f"[SUCCESS] Merged dataset saved to '{save_dir}/processed_data.csv'. Shape: {base.shape}")
         return base
-    
+
+
 supabase_retriever = SupabaseRetriever()

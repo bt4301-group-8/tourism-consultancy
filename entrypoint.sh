@@ -23,7 +23,7 @@ echo "✔️ MLflow on :9080"
 # ONLY run training if models don't exist
 if [ ! -d "/app/mlartifacts" ] || [ -z "$(ls -A /app/mlartifacts)" ]; then
     echo "No existing models found. Training all country models and logging to MLflow..."
-    python -m backend.src.ml_pipeline
+    python -m backend.src.ml_pipeline --train True
     echo "✔️ Training completed"
 else
     echo "✔️ Using existing models in /app/mlartifacts"
