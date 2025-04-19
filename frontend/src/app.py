@@ -101,9 +101,9 @@ MODEL_NAMES = {
     "vietnam": "vietnam_visitor_model",
 }
 
-# --- Function to get the registered model URI by version ---
-def get_registered_model_uri_by_version(model_name, version="2"):  # Default to version 2
-    return f"models:/{model_name}/{version}"
+# # --- Function to get the registered model URI by version ---
+# def get_registered_model_uri_by_version(model_name, version="2"):  # Default to version 2
+#     return f"models:/{model_name}/{version}"
 
 # --- Overview Page ---
 if page == "Overview":
@@ -204,26 +204,23 @@ elif page == "Visualizations":
 
                 model_name = MODEL_NAMES.get(country_filter.lower())
 
+                client = MlflowClient()
+                model_metadata = client.get_latest_versions(model_name, stages=["None"])
+                latest_model_version = model_metadata[0].version
+
                 if model_name: # retrieve latest version??
-                    model_version = "4"  # Load version 2 (you can adjust this)
+                    model_version = latest_model_version  # Load version 2 (you can adjust this)
                     model_uri = f"models:/{model_name}/{model_version}"
                     try:
                         st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
                         model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
-                            # 1) Instantiate the client
-                            client = MlflowClient()
-
-                            # 2) Find the run_id for this model version
-                            #    (this assumes you only have one version '2' registered; adjust if you have multiple)
                             mv = client.get_model_version(
                                 name=model_name,
                                 version=model_version
                             )
                             run_id = mv.run_id
 
-                            # 3) Download your test_set.csv artifact under test_data/
-                            # ✅ positional args only
                             local_test_path = client.download_artifacts(
                                 run_id,
                                 "test_data/test_set.csv"
