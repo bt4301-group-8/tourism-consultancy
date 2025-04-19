@@ -185,19 +185,6 @@ elif page == "Visualizations":
             if hist_df.empty:
                 st.warning(f"No historical data found for {country_filter.title()} after filtering.")
             else:
-<<<<<<< HEAD
-=======
-                # st.subheader(f"Historical Visitor Data for {country_filter.title()}")
-                # hist_chart = alt.Chart(hist_df).mark_line(point=True).encode(
-                #     x='month_year:T',
-                #     y='num_visitors:Q',
-                #     tooltip=['month_year', 'num_visitors']
-                # ).properties(
-                #     title=f"Historical Visitors for {country_filter.title()}"
-                # ).interactive()
-                # st.altair_chart(hist_chart, use_container_width=True)
-                # st.divider()
->>>>>>> main
 
                 st.subheader(f"🔮 Visitor Forecast for {country_filter.title()}")
 
@@ -207,21 +194,12 @@ elif page == "Visualizations":
                 model_metadata = client.get_latest_versions(model_name, stages=["None"])
                 latest_model_version = model_metadata[0].version
 
-<<<<<<< HEAD
                 if model_name: # retrieve latest version
                     model_version = latest_model_version
                     model_uri = f"models:/{model_name}/{model_version}"
                     try:
                         st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
-=======
-                if model_name: # retrieve latest version??
-                    model_version = latest_model_version  # Load version 2 (you can adjust this)
-                    model_uri = f"models:/{model_name}/{model_version}"
-                    try:
 
-                        st.info(f"Consistently Loading registered MLflow XGBoost model (version {model_version}) from: '{model_uri}'...")
-
->>>>>>> main
                         model = mlflow.pyfunc.load_model(model_uri)  # Consistent loading with XGBoost
                         try:
                             mv = client.get_model_version(
@@ -234,7 +212,6 @@ elif page == "Visualizations":
                                 run_id,
                                 "test_data/test_set.csv"
                             )
-<<<<<<< HEAD
                             
                             test_df = pd.read_csv(local_test_path)
 
@@ -246,13 +223,6 @@ elif page == "Visualizations":
                             forecast_data = pd.date_range(
                                 start=hist_df['month_year'].max(),## change this to test set start date
                                 periods=n,
-=======
-
-                            test_df = pd.read_csv(local_test_path)
-                            forecast_data = pd.date_range(
-                                start=hist_df['month_year'].max(),
-                                periods=len(test_df),
->>>>>>> main
                                 freq='M'
                             )
 
@@ -261,7 +231,7 @@ elif page == "Visualizations":
                             
                             forecast_df['num_visitors'] = model.predict(test_df)
                             forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
-<<<<<<< HEAD
+
                             forecast_df['num_visitors'] = forecast_df['num_visitors'] \
                                 .apply(lambda x: float(f"{x:.3g}"))
                             st.dataframe(forecast_df.head())
@@ -272,7 +242,6 @@ elif page == "Visualizations":
                             hist_df['type'] = 'historical'
                             forecast_df['type'] = 'forecasted'
 
-=======
                             st.dataframe(forecast_df.head())
 
                             forecast_df['num_visitors'] = model.predict(hist_df)
@@ -284,28 +253,23 @@ elif page == "Visualizations":
                             hist_df['type'] = 'historical'
                             forecast_df['type'] = 'forecasted'
 
->>>>>>> main
                             # Combine historical and forecast data
                             combined_df = pd.concat([hist_df[['month_year', 'num_visitors', 'type']],
                                                     forecast_df[['month_year', 'num_visitors', 'type']]])
 
                             # Plot combined chart
                             combined_chart = alt.Chart(combined_df).mark_line(point=True).encode(
-<<<<<<< HEAD
+
                                 x=alt.X('month_year:T',
                                         axis=alt.Axis(format='%Y/%-m/%-d', title='Date')),
-=======
-                                x='month_year:T',
->>>>>>> main
+
                                 y='num_visitors:Q',
                                 color='type:N',
                                 tooltip=['month_year:T', 'num_visitors:Q', 'type:N'],
                                 strokeDash=alt.condition(
-<<<<<<< HEAD
+                                        
                                     alt.datum.type == 'forecasted',
-=======
-                                    alt.datum.Type == 'forecasted',
->>>>>>> main
+
                                     alt.value([5, 5]),  # Dotted line for forecasted
                                     alt.value([0, 0])   # Solid line for historical
                                 )
@@ -314,19 +278,7 @@ elif page == "Visualizations":
                             ).interactive()
 
                             st.altair_chart(combined_chart, use_container_width=True)
-<<<<<<< HEAD
 
-=======
-                            # forecast_chart = alt.Chart(forecast_df).mark_line().encode(
-                            #     x='month_year:T',
-                            #     y='num_visitors:Q',
-                            #     tooltip=['month_year', 'num_visitors']
-                            # ).properties(
-                            #     title=f"Visitor Forecast for {country_filter.title()}"
-                            # ).interactive()
-
-                            # st.altair_chart(forecast_chart, use_container_width=True)
->>>>>>> main
                         except Exception as e:
                             st.error(f"Error during forecasting: {e}")
                     except Exception as e:
