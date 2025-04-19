@@ -38,3 +38,10 @@ coverage.xml
 # Git
 .git/
 .gitignore
+
+# mlflow stuff
+mlruns/
+mlartifacts/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
