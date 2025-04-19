@@ -101,10 +101,6 @@ MODEL_NAMES = {
     "vietnam": "vietnam_visitor_model",
 }
 
-# # --- Function to get the registered model URI by version ---
-# def get_registered_model_uri_by_version(model_name, version="2"):  # Default to version 2
-#     return f"models:/{model_name}/{version}"
-
 # --- Overview Page ---
 if page == "Overview":
     st.title("🌍 Country Visitor Forecast Dashboard")
@@ -189,18 +185,18 @@ elif page == "Visualizations":
             if hist_df.empty:
                 st.warning(f"No historical data found for {country_filter.title()} after filtering.")
             else:
-                st.subheader(f"Historical Visitor Data for {country_filter.title()}")
-                hist_chart = alt.Chart(hist_df).mark_line(point=True).encode(
-                    x='month_year:T',
-                    y='num_visitors:Q',
-                    tooltip=['month_year', 'num_visitors']
-                ).properties(
-                    title=f"Historical Visitors for {country_filter.title()}"
-                ).interactive()
-                st.altair_chart(hist_chart, use_container_width=True)
-                st.divider()
+                # st.subheader(f"Historical Visitor Data for {country_filter.title()}")
+                # hist_chart = alt.Chart(hist_df).mark_line(point=True).encode(
+                #     x='month_year:T',
+                #     y='num_visitors:Q',
+                #     tooltip=['month_year', 'num_visitors']
+                # ).properties(
+                #     title=f"Historical Visitors for {country_filter.title()}"
+                # ).interactive()
+                # st.altair_chart(hist_chart, use_container_width=True)
+                # st.divider()
 
-                st.subheader(f"🔮 Future Visitor Forecast")
+                st.subheader(f"🔮 Visitor Forecast for {country_filter.title()}")
 
                 model_name = MODEL_NAMES.get(country_filter.lower())
 
@@ -226,7 +222,6 @@ elif page == "Visualizations":
                                 "test_data/test_set.csv"
                             )
 
-                            # 4) Read it into a DataFrame
                             test_df = pd.read_csv(local_test_path)
                             forecast_data = pd.date_range(
                                 start=hist_df['month_year'].max(),
@@ -235,19 +230,44 @@ elif page == "Visualizations":
                             )
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
                             forecast_df['country'] = country_filter
-                            # 6) Predict
+                            
                             forecast_df['num_visitors'] = model.predict(test_df)
                             forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
                             st.dataframe(forecast_df.head())
-                            forecast_chart = alt.Chart(forecast_df).mark_line().encode(
+
+                            # Label the type of data
+                            hist_df['type'] = 'historical'
+                            forecast_df['type'] = 'forecasted'
+
+                            # Combine historical and forecast data
+                            combined_df = pd.concat([hist_df[['month_year', 'num_visitors', 'type']],
+                                                    forecast_df[['month_year', 'num_visitors', 'type']]])
+
+                            # Plot combined chart
+                            combined_chart = alt.Chart(combined_df).mark_line(point=True).encode(
                                 x='month_year:T',
                                 y='num_visitors:Q',
-                                tooltip=['month_year', 'num_visitors']
+                                color='type:N',
+                                tooltip=['month_year:T', 'num_visitors:Q', 'type:N'],
+                                strokeDash=alt.condition(
+                                    alt.datum.Type == 'forecasted',
+                                    alt.value([5, 5]),  # Dotted line for forecasted
+                                    alt.value([0, 0])   # Solid line for historical
+                                )
                             ).properties(
-                                title=f"Visitor Forecast for {country_filter.title()}"
+                                title=f"Historical and Forecasted Visitors for {country_filter.title()}"
                             ).interactive()
 
-                            st.altair_chart(forecast_chart, use_container_width=True)
+                            st.altair_chart(combined_chart, use_container_width=True)
+                            # forecast_chart = alt.Chart(forecast_df).mark_line().encode(
+                            #     x='month_year:T',
+                            #     y='num_visitors:Q',
+                            #     tooltip=['month_year', 'num_visitors']
+                            # ).properties(
+                            #     title=f"Visitor Forecast for {country_filter.title()}"
+                            # ).interactive()
+
+                            # st.altair_chart(forecast_chart, use_container_width=True)
                         except Exception as e:
                             st.error(f"Error during forecasting: {e}")
                     except Exception as e:
