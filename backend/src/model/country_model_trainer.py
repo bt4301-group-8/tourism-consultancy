@@ -539,6 +539,13 @@ class CountryModelTrainer:
             mlflow.log_param("random_seed", self.seed)
 
             # log features list as an artifact (json)
+            test_csv = "test_set.csv"
+            # df_test_original already has your test rows (including original num_visitors)
+            df_test_original.to_csv(test_csv, index=False)
+            mlflow.log_artifact(test_csv, artifact_path="test_data")
+            os.remove(test_csv)
+
+            # log features list as an artifact (json)
             try:
                 features_dict = {"features": features}
                 mlflow.log_dict(features_dict, "features.json")
