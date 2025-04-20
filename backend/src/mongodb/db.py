@@ -10,7 +10,7 @@ class MongoDB:
         load_dotenv()
         username = os.getenv("MONGODB_USERNAME")
         password = urllib.parse.quote_plus(os.getenv("MONGODB_PASSWORD"))
-        self.uri = f"mongodb+srv://{username}:{password}@cluster0.hw5xcgp.mongodb.net/"
+        self.uri = f"mongodb+srv://{username}:{password}@cluster0.hw5xcgp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
         self.client = MongoClient(self.uri)
 
     def insert_json_into_db(self, filepath, db_name, collection_name):
