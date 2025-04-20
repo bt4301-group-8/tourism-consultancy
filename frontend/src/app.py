@@ -10,8 +10,44 @@ from mlflow.tracking import MlflowClient
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import numpy as np
+from datetime import datetime
+import pandas as pd
+import numpy as np
 
 mlflow.set_tracking_uri("http://127.0.0.1:9080")
+
+def generate_random_walk_features(historical_df, n_months=5):
+    last_test_date = pd.to_datetime(historical_df['month_year'].max())
+    future_dates = [last_test_date + pd.DateOffset(months=i) for i in range(1, n_months + 1)]
+    future_df = pd.DataFrame({'month_year': future_dates})
+
+    # Take same months from previous year as base
+    previous_year_dates = [d - pd.DateOffset(years=1) for d in future_dates]
+    base_df = historical_df[historical_df['month_year'].isin(previous_year_dates)].copy()
+
+    if len(base_df) < len(future_dates):
+        raise ValueError("Not enough matching historical data from the previous year to base random walk on.")
+
+    base_df = base_df.reset_index(drop=True)
+    future_df = future_df.reset_index(drop=True)
+
+    # Merge features
+    for col in historical_df.columns:
+        if col not in ['month_year', 'country', 'num_visitors', 'is_monsoon_season']:
+            base_col_values = base_df[col].copy()
+
+            # Apply random walk: +/- up to 5% per feature
+            noise = np.random.normal(loc=0.0, scale=0.03, size=len(base_col_values))  # ~3% variation
+            walked_values = base_col_values * (1 + noise)
+
+            future_df[col] = walked_values
+    future_df['is_monsoon_season'] = base_df['is_monsoon_season'].copy()
+
+    # Copy other required fields
+    if 'country' in historical_df.columns:
+        future_df['country'] = historical_df['country'].iloc[-1]  # Use the same country
+
+    return future_df
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -191,7 +227,11 @@ elif page == "Visualizations":
                 model_name = MODEL_NAMES.get(country_filter.lower())
 
                 client = MlflowClient()
-                model_metadata = client.get_latest_versions(model_name, stages=["None"])
+
+                all_versions = client.search_model_versions(f"name = '{model_name}'")
+
+                latest = max(all_versions, key=lambda mv: int(mv.version))
+                model_metadata = [latest]
                 latest_model_version = model_metadata[0].version
 
                 if model_name: # retrieve latest version
@@ -217,48 +257,77 @@ elif page == "Visualizations":
                             n=len(test_df)
                             hist_df['month_year'] = pd.to_datetime(hist_df['month_year'])
                             hist_df = hist_df.sort_values('month_year', ascending=True).reset_index(drop=True)
+                            hist_df_full = hist_df.copy()
                             hist_df = hist_df.iloc[:-n]
-
                             forecast_data = pd.date_range(
-                                start=hist_df['month_year'].max(),## change this to test set start date
+                                start=hist_df['month_year'].max()+ pd.offsets.MonthBegin(1),
                                 periods=n,
-                                freq='M'
+                                freq='MS'
                             )
 
                             forecast_df = pd.DataFrame(forecast_data, columns=['month_year'])
                             forecast_df['country'] = country_filter
-                            
+                            #predict on test data
                             forecast_df['num_visitors'] = model.predict(test_df)
                             forecast_df['num_visitors'] = np.expm1(forecast_df['num_visitors'])
                             forecast_df['num_visitors'] = forecast_df['num_visitors'] \
                                 .apply(lambda x: float(f"{x:.3g}"))
+                            #print table
+                            st.subheader("Predicted value for the past few months")
                             st.dataframe(forecast_df.head())
+
+                            synthetic_df = generate_random_walk_features(hist_df_full, n_months=5)
+                            #forecast on synthetic data
+                            synthetic_df['num_visitors'] = model.predict(synthetic_df)
+                            synthetic_df['num_visitors'] = np.expm1(synthetic_df['num_visitors'])
+                            synthetic_df['num_visitors'] = synthetic_df['num_visitors'] \
+                                .apply(lambda x: float(f"{x:.3g}"))
+                            #print forecast
+                            synthetic_df_table = synthetic_df[['month_year', 'country', 'num_visitors']]
+                            st.subheader("Forecasting value for the upcoming months")
+                            st.dataframe(synthetic_df_table.head())
                             last_hist = hist_df.iloc[-1:]
                             forecast_df = pd.concat([last_hist, forecast_df], ignore_index=True)
-
+                            test_df = pd.concat([last_hist, test_df], ignore_index=True)
+                            last_forecast = forecast_df.iloc[-1:]
+                            synthetic_df = pd.concat([last_forecast, synthetic_df], ignore_index=True)
+                            
                             # Label the type of data
-                            hist_df['type'] = 'historical'
-                            forecast_df['type'] = 'forecasted'
+                            hist_df_full['type'] = 'historical'
+                            forecast_df['type'] = 'predicted'
+                            synthetic_df['type'] = 'forecasting'
 
                             # Combine historical and forecast data
-                            combined_df = pd.concat([hist_df[['month_year', 'num_visitors', 'type']],
-                                                    forecast_df[['month_year', 'num_visitors', 'type']]])
+                            combined_df = pd.concat([hist_df_full[['month_year', 'num_visitors', 'type']],
+                                                    forecast_df[['month_year', 'num_visitors', 'type']],
+                                                    synthetic_df[['month_year', 'num_visitors', 'type']]])
 
                             # Plot combined chart
                             combined_chart = alt.Chart(combined_df).mark_line(point=True).encode(
                                 x=alt.X('month_year:T',
                                         axis=alt.Axis(format='%Y/%-m/%-d', title='Date')),
                                 y='num_visitors:Q',
-                                color='type:N',
-                                tooltip=['month_year:T', 'num_visitors:Q', 'type:N'],
+                                color=alt.Color(
+                                    'type:N',
+                                    scale=alt.Scale(
+                                        domain=['historical', 'predicted', 'forecasting'],
+                                        range=['#87CEFA','#1E90FF',  # light blue
+                                            '#1E90FF',  # blue
+                                            '#98FB98']  # green
+                                    ),
+                                    legend=alt.Legend(title='Data Type')
+                                ),
                                 strokeDash=alt.condition(
-                                    alt.datum.type == 'forecasted',
-                                    alt.value([5, 5]),  # Dotted line for forecasted
-                                    alt.value([0, 0])   # Solid line for historical
-                                )
+                                    alt.datum.type == 'historical',
+                                    alt.value([0, 0]),   # solid for historical
+                                    alt.value([5, 5])    # dotted for others
+                                ),
+                                tooltip=['month_year:T', 'num_visitors:Q', 'type:N']
                             ).properties(
                                 title=f"Historical and Forecasted Visitors for {country_filter.title()}"
                             ).interactive()
+
+
 
                             st.altair_chart(combined_chart, use_container_width=True)
 
