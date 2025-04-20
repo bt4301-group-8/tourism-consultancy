@@ -344,4 +344,3 @@ elif page == "Visualizations":
 
 # --- Footer ---
 st.markdown("---")
-st.markdown("Company Name")
