@@ -18,9 +18,7 @@ sys.path.append(str(BASE_DIR))
 from backend.src.instagram.instagram_crawler import InstagramCrawler
 from backend.src.instagram.utils import reorganize_tourism_data
 
-# MongoDB connection details
 mongo_uri = os.getenv("MONGO_URI")
-mongodb_name = os.getenv("MONGODB_NAME")
 
 default_args = {
     'owner': 'airflow',
@@ -31,7 +29,6 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-    # Create DAG
 with DAG(
     'instagram_demo_etl_pipeline',
     default_args=default_args,
@@ -138,7 +135,7 @@ with DAG(
             raise
     
     def transform_singapore_instagram_data(**kwargs):
-        """Transform Instagram data for Singapore only"""
+        """Transform Instagram data for Singapore only, setting all month_year to previous month"""
         ti = kwargs['ti']
         posts_json = ti.xcom_pull(task_ids='extract_singapore_instagram_data')
         singapore_posts = json.loads(posts_json)
@@ -148,32 +145,21 @@ with DAG(
         try:
             print(f"Transforming {len(singapore_posts)} Singapore posts")
             
+            # Calculate previous month (2025-03)
+            today = datetime.now()
+            first_day_of_current_month = datetime(today.year, today.month, 1)
+            last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
+            previous_month = last_day_of_previous_month.strftime("%Y-%m")
+            
+            print(f"Setting all posts to previous month: {previous_month}")
+            
             for post in singapore_posts:
-                # Add country and month_year to each post
-                if "date" in post:
-                    try:
-                        # Handle different date formats
-                        if isinstance(post["date"], str):
-                            # Parse string date if it's in ISO format
-                            date_obj = datetime.fromisoformat(post["date"].replace('Z', '+00:00'))
-                        else:
-                            # Use the date directly if it's already a datetime object
-                            date_obj = post["date"]
-                            
-                        # Format as YYYY-MM
-                        post["month_year"] = date_obj.strftime("%Y-%m")
-                    except Exception as e:
-                        print(f"Error parsing date {post.get('date')}: {e}")
-                        # Default to current month if date parsing fails
-                        post["month_year"] = datetime.now().strftime("%Y-%m")
-                else:
-                    # Default to current month if no date
-                    post["month_year"] = datetime.now().strftime("%Y-%m")
-                    
+                # Set month_year to previous month regardless of actual date
+                post["month_year"] = previous_month
                 post["country"] = "singapore"
                 flattened_posts.append(post)
             
-            print(f"Transformed {len(flattened_posts)} Singapore posts")
+            print(f"Transformed {len(flattened_posts)} Singapore posts to month {previous_month}")
             
             # Save the flattened Singapore posts
             flattened_posts_path = f"{BASE_DIR}/backend/data/flattened_singapore_demo_posts.json"
@@ -209,7 +195,6 @@ with DAG(
                 serverSelectionTimeoutMS=30000
             )
             
-            # Test connection before proceeding
             print("Testing MongoDB connection...")
             client.admin.command('ping')
             print("MongoDB connection successful")
@@ -219,7 +204,7 @@ with DAG(
             inserted_count = 0
             updated_count = 0
             error_count = 0
-            batch_size = 10  # Process in smaller batches to avoid timeouts
+            batch_size = 10
             
             # Process posts in batches
             for i in range(0, len(posts), batch_size):
@@ -250,11 +235,10 @@ with DAG(
                             updated_count += 1
                             
                     except Exception as e:
-                        print(f"Error processing post: {str(e)[:200]}...")  # Truncate long error messages
+                        print(f"Error processing post: {str(e)[:200]}...")
                         error_count += 1
-                        continue  # Continue with the next post
+                        continue
                 
-                # Give MongoDB a short break between batches
                 from time import sleep
                 sleep(2)
             
@@ -264,10 +248,9 @@ with DAG(
             return f"Inserted: {inserted_count}, Updated: {updated_count}, Errors: {error_count}"
             
         except Exception as e:
-            print(f"Error during MongoDB operations: {str(e)[:200]}...")  # Truncate long error messages
+            print(f"Error during MongoDB operations: {str(e)[:200]}...")
             print("Please check your MongoDB connection string and network settings")
             
-            # Create a fallback file with the data
             fallback_path = f"{BASE_DIR}/backend/data/singapore_posts_fallback.json"
             with open(fallback_path, 'w') as f:
                 json.dump(posts, f, indent=2)

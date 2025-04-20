@@ -17,7 +17,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env_path = BASE_DIR / '.env'
 load_dotenv(dotenv_path=env_path)
 
-# Add backend directory to Python path for imports
 sys.path.append(str(BASE_DIR))
 
 from backend.src.reddit.reddit_crawler import RedditCrawler
@@ -39,7 +38,6 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-# Create DAG
 dag = DAG(
     'reddit_demo_etl_pipeline',
     default_args=default_args,
@@ -222,12 +220,17 @@ def extract_reddit_data(**context):
     return len(submissions_data), len(comments_data)
 
 def transform_data(**context):
-    """Validate and transform Reddit data"""
+    """Validate and transform Reddit data, setting all month_year to 2025-03"""
     logging.info("Starting data validation and transformation")
     
     # Get data from extract stage
     submissions_data = json.loads(context['ti'].xcom_pull(task_ids='extract_reddit_data', key='submissions_data'))
     comments_data = json.loads(context['ti'].xcom_pull(task_ids='extract_reddit_data', key='comments_data'))
+    
+    today = datetime.now()
+    first_day_of_current_month = datetime(today.year, today.month, 1)
+    last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
+    previous_month = last_day_of_previous_month.strftime("%Y-%m")
     
     # Validate submissions
     valid_submissions = []
@@ -248,6 +251,9 @@ def transform_data(**context):
         # Ensure Singapore is in the mentioned countries
         if "singapore" not in [c.lower() for c in submission.get("mentioned_countries", [])]:
             submission["mentioned_countries"] = ["singapore"]
+        
+        # Set month_year to previous month
+        submission["month_year"] = previous_month
             
         valid_submissions.append(submission)
     
@@ -270,6 +276,9 @@ def transform_data(**context):
         # Ensure Singapore is in the mentioned countries
         if "singapore" not in [c.lower() for c in comment.get("mentioned_countries", [])]:
             comment["mentioned_countries"] = ["singapore"]
+        
+        # Set month_year to previous month
+        comment["month_year"] = previous_month
             
         valid_comments.append(comment)
     
@@ -277,7 +286,7 @@ def transform_data(**context):
     context['ti'].xcom_push(key='transformed_submissions', value=json.dumps(valid_submissions))
     context['ti'].xcom_push(key='transformed_comments', value=json.dumps(valid_comments))
     
-    logging.info(f"Validation completed. Valid Singapore submissions: {len(valid_submissions)}/{len(submissions_data)}, Valid comments: {len(valid_comments)}/{len(comments_data)}")
+    logging.info(f"Valid Singapore submissions: {len(valid_submissions)}/{len(submissions_data)}, Valid comments: {len(valid_comments)}/{len(comments_data)}")
     
     return len(valid_submissions), len(valid_comments)
 
