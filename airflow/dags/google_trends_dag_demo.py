@@ -210,8 +210,8 @@ def load_to_mongodb(**kwargs):
         for item in transformed_data:
             # Use upsert=True to insert if not exists or update if exists
             result = google_trends_collection.update_one(
-                {'YearMonth': item['YearMonth'], 'Country': item['Country']},
-                {'$set': {'Value': item['Value']}},
+                {'month_year': item['YearMonth'], 'country': item['Country']}, # update fields to correct naming
+                {'$set': {'value': item['Value']}},
                 upsert=True
             )
             
