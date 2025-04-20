@@ -33,6 +33,7 @@ def generate_random_walk_features(historical_df, n_months=5):
 
     # Merge features
     for col in historical_df.columns:
+        # Keeping int columns else, unable to predict
         if col not in ['month_year', 'country', 'num_visitors', 'is_monsoon_season', 'google_trend_score', 'google_trend_score_lag1']:
             base_col_values = base_df[col].copy()
 
@@ -48,7 +49,7 @@ def generate_random_walk_features(historical_df, n_months=5):
 
     # Copy other required fields
     if 'country' in historical_df.columns:
-        future_df['country'] = historical_df['country'].iloc[-1]  # Use the same country
+        future_df['country'] = historical_df['country'].iloc[-1]
 
     return future_df
 
@@ -341,6 +342,3 @@ elif page == "Visualizations":
                         st.error(f"Error loading registered XGBoost model from MLflow: {e}")
                 else:
                     st.error(f"No registered model name found for {country_filter}.")
-
-# --- Footer ---
-st.markdown("---")
