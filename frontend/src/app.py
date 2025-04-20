@@ -311,7 +311,7 @@ elif page == "Visualizations":
                                     'type:N',
                                     scale=alt.Scale(
                                         domain=['historical', 'predicted', 'forecasting'],
-                                        range=['#87CEFA','#1E90FF',  # light blue
+                                        range=['#87CEFA',  # light blue
                                             '#1E90FF',  # blue
                                             '#98FB98']  # green
                                     ),
