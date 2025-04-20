@@ -64,7 +64,7 @@ with DAG(
     default_args=default_args,
     description='DAG for extracting, transforming, and loading data from MongoDB to Supabase',
     # schedule interval to 1st of the month at noon
-    schedule_interval='0 12 1 * *',
+    schedule_interval='0 16 1 * *',
     start_date=pendulum.datetime(2025, 4, 1, tz="UTC"),
     catchup=False,
     tags=['mongodb', 'supabase', 'feature_engineering']

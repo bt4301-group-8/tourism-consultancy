@@ -245,8 +245,7 @@ def scrape_reviews_until_month_changes(attraction_url, attraction_name, country,
 # dag definition
 @dag(
     dag_id=f"tripadvisor_{COUNTRY_NAME}_scraper",
-    # schedule at 2am on the first day of each month
-    schedule_interval='0 2 1 * *',
+    schedule_interval="0 7 1 * *",  # Run at 5am (UTC+8) on the 1st of each month
     start_date=pendulum.datetime(2025, 4, 1, tz="Asia/Singapore"),
     catchup=False,
     tags=["tripadvisor", "scraping", "indonesia"],

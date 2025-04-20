@@ -66,7 +66,7 @@ with DAG(
     schedule_interval=None, # set to None for manual triggering
     start_date=pendulum.datetime(2025, 4, 1, tz="UTC"),
     catchup=False,
-    tags=['mongodb', 'supabase', 'feature_engineering']
+    tags=['mongodb', 'supabase', 'feature_engineering', 'demo']
 ) as dag:
 
     # def test_langid_task():
