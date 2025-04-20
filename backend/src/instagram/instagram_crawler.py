@@ -20,7 +20,7 @@ class InstagramCrawler:
         delay_range: List[int] = [1, 3],
         session_json_path: str = "backend/configs/session.json",
         city_geo_json_path: str = "backend/configs/city_geo.json",
-        exisiting_city_posts_path: str = "backend/data/city_posts.json",
+        existing_city_posts_path: str = "backend/data/city_posts.json",
     ):
         # for logging
         self.logger = logger
@@ -40,8 +40,8 @@ class InstagramCrawler:
             self.city_geo = json.load(f)
 
         # load existing city posts
-        self.exisiting_city_posts_path = exisiting_city_posts_path
-        with open(self.exisiting_city_posts_path, "r") as f:
+        self.existing_city_posts_path = existing_city_posts_path
+        with open(self.existing_city_posts_path, "r") as f:
             self.existing_city_posts = json.load(f)
 
     def _login(self):
@@ -296,12 +296,12 @@ class InstagramCrawler:
                 new_posts_added += len(posts)
 
         # write the updated data back to file
-        temp_file = f"{self.exisiting_city_posts_path}.tmp"
+        temp_file = f"{self.existing_city_posts_path}.tmp"
         with open(temp_file, "w") as f:
             json.dump(
                 self.existing_city_posts, f, indent=4, sort_keys=True, default=str
             )
-        os.replace(temp_file, self.exisiting_city_posts_path)
+        os.replace(temp_file, self.existing_city_posts_path)
 
         self.logger.info(f"added {new_posts_added} new posts to city posts")
 
@@ -349,12 +349,12 @@ class InstagramCrawler:
                 new_posts_added += len(posts)
 
         # write the updated data back to file
-        temp_file = f"{self.exisiting_city_posts_path}.tmp"
+        temp_file = f"{self.existing_city_posts_path}.tmp"
         with open(temp_file, "w") as f:
             json.dump(
                 self.existing_city_posts, f, indent=4, sort_keys=True, default=str
             )
-        os.replace(temp_file, self.exisiting_city_posts_path)
+        os.replace(temp_file, self.existing_city_posts_path)
 
         self.logger.info(f"added {new_posts_added} new posts to city posts")
 

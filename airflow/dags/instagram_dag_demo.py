@@ -18,7 +18,9 @@ sys.path.append(str(BASE_DIR))
 from backend.src.instagram.instagram_crawler import InstagramCrawler
 from backend.src.instagram.utils import reorganize_tourism_data
 
+# MongoDB connection details
 mongo_uri = os.getenv("MONGO_URI")
+mongodb_name = os.getenv("MONGODB_NAME")
 
 default_args = {
     'owner': 'airflow',
@@ -29,125 +31,152 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
+    # Create DAG
 with DAG(
-    'instagram_etl_pipeline',
+    'instagram_demo_etl_pipeline',
     default_args=default_args,
-    description='Monthly ETL pipeline for Instagram data from Southeast Asian cities',
-    schedule_interval='0 2 1 * *',  # Run at 2 AM on the 1st day of each month
+    description='Demo ETL pipeline for Instagram data from Singapore only (strictly max 10 posts)',
+    schedule_interval=None,  # Set to None for manual triggering
     start_date=datetime(2025, 4, 1),
     catchup=False,
-    tags=['instagram', 'etl'],
+    tags=['instagram', 'demo', 'etl', 'singapore'],
 ) as dag:
     
-    def extract_instagram_data(**kwargs):
-        """Extract data from Instagram for Southeast Asian cities"""
-        city_hashtags = [
-            # Indonesia
-            "bali", "jakarta",
-            # Brunei
-            "bandarseribegawan",
-            # Thailand
-            "bangkok", "phuket",
-            # Cambodia
-            "siemreap",
-            # Philippines
-            "cebu", "davao", "manila",
-            # Vietnam
-            "hanoi", "hochiminh",
-            # Malaysia
-            "kualalumpur", "johorbahru", "ipoh", "malacca",
-            # Laos
-            "luangprabang", "vientiane",
-            # Myanmar
-            "mandalay", "yangon",
-            # Singapore
-            "singapore"
-        ]
+    def extract_singapore_instagram_data(**kwargs):
+        """Extract Instagram data for Singapore only, limited to 10 posts"""
+        # Only target Singapore for this demo
+        city_hashtags = ["singapore"]
+        
+        print(f"Starting Instagram data extraction for Singapore only (max 10 posts)")
         
         try:
+            # Initialize and login to Instagram
             crawler = InstagramCrawler(
                 delay_range=[10, 15],  # Use a higher delay to avoid rate limits
                 session_json_path=f"{BASE_DIR}/backend/configs/session.json",
                 city_geo_json_path=f"{BASE_DIR}/backend/configs/city_geo.json",
-                exisiting_city_posts_path=f"{BASE_DIR}/backend/data/city_posts.json"
+                existing_city_posts_path=f"{BASE_DIR}/backend/data/city_posts.json"
             )
             
-            hashtags_master_dict = {}
-            crawler.get_and_write_to_city_posts_hashtag(
-                hashtags=city_hashtags,
-                hashtags_master_dict=hashtags_master_dict,
-                search_type="recent",
-                amount=20  # Limit to 20 posts per hashtag to avoid rate limiting
-            )
-            
-            for city in city_hashtags:
-                try:
-                    location_master_dict = {}
-                    crawler.get_and_write_to_city_posts_location(
-                        city_name=city,
-                        location_master_dict=location_master_dict,
-                        search_type="recent",
-                        amount=20  # Limit to 20 posts per location
-                    )
-                except Exception as e:
-                    print(f"Error fetching location data for {city}: {e}")
-                    continue
-            
-            city_posts_path = f"{BASE_DIR}/backend/data/city_posts.json"
-            
-            with open(city_posts_path, 'r') as f:
-                city_posts = json.load(f)
+            # Create a custom method to extract exactly 10 posts max without depending on existing data
+            def get_singapore_data_limited():
+                """Get Singapore data from hashtags and location methods, strictly limited to 10 posts total"""
+                all_posts = []
                 
-            post_count = sum(len(posts) for posts in city_posts.values())
-            print(f"Extracted {post_count} posts from {len(city_posts)} cities")
+                # First try by hashtag (5 posts)
+                try:
+                    print("Fetching posts via hashtag method...")
+                    hashtags_master_dict = {}
+                    hashtags_master_dict = crawler.get_info_by_hashtags(
+                        hashtags=city_hashtags,
+                        hashtags_master_dict=hashtags_master_dict,
+                        search_type="recent",
+                        amount=10  # Limit to 5 posts by hashtag
+                    )
+                    
+                    # Add posts to our collection
+                    if "singapore" in hashtags_master_dict:
+                        hashtag_posts = hashtags_master_dict["singapore"]
+                        print(f"Retrieved {len(hashtag_posts)} posts via hashtag")
+                        all_posts.extend(hashtag_posts)
+                except Exception as e:
+                    print(f"Error in hashtag retrieval: {e}")
+                
+                # Then try by location (5 more posts or less to reach total of 10)
+                remain_posts = 10 - len(all_posts)
+                if remain_posts > 0:
+                    try:
+                        print(f"Fetching {remain_posts} more posts via location method...")
+                        location_master_dict = {}
+                        location_master_dict = crawler.get_info_by_location(
+                            city_name="singapore",
+                            location_master_dict=location_master_dict,
+                            search_type="recent",
+                            amount=remain_posts  # Limit to remaining posts needed
+                        )
+                        
+                        # Add posts to our collection
+                        if "singapore" in location_master_dict:
+                            location_posts = location_master_dict["singapore"]
+                            print(f"Retrieved {len(location_posts)} posts via location")
+                            all_posts.extend(location_posts)
+                    except Exception as e:
+                        print(f"Error in location retrieval: {e}")
+                
+                # Enforce the limit of 10
+                if len(all_posts) > 10:
+                    all_posts = all_posts[:10]
+                    
+                print(f"Final post count: {len(all_posts)} (max: 10)")
+                return all_posts
             
-            return "success", post_count
+            def serialize_datetime(obj):
+                if isinstance(obj, datetime):
+                    return obj.isoformat()
+                return str(obj)
+            
+            # Get exactly 10 posts (or fewer if not available)
+            singapore_posts = get_singapore_data_limited()
+            
+            # Pre-process the posts to convert datetime objects to strings
+            for post in singapore_posts:
+                if isinstance(post.get('date'), datetime):
+                    post['date'] = post['date'].isoformat()
+            
+            # Save just these posts to a demo file (don't modify the original data file)
+            demo_file = f"{BASE_DIR}/backend/data/singapore_demo_posts.json"
+            with open(demo_file, "w") as f:
+                json.dump(singapore_posts, f, indent=4, default=serialize_datetime)
+                
+            print(f"Extracted {len(singapore_posts)} posts for Singapore saved to {demo_file}")
+            
+            # Return just the posts we extracted, not in a nested structure
+            return json.dumps(singapore_posts, default=serialize_datetime)
             
         except Exception as e:
             print(f"Error during Instagram data extraction: {e}")
             raise
     
-    def transform_instagram_data(**kwargs):
-        """Transform Instagram data into country-based flattened format"""
-        city_posts_path = f"{BASE_DIR}/backend/data/city_posts.json"
+    def transform_singapore_instagram_data(**kwargs):
+        """Transform Instagram data for Singapore only"""
+        ti = kwargs['ti']
+        posts_json = ti.xcom_pull(task_ids='extract_singapore_instagram_data')
+        singapore_posts = json.loads(posts_json)
+        
         flattened_posts = []
         
         try:
-            reorganize_tourism_data(input_json_path=city_posts_path)
+            print(f"Transforming {len(singapore_posts)} Singapore posts")
             
-            country_posts_path = f"{BASE_DIR}/backend/data/country_posts.json"
-            with open(country_posts_path, 'r') as f:
-                country_posts = json.load(f)
-            
-            for country, posts in country_posts.items():
-                for post in posts:
-                    # Add country and month_year to each post
-                    if "date" in post:
-                        try:
-                            # Handle different date formats
-                            if isinstance(post["date"], str):
-                                # Parse string date if it's in ISO format
-                                date_obj = datetime.fromisoformat(post["date"].replace('Z', '+00:00'))
-                            else:
-                                # Use the date directly if it's already a datetime object
-                                date_obj = post["date"]
-                                
-                            # Format as YYYY-MM
-                            post["month_year"] = date_obj.strftime("%Y-%m")
-                        except Exception as e:
-                            print(f"Error parsing date {post.get('date')}: {e}")
-                            # Default to current month if date parsing fails
-                            post["month_year"] = datetime.now().strftime("%Y-%m")
-                    else:
-                        # Default to current month if no date
+            for post in singapore_posts:
+                # Add country and month_year to each post
+                if "date" in post:
+                    try:
+                        # Handle different date formats
+                        if isinstance(post["date"], str):
+                            # Parse string date if it's in ISO format
+                            date_obj = datetime.fromisoformat(post["date"].replace('Z', '+00:00'))
+                        else:
+                            # Use the date directly if it's already a datetime object
+                            date_obj = post["date"]
+                            
+                        # Format as YYYY-MM
+                        post["month_year"] = date_obj.strftime("%Y-%m")
+                    except Exception as e:
+                        print(f"Error parsing date {post.get('date')}: {e}")
+                        # Default to current month if date parsing fails
                         post["month_year"] = datetime.now().strftime("%Y-%m")
-                        
-                    post["country"] = country
-                    flattened_posts.append(post)
+                else:
+                    # Default to current month if no date
+                    post["month_year"] = datetime.now().strftime("%Y-%m")
+                    
+                post["country"] = "singapore"
+                flattened_posts.append(post)
             
-            print(f"Transformed {len(flattened_posts)} posts")
+            print(f"Transformed {len(flattened_posts)} Singapore posts")
             
-            flattened_posts_path = f"{BASE_DIR}/backend/data/flattened_instagram_posts.json"
+            # Save the flattened Singapore posts
+            flattened_posts_path = f"{BASE_DIR}/backend/data/flattened_singapore_demo_posts.json"
             with open(flattened_posts_path, 'w') as f:
                 json.dump(flattened_posts, f, indent=2)
                 
@@ -158,28 +187,44 @@ with DAG(
             raise
     
     def load_to_mongodb(**kwargs):
-        """Load transformed Instagram data to MongoDB"""
+        """Load transformed Instagram data (Singapore only) to MongoDB"""
         ti = kwargs['ti']
-        posts_json = ti.xcom_pull(task_ids='transform_instagram_data')
+        posts_json = ti.xcom_pull(task_ids='transform_singapore_instagram_data')
         posts = json.loads(posts_json)
         
-        print(f"Preparing to load {len(posts)} Instagram posts to MongoDB")
+        print(f"Preparing to load {len(posts)} Singapore Instagram posts to MongoDB")
         
         if not posts:
-            print("No posts to load. Skipping MongoDB operations.")
+            print("No Singapore posts to load. Skipping MongoDB operations.")
             return "No data to load"
         
         try:
-            client = MongoClient(mongo_uri)
+            client = MongoClient(
+                mongo_uri,
+                ssl=True,
+                tlsAllowInvalidCertificates=True,
+                retryWrites=True,
+                connectTimeoutMS=30000,
+                socketTimeoutMS=30000,
+                serverSelectionTimeoutMS=30000
+            )
+            
+            # Test connection before proceeding
+            print("Testing MongoDB connection...")
+            client.admin.command('ping')
+            print("MongoDB connection successful")
+    
             instagram_collection = client.demo.posts.instagram
             
             inserted_count = 0
             updated_count = 0
             error_count = 0
-            batch_size = 100
+            batch_size = 10  # Process in smaller batches to avoid timeouts
             
+            # Process posts in batches
             for i in range(0, len(posts), batch_size):
                 batch = posts[i:i+batch_size]
+                print(f"Processing batch {i//batch_size + 1}/{(len(posts) + batch_size - 1)//batch_size}")
                 
                 for post in batch:
                     try:
@@ -205,10 +250,13 @@ with DAG(
                             updated_count += 1
                             
                     except Exception as e:
-                        print(f"Error processing post: {e}")
+                        print(f"Error processing post: {str(e)[:200]}...")  # Truncate long error messages
                         error_count += 1
+                        continue  # Continue with the next post
                 
-                print(f"Processed batch {i//batch_size + 1}/{(len(posts) + batch_size - 1)//batch_size}")
+                # Give MongoDB a short break between batches
+                from time import sleep
+                sleep(2)
             
             client.close()
             print(f"MongoDB loading completed. Inserted: {inserted_count}, Updated: {updated_count}, Errors: {error_count}")
@@ -216,18 +264,27 @@ with DAG(
             return f"Inserted: {inserted_count}, Updated: {updated_count}, Errors: {error_count}"
             
         except Exception as e:
-            print(f"Error during MongoDB operations: {e}")
-            raise
+            print(f"Error during MongoDB operations: {str(e)[:200]}...")  # Truncate long error messages
+            print("Please check your MongoDB connection string and network settings")
+            
+            # Create a fallback file with the data
+            fallback_path = f"{BASE_DIR}/backend/data/singapore_posts_fallback.json"
+            with open(fallback_path, 'w') as f:
+                json.dump(posts, f, indent=2)
+                
+            print(f"Data saved to fallback file: {fallback_path}")
+            
+            return f"Error: MongoDB connection failed. Data saved to fallback file."
     
     extract_task = PythonOperator(
-        task_id='extract_instagram_data',
-        python_callable=extract_instagram_data,
+        task_id='extract_singapore_instagram_data',
+        python_callable=extract_singapore_instagram_data,
         provide_context=True,
     )
     
     transform_task = PythonOperator(
-        task_id='transform_instagram_data',
-        python_callable=transform_instagram_data,
+        task_id='transform_singapore_instagram_data',
+        python_callable=transform_singapore_instagram_data,
         provide_context=True,
     )
     

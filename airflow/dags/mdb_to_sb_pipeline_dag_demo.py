@@ -121,7 +121,7 @@ with DAG(
             logging.info("Engineering features...")
             processor.engineer_google_trends()
             processor.engineer_currency()
-            # processor.engineer_instagram()
+            processor.engineer_instagram()
             processor.engineer_reddit()
             processor.engineer_tripadvisor()
             processor.engineer_labels()

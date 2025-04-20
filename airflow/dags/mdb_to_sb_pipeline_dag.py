@@ -31,7 +31,7 @@ sys.path.insert(0, str(BASE_DIR))
 
 # import the dataprocessor module from data_pipeline
 try:
-    from backend.src.mongodb_to_supabase_pipeline.data_pipeline import DataProcessor
+    from backend.src.mongodb_to_supabase_pipeline.data_pipeline_demo import DataProcessor
 except ImportError as e:
     logging.error(f"Failed to import DataProcessor: {e}")
     # define a dummy DataProcessor class
