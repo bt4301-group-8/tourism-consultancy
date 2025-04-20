@@ -1,7 +1,7 @@
 from backend.src.mongodb.db import mongodb
 from backend.src.supabase.supabase import supabase
-from backend.src.sentiment_analyzer.sentiment_insta import InstagramProcessor
-from backend.src.sentiment_analyzer.sentiment_reddit import RedditDataProcessor
+from backend.src.sentiment_analyzer.demo_sentiment_insta import InstagramProcessor
+from backend.src.sentiment_analyzer.demo_sentiment_reddit import RedditDataProcessor
 import pandas as pd
 import numpy as np
 import math
@@ -12,12 +12,12 @@ class DataProcessor:
         self.supabase = supabase
         self.processor_instagram = InstagramProcessor(self.mongodb)
         self.processor_reddit = RedditDataProcessor(self.mongodb)
-        self.instagram_df = pd.DataFrame(self.mongodb.find_all("posts", "instagram"))
-        self.reddit_df = pd.DataFrame(self.mongodb.find_all("posts", "reddit_submissions"))
-        self.tripadvisor_df = pd.DataFrame(self.mongodb.find_all("posts", "tripadvisor"))
-        self.labels_df = pd.DataFrame(self.mongodb.find_all("labels", "visitor_count"))
-        self.currency_df = pd.DataFrame(self.mongodb.find_all("factors", "currency"))
-        self.trends_df = pd.DataFrame(self.mongodb.find_all("factors", "google_trends"))
+        self.instagram_df = pd.DataFrame(self.mongodb.find_all("demo", "posts.instagram"))
+        self.reddit_df = pd.DataFrame(self.mongodb.find_all("demo", "posts.reddit_submissions"))
+        self.tripadvisor_df = pd.DataFrame(self.mongodb.find_all("demo", "posts.tripadvisor"))
+        self.labels_df = pd.DataFrame(self.mongodb.find_all("demo", "labels.visitor_count"))
+        self.currency_df = pd.DataFrame(self.mongodb.find_all("demo", "factors.currency"))
+        self.trends_df = pd.DataFrame(self.mongodb.find_all("demo", "factors.google_trends"))
         
     def read_from_mongodb(self, db_name, collection_name):
         data = self.mongodb.find_all(db_name, collection_name)
@@ -210,6 +210,10 @@ class DataProcessor:
             ig_sentiment.groupby('country')['ig_sentiment']
             .shift(periods=1)  # Shift down by 1 row
         )
+
+        #serialise date for month year to just YYYY-MM
+        ig_sentiment["month_year"] = ig_sentiment["month_year"].dt.strftime("%Y-%m")
+
         self.instagram_df = ig_sentiment[["country", "month_year", "ig_sentiment", "ig_sentiment_lag1", "ig_sentiment_z"]]
 
     def engineer_reddit(self):
@@ -270,6 +274,9 @@ class DataProcessor:
             .shift(1)
         )
 
+        # serialise date for month year to just YYYY-MM
+        avg_sentiment["month_year"] = avg_sentiment["month_year"].dt.strftime("%Y-%m")
+
         # Step 10: Final selection
         self.reddit_df = avg_sentiment[[
             "month_year", "country", "reddit_sentiment_z", "reddit_sentiment_lag1"
@@ -306,6 +313,9 @@ class DataProcessor:
         review_agg["trip_advisor_rating_lag1"] = (
             review_agg.groupby("country")["trip_advisor_rating"].shift(1)
         )
+        
+        # serialise date for month year to just YYYY-MM
+        review_agg["month_year"] = review_agg["month_year"].dt.strftime("%Y-%m")
 
         self.tripadvisor_df = review_agg[[
             "trip_advisor_rating", 

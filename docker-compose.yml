@@ -1,18 +1,20 @@
 # docker-compose.yml
-version: "3.8"
-
 services:
   allinone:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: tourism-consul-allinone
+    container_name: tourism-consultancy
     ports:
-      - "8080:8080"   # Airflow web UI
-      - "8501:8501"   # Streamlit
-      - "8000:8000"   # FastAPI
-      - "9080:9080"   # MLflow
+      - "8080:8080" # Airflow web UI
+      - "8501:8501" # Streamlit
+      - "8000:8000" # FastAPI
+      - "9080:9080" # MLflow
     volumes:
-      - ./mlartifacts:/app/mlartifacts  # persist MLflow runs across restarts
+      - ./mlartifacts:/app/mlartifacts # persist MLflow runs across restarts
     environment:
       MLFLOW_TRACKING_URI: http://127.0.0.1:9080
+      IG_USERNAME: ${IG_USERNAME}
+      IG_PASSWORD: ${IG_PASSWORD}
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}

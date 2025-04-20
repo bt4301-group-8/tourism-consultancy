@@ -1,0 +1,47 @@
+# Python virtual environment
+.venv/
+venv/
+backend/env/
+frontend/env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Local development settings
+.env
+.envrc
+.idea/
+.vscode/
+
+# macOS specific
+.DS_Store
+
+# Git
+.git/
+.gitignore
+
+# mlflow stuff
+mlruns/
+mlartifacts/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/

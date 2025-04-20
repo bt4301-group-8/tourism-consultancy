@@ -131,6 +131,40 @@ graph LR
     *   Model evaluation uses appropriate metrics for forecasting (e.g., RMSE, MAE, MAPE).
 7.  **Prediction:** The trained XGBoost model is saved. It can then be loaded to predict future monthly visitor numbers based on the latest available feature data ingested through the pipeline.
 
+## Running `.py` scripts
+
+1. init/training ALL models
+```shell
+python -m backend.src.ml_pipeline --train True
+```
+
+2. train/retrain SPECIFIC model
+```shell
+python -m backend.src.ml_pipeline --train True --csv_path backend/data/countries/singapore_final_df.csv
+```
+
+3. detect input drift
+```shell
+python -m backend.src.ml_pipeline --csv_path backend/data/countries/singapore_final_df.csv --run_id 677eef293a4a49599422538242c8eba8
+```
+
+## Docker
+
+1. build:
+```shell
+docker compose up --build -d
+```
+
+2. start:
+```shell
+docker compose up
+```
+
+3. check logs:
+```shell
+docker logs -f tourism-consultancy
+```
+
 ## Repository Structure
 ```bash
 ├── backend/                  # Core prediction engine
@@ -148,7 +182,7 @@ graph LR
 │   │   ├── model/            # ML modeling components
 │   │   ├── mongodb/          # MongoDB connection and queries
 │   │   ├── reddit/           # Reddit data collection
-│   │   ├── sentiment_analyzer/# NLP sentiment analysis
+│   │   ├── sentiment_analyzer/ # NLP sentiment analysis
 │   │   ├── services/         # Utility services
 │   │   ├── supabase/         # Supabase DB operations
 │   │   ├── tiktok/           # TikTok data collection (future)

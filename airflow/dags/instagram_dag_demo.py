@@ -18,9 +18,7 @@ sys.path.append(str(BASE_DIR))
 from backend.src.instagram.instagram_crawler import InstagramCrawler
 from backend.src.instagram.utils import reorganize_tourism_data
 
-# MongoDB connection details
 mongo_uri = os.getenv("MONGO_URI")
-mongodb_name = os.getenv("MONGODB_NAME")
 
 default_args = {
     'owner': 'airflow',
@@ -31,7 +29,6 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-# Create DAG
 with DAG(
     'instagram_etl_pipeline',
     default_args=default_args,
@@ -67,7 +64,6 @@ with DAG(
             "singapore"
         ]
         
-        # Initialize and login to Instagram
         try:
             crawler = InstagramCrawler(
                 delay_range=[10, 15],  # Use a higher delay to avoid rate limits
@@ -175,7 +171,7 @@ with DAG(
         
         try:
             client = MongoClient(mongo_uri)
-            instagram_collection = client.posts.instagram
+            instagram_collection = client.demo.posts.instagram
             
             inserted_count = 0
             updated_count = 0

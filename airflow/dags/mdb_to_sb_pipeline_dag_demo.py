@@ -31,7 +31,7 @@ sys.path.insert(0, str(BASE_DIR))
 
 # import the dataprocessor module from data_pipeline
 try:
-    from backend.src.mongodb_to_supabase_pipeline.data_pipeline import DataProcessor
+    from backend.src.mongodb_to_supabase_pipeline.data_pipeline_demo import DataProcessor
 except ImportError as e:
     logging.error(f"Failed to import DataProcessor: {e}")
     # define a dummy DataProcessor class
@@ -60,15 +60,36 @@ default_args = {
 
 # define the DAG
 with DAG(
-    dag_id='mongodb_to_supabase_feature_etl_pipeline',
+    dag_id='mongodb_to_supabase_feature_etl_pipeline_demo',
     default_args=default_args,
     description='DAG for extracting, transforming, and loading data from MongoDB to Supabase',
-    # schedule interval to 1st of the month at noon
-    schedule_interval='0 12 1 * *',
+    schedule_interval=None, # set to None for manual triggering
     start_date=pendulum.datetime(2025, 4, 1, tz="UTC"),
     catchup=False,
     tags=['mongodb', 'supabase', 'feature_engineering']
 ) as dag:
+
+    # def test_langid_task():
+    #     import langid
+    #     try:
+    #         text1 = "This is a simple English test."
+    #         lang1, conf1 = langid.classify(text1)
+    #         print(f"Test 1: Lang={lang1}, Conf={conf1}")
+
+    #         # Add more complex or known non-English text if available
+    #         text2 = "Este es un texto de prueba en español."
+    #         lang2, conf2 = langid.classify(text2)
+    #         print(f"Test 2: Lang={lang2}, Conf={conf2}")
+
+    #         # Test with potentially tricky input (e.g., empty string, numbers)
+    #         text3 = ""
+    #         lang3, conf3 = langid.classify(text3)
+    #         print(f"Test 3 (empty): Lang={lang3}, Conf={conf3}")
+
+    #         print("langid test completed successfully.")
+    #     except Exception as e:
+    #         print(f"Error during langid test: {e}")
+    #         raise # Re-raise to fail the task if needed
 
     # set up functions for the DAG tasks
     def extract_and_transform_data(**context):
@@ -81,6 +102,14 @@ with DAG(
             # extracting data from MongoDB via DataProcessor init method
             processor = DataProcessor()
             logging.info("DataProcessor initialized successfully, data loaded from MongoDB.")
+            # log length of each df
+            logging.info("Length of each dataframe:")
+            logging.info(f"length of google_trends_df: {len(processor.trends_df)}")
+            logging.info(f"length of currency_df: {len(processor.currency_df)}")
+            logging.info(f"length of instagram_df: {len(processor.instagram_df)}")
+            logging.info(f"length of reddit_df: {len(processor.reddit_df)}")
+            logging.info(f"length of tripadvisor_df: {len(processor.tripadvisor_df)}")
+            logging.info(f"length of labels_df: {len(processor.labels_df)}")
             
             # run sentiment analysis
             logging.info("Running sentiment analysis...")
@@ -92,7 +121,7 @@ with DAG(
             logging.info("Engineering features...")
             processor.engineer_google_trends()
             processor.engineer_currency()
-            processor.engineer_instagram()
+            # processor.engineer_instagram()
             processor.engineer_reddit()
             processor.engineer_tripadvisor()
             processor.engineer_labels()
@@ -102,6 +131,16 @@ with DAG(
             logging.info("Getting all dictionaries...")
             instagram_dict, reddit_dict, tripadvisor_dict, labels_dict, currency_dict, google_trends_dict = processor.get_all_dicts()
             logging.info("All dictionaries retrieved.")
+            
+            # print all the dicitonaries
+            logging.info("Printing all dictionaries...")
+            logging.info(f"google_trends_dict: {google_trends_dict}")
+            logging.info(f"currency_dict: {currency_dict}")
+            logging.info(f"instagram_dict: {instagram_dict}")
+            logging.info(f"reddit_dict: {reddit_dict}")
+            logging.info(f"tripadvisor_dict: {tripadvisor_dict}")
+            logging.info(f"labels_dict: {labels_dict}")
+            logging.info("All dictionaries printed.")
 
             # push data to XComs, use json.dumps for serialization of dictionaries to JSON strings
             logging.info("Pushing data to XComs...")
@@ -170,6 +209,7 @@ with DAG(
             raise e # re-raise the exception to fail the task
     
     # define the tasks
+
     extract_and_transform_task = PythonOperator(
         task_id='extract_and_transform_data',
         python_callable=extract_and_transform_data,
@@ -182,5 +222,5 @@ with DAG(
         provide_context=True,
     )
 
-    # set task dependencies
+    # # set task dependencies
     extract_and_transform_task >> load_to_supabase_task
