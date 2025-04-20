@@ -17,8 +17,10 @@ echo "✔️ Airflow scheduler started"
 airflow webserver --port 8080 &
 echo "✔️ Airflow webserver on :8080"
 
-# 1) Start MLflow Tracking Server (artifacts and backend store in /app/mlflow_artifacts)
-mlflow server --host 0.0.0.0 --port 9080 &
+# Start MLflow Tracking Server with explicit paths
+mlflow server --host 0.0.0.0 --port 9080 \
+  --backend-store-uri /app/mlruns \
+  --default-artifact-root /app/mlartifacts &
 echo "✔️ MLflow on :9080"
 # ONLY run training if models don't exist
 if [ ! -d "/app/mlartifacts" ] || [ -z "$(ls -A /app/mlartifacts)" ]; then

@@ -145,7 +145,7 @@ python -m backend.src.ml_pipeline --train True --csv_path backend/data/countries
 
 3. detect input drift
 ```shell
-python -m backend.src.ml_pipeline --csv_path backend/data/countries/singapore_final_df.csv --run_id 677eef293a4a49599422538242c8eba8
+python -m backend.src.ml_pipeline --csv_path backend/data/countries/singapore_final_df.csv --run_id 09e427082aa441279195e9c0b7826e32
 ```
 
 ## Docker

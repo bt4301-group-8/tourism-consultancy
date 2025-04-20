@@ -20,7 +20,7 @@ from backend.src.services import logger
 import os
 
 mlflow_tracking_uri = "http://localhost:9080"
-mlflow_experiment_name = "Country Visitor Model Training"
+mlflow_experiment_name = "Country Visitor Models"
 mlflow.set_tracking_uri(mlflow_tracking_uri)
 mlflow.set_experiment(mlflow_experiment_name)
 
