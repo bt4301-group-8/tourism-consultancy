@@ -33,7 +33,7 @@ def generate_random_walk_features(historical_df, n_months=5):
 
     # Merge features
     for col in historical_df.columns:
-        if col not in ['month_year', 'country', 'num_visitors', 'is_monsoon_season']:
+        if col not in ['month_year', 'country', 'num_visitors', 'is_monsoon_season', 'google_trend_score', 'google_trend_score_lag1']:
             base_col_values = base_df[col].copy()
 
             # Apply random walk: +/- up to 5% per feature
@@ -42,6 +42,9 @@ def generate_random_walk_features(historical_df, n_months=5):
 
             future_df[col] = walked_values
     future_df['is_monsoon_season'] = base_df['is_monsoon_season'].copy()
+    future_df['google_trend_score'] = base_df['google_trend_score'].copy()
+    future_df['google_trend_score_lag1'] = base_df['google_trend_score_lag1'].copy()
+
 
     # Copy other required fields
     if 'country' in historical_df.columns:
@@ -277,6 +280,7 @@ elif page == "Visualizations":
                             st.dataframe(forecast_df.head())
 
                             synthetic_df = generate_random_walk_features(hist_df_full, n_months=5)
+                            # st.dataframe(synthetic_df.head())
                             #forecast on synthetic data
                             synthetic_df['num_visitors'] = model.predict(synthetic_df)
                             synthetic_df['num_visitors'] = np.expm1(synthetic_df['num_visitors'])
