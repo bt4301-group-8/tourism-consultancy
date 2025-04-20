@@ -334,7 +334,7 @@ class DataProcessor:
             .reset_index(level=0, drop=True)
         )
         self.labels_df = df
-        self.labels_df = self.lab3els_df[["country", "month_year", "log_visitors", "num_visitors"]]
+        self.labels_df = self.labels_df[["country", "month_year", "log_visitors", "num_visitors"]]
 
     def serialize_dates(self, data):
         """Convert any pandas.Timestamp in a list of dicts to string."""
