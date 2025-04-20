@@ -100,7 +100,7 @@ with DAG(
 
             # get all the dictioanries
             logging.info("Getting all dictionaries...")
-            google_trends_dict, currency_dict, instagram_dict, reddit_dict, tripadvisor_dict, labels_dict = processor.get_all_dicts()
+            instagram_dict, reddit_dict, tripadvisor_dict, labels_dict, currency_dict, google_trends_dict = processor.get_all_dicts()
             logging.info("All dictionaries retrieved.")
 
             # push data to XComs, use json.dumps for serialization of dictionaries to JSON strings
