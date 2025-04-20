@@ -55,6 +55,7 @@ with DAG(
     default_args=default_args,
     description='DAG for training country-specific visitor prediction models using MLflow',
     # TODO: schedule every year
+    schedule_interval='0 0 3 1 *',  # Run on the 3rd day of January every year
     start_date=pendulum.datetime(2025, 4, 2, tz="UTC"), # Start date after data pipeline
     catchup=False,
     tags=['ml', 'training', 'xgboost', 'mlflow']
