@@ -210,6 +210,10 @@ class DataProcessor:
             ig_sentiment.groupby('country')['ig_sentiment']
             .shift(periods=1)  # Shift down by 1 row
         )
+
+        #serialise date for month year to just YYYY-MM
+        ig_sentiment["month_year"] = ig_sentiment["month_year"].dt.strftime("%Y-%m")
+
         self.instagram_df = ig_sentiment[["country", "month_year", "ig_sentiment", "ig_sentiment_lag1", "ig_sentiment_z"]]
 
     def engineer_reddit(self):
